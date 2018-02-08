@@ -185,6 +185,8 @@ function aiMove() {
 			
 			// Random wait.
 			// Change text to "AI Turn".
+			// Animate path to destination.
+			
 			
 			
 			document.getElementById(squares[rng]).appendChild(document.getElementById("piece_obj"));
