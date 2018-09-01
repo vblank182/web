@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>Raspberry Pi Server - Web Sandbox - Cookies</title>
+	<title>Sandbox - Cookies</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Bootstrap - CSS -->
@@ -26,7 +26,7 @@
 			<?php
 			$cookie_name = "test-php";
 			$button = "";
-			
+
 			if(isset($_COOKIE[$cookie_name])) {
 				if($_GET["kill"] == "yes") {
 					// If we get here from a kill request, kill cookie.
@@ -49,11 +49,11 @@
 			?>
 			</h2>
 		</div>
-	
+
 		<div class="row">
 			<?php echo $button;?>
 		</div>
-		
+
 	</div>
 </div>
 

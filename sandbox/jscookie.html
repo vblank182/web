@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>Raspberry Pi Server - Web Sandbox - Cookies</title>
+	<title>Sandbox - Cookies</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Bootstrap - CSS -->
@@ -18,30 +18,30 @@
 	function init() {
 		$('.alert').hide();  // Hide all alerts
 	}
-	
+
 	function setCookie(cname, cvalue, cexp) {
 		var d = new Date();
 		d.setTime(d.getTime() + cexp*1000);
 		var expires = "expires="+ d.toUTCString();
 		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-		
+
 		document.getElementById("cookie_text").innerHTML = 'Click the button below to read a cookie.';
 		document.getElementById("cookie_button").innerHTML = '<button type="button" onclick="readCookie(\'test-js\')" class="btn btn-lg btn-warning"> \
 																Read Cookie <span class="glyphicon glyphicon-export"></span> \
 																</button>';
-		
+
 		if(cexp > 0) {
 			// Show alert and set a timeout to auto-hide
 			$('#cookie_alert_set').fadeTo(1, 1).slideDown(1, function(){  $(this).show();  });
 
 			window.setTimeout(function() {
 				$('#cookie_alert_set').fadeTo(500, 0).slideUp(500, function(){
-					$(this).hide(); 
+					$(this).hide();
 				});
 			}, 3000);
 		}
 	}
-	
+
 	function getCookie(cname) {
 		var name = cname + "=";
 		var decodedCookie = decodeURIComponent(document.cookie);
@@ -57,53 +57,53 @@
 		}
 		return "";
 	}
-	
+
 	function readCookie(cname) {
 		if (getCookie(cname) != "") {
 			document.getElementById("cookie_text").innerHTML = 'You have a cookie with the following data: <code>' + getCookie(cname) + '</code>';
 			document.getElementById("cookie_button").innerHTML = '<button type="button" onclick="killCookie(\'test-js\')" class="btn btn-lg btn-danger"> \
 																	Kill Cookie <span class="glyphicon glyphicon-remove"></span> \
 																	</button>';
-			
-			
+
+
 		}
 		else {
 			document.getElementById("cookie_text").innerHTML = 'Click the button below to set a cookie.';
 			document.getElementById("cookie_button").innerHTML = '<button type="button" onclick="setCookie(\'test-js\', \'SomeRealGoodData\', 30)" class="btn btn-lg btn-success"> \
 																	Set Cookie <span class="glyphicon glyphicon-import"></span> \
-																	</button>';	
-			
-			
+																	</button>';
+
+
 			// Show alert and set a timeout to auto-hide
 			$('#cookie_alert_none').fadeTo(1, 1).slideDown(1, function(){
-				$(this).show(); 
+				$(this).show();
 			});
-   
+
 			window.setTimeout(function() {
 				$('#cookie_alert_none').fadeTo(500, 0).slideUp(500, function(){
-					$(this).hide(); 
+					$(this).hide();
 				});
 			}, 3000);
 		}
 	}
-	
+
 	function killCookie(cname) {
 		setCookie(cname, "", -1);  // Cookie with expiration date in the past is "deleted"
-		
+
 		// Show alert and set a timeout to auto-hide
 		$('#cookie_alert_kill').fadeTo(1, 1).slideDown(1, function(){
-				$(this).show(); 
+				$(this).show();
 			});
 
 		window.setTimeout(function() {
 			$('#cookie_alert_kill').fadeTo(500, 0).slideUp(500, function(){
-				$(this).hide(); 
+				$(this).hide();
 			});
 		}, 3000);
 	}
 </script>
-	
-	
+
+
 <div class="well row">
 	<div class="col-sm-6" style="font-size: 38">Cookies with JavaScript</div>
 	<div class="col-sm-6 text-right"><a href="index.html" class="btn btn-lg btn-info" role="button">Back to Index</a></div>
@@ -128,13 +128,13 @@
 		<div class="row">
 			<h2 id="cookie_text">Click the button below to set a cookie.</h2>
 		</div>
-	
+
 		<div class="row" id="cookie_button">
 			<button type="button" onclick="setCookie('test-js', 'SomeRealGoodData', 30)" class="btn btn-lg btn-success">
 				Set Cookie <span class="glyphicon glyphicon-import"></span>
 			</button>
 		</div>
-		
+
 	</div>
 </div>
 

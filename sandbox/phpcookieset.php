@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>Raspberry Pi Server - Web Sandbox - Cookies</title>
+	<title>Sandbox - Cookies</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Bootstrap - CSS -->
@@ -31,11 +31,11 @@
 		<div class="row">
 			<h2>A cookie has been set. It will expire in 30 seconds.</h2>
 		</div>
-	
+
 		<div class="row">
 			<a href="phpcookieread.php" class="btn btn-lg btn-success" role="button">Read Cookie <span class="glyphicon glyphicon-export"></span></a>
 		</div>
-		
+
 	</div>
 </div>
 
