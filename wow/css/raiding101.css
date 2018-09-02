@@ -194,6 +194,10 @@ a:hover {
   border-color: #059DBD;
 }
 
+.blockquote {
+  border-left: 8px solid #16ABC6;
+}
+
 /* Overloaded overloads... */
 .noclick {
   color: #000;
