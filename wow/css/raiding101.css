@@ -8,6 +8,29 @@ body {
   overflow-x: hidden;
 }
 
+h2 {
+    margin-top: 4rem;
+    font-size: 32pt;
+    color: #686868;
+    text-shadow: 1px 1px #d8d8d8;
+}
+
+p {
+    width: 80%;
+    font-size: 16pt;
+}
+
+hr {
+    margin-top: -0.7rem;
+    margin-bottom: 2.5rem;
+    height: 3px;
+    background: #cacaca;
+    border: none;
+    width: 80%;
+    align: "left";
+    margin-left: 0rem;
+}
+
 #wrapper {
   padding-left: 0;
   -webkit-transition: all 0.5s ease;
@@ -28,7 +51,7 @@ body {
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;
-  background: #17B4D0;
+  background: #16ABC6;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -48,6 +71,19 @@ body {
 #wrapper.toggled #page-content-wrapper {
   position: absolute;
   margin-right: -250px;
+}
+
+.v-space {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.li-keyword {
+    font-size: 130%;
+    font-weight: 700;
+    line-height: 0.25rem;
+    padding-right: 1.2rem;
+    text-shadow: 2px 2px #bfd0d8;
 }
 
 
@@ -85,9 +121,9 @@ body {
 }
 
 .sidebar-nav>.sidebar-brand {
-  height: 65px;
-  font-size: 22px;
-  line-height: 60px;
+  height: 75px;
+  font-size: 26px;
+  line-height: 70px;
   text-shadow: 1px 1px #2698AD;
 }
 
@@ -125,4 +161,43 @@ body {
     position: relative;
     margin-right: 0;
   }
+}
+
+
+/* Overloaded Bootstrap styles */
+.list-group-item {
+    font-size: 14pt;
+}
+
+
+.list-group-item-action:hover, .list-group-item-action:focus {
+  color: #fff;
+  text-decoration: none;
+  background-color: #16ABC6;
+}
+
+.list-group-item-action:active {
+  color: #fff;
+  background-color: #16ABC6;
+}
+.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: #16ABC6;
+  border-color: #059DBD;
+}
+
+/* Overloaded overloads... */
+.noclick {
+  color: #000;
+  background-color: #E7F7F9;
+}
+.noclick:hover {
+    color: #000;
+    background-color: #DBF1F5;
+}
+
+.noclick-header {
+    font-size: 20pt;
+    background-color: #BADBE1
 }
