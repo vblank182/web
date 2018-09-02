@@ -127,6 +127,10 @@ a:hover {
   text-decoration: none;
 }
 
+.sidebar-nav li a.scrolled {  /* Sidebar scroll follow */
+    color: #222;
+}
+
 .sidebar-nav>.sidebar-brand {
   height: 75px;
   font-size: 26px;
@@ -193,6 +197,16 @@ a:hover {
   background-color: #16ABC6;
   border-color: #059DBD;
 }
+.lgi-short {
+    /* Shorter list group selection boxes */
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+}
+.tab-pane-lowered {
+    /* Tab panes with text that starts lower in pane */
+    /*padding-top: 6rem;*/
+
+}
 
 .blockquote {
   border-left: 8px solid #16ABC6;
@@ -245,4 +259,61 @@ a.g {  /* Glossary links */
 }
 a.g:hover {
     color: #1DB2D1;
+}
+
+
+/* Important message rotating text */
+.important {
+    font-variant: small-caps;
+    font-size: 24pt;
+    /*color: red;*/
+}
+@-webkit-keyframes fade-in {
+    0% {
+        opacity:0;
+        top:-25px;
+    }
+    15% {
+        opacity:1;
+        top:0px;
+    }
+    100% {  /* hack to make text stay until rotated */
+        opacity:1;
+        top:0px;
+    }
+}
+@-webkit-keyframes fade-out {
+    0% {
+        opacity:1;
+        top:0px;
+    }
+    15% {
+        opacity:0;
+        top:25px;
+    }
+    100% {  /* hack to make text stay until rotated */
+        opacity:0;
+        top:25px;
+    }
+}
+.anim-out {
+    display: inline;
+    position: relative;
+    top: 0px;
+    -webkit-animation: fade-out 5s;
+    animation: fade-out 5s;
+
+    -webkit-animation-timing-function: ease;
+    animation-timing-function: ease;
+}
+.anim-in {
+    opacity: 0;
+    display: inline;
+    position: relative;
+    -webkit-animation: fade-in 5s;  /* 0.75s fade */
+    animation: fade-in 5s;
+    -webkit-animation-delay: 0s;
+
+    -webkit-animation-timing-function: ease;
+    animation-timing-function: ease;
 }

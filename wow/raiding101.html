@@ -26,7 +26,7 @@
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
+            <ul class="sidebar-nav" id="nav">
                 <li class="sidebar-brand">
                     <a href="#">
                         Raiding 101
@@ -34,12 +34,21 @@
                 </li>
 
                 <li>
-                    <a href="#comp">&bull; Composition</a>
+                    <a href="#composition">&bull; Composition</a>
                 </li>
 
                 <li>
-                    <a href="#prep">&bull; Preparation</a>
+                    <a href="#preparation">&bull; Preparation</a>
                 </li>
+                    <li>
+                        <a href="#prep-gear" class="subitem">&bull; Gear Preparation</a>
+                    </li>
+                    <li>
+                        <a href="#prep-learning" class="subitem">&bull; Learning the Fights</a>
+                    </li>
+                    <li>
+                        <a href="#prep-addons" class="subitem">&bull; Addons</a>
+                    </li>
 
                 <li>
                     <a href="#etiquette">&bull; Etiquette</a>
@@ -76,6 +85,65 @@
                 </li>
             </ul>
         </div>
+
+
+        <!-- Sidebar scroll highlighting -->
+        <!-- Script from: https://codepen.io/joxmar/pen/NqqMEg -->
+        <script type="text/javascript">
+            /*
+            // Cache selectors
+            var lastId,
+             topMenu = $("#nav"),
+             topMenuHeight = topMenu.outerHeight()+1,
+             // Get all list items
+             menuItems = topMenu.find("a"),
+             // Get anchors corresponding to list items
+             scrollItems = menuItems.map(function(){
+               var item = $(this).attr("href");
+                if (item.length) { return item; }
+             });
+
+
+            // Bind click handler to menu items
+            // so we can get a fancy scroll animation
+            /*menuItems.click(function(e){
+              var href = $(this).attr("href"),
+                  offsetTop = href === "#" ? 0 : $(href).offset().top-topMenuHeight+1;
+              $('html, body').stop().animate({
+                  scrollTop: offsetTop
+              }, 850);
+              e.preventDefault();
+              });*
+
+            // Bind to scroll
+            $(window).scroll(function(){
+               // Get container scroll position
+               var fromTop = $(this).scrollTop() + topMenuHeight;
+
+               // Get id of current scroll item
+               console.log(scrollItems);
+               var cur = scrollItems.map(function(){
+                   console.log($(this));
+                   if ($(this).offset().top < fromTop) { return this; }
+               });
+
+               // Get the id of the current element
+               cur = cur[cur.length-1];
+               var id = cur && cur.length ? cur[0].id : "";
+
+
+
+               if (lastId !== id) {
+                   lastId = id;
+                   // Set/remove active class
+                   menuItems
+                     .parent().removeClass("scrolled")
+                     .end().filter('[href="#'+id+'"]').parent().addClass("scrolled");
+               }
+            });
+            */
+        </script>
+
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
@@ -87,14 +155,14 @@
                 <div class="container" style="margin-left: 2rem; color: white">
                     <h1 class="display-3" style="font-family: Impact;">The Midnight Amendments</h1>
                     <p class="lead display-4"><em>
-                        &#120073;&#120094;&#120098;&#120097;&#120111;&#120098;&#120107;'&#120112;
+                        &#120073;&#120094;&#120098;&#120097;&#120111;&#120098;&#120107;&#x00B4;&#120112;
                         <span style="font-size:38pt;">Raiding 101</span></em></p>
                 </div>
             </div>
 
 
             <div class="container-fluid">
-                <h2 id="comp">Composition</h2> <hr>
+                <h2 id="composition">Composition</h2> <hr>
                 <p>
                     Compositions are broken down by the necessary number of tanks/healers/dps with the goal of having enough damage to kill the boss and enough healing to go around for all. Simply stated, the larger the group the more health the boss has so we can’t just bulk up with people and overpower them.
 
@@ -124,7 +192,7 @@
                 </p>
 
 
-                <h2 id="prep">Preparation</h2> <hr>
+                <h2 id="preparation">Preparation</h2> <hr>
 
                 <p>
                     <div class="card" style="width:80%; padding:0.75rem; background: #E7F7F9;">
@@ -139,7 +207,7 @@
                             </div>
                         </div>
                         <div class="col-8">
-                            <div class="tab-content" id="nav-tabContent" style="font-size:18pt;">
+                            <div class="tab-content" id="nav-prepTabs" style="font-size:18pt;">
                                 <div class="tab-pane fade show active" id="list-food" role="tabpanel" aria-labelledby="list-food-list">
                                     We will likely have group
                                         <span data-toggle="collapse" data-target="#feast" aria-expanded="true" aria-controls="feast"><a class="g" href="#h-feast">feasts</a></span>
@@ -192,7 +260,7 @@
 
                     <p class="v-space"/>
 
-                    <div class="row justify-content-start">
+                    <div class="row justify-content-start" id="prep-gear">
                         <div class="col-8">
                             <ul class="list-group">
                                 <li class="list-group-item noclick-header">Gear Preparation
@@ -213,10 +281,10 @@
 
                     <p class="v-space"/>
 
-                    <div class="row justify-content-start">
+                    <div class="row justify-content-start" id="prep-learning">
                         <div class="col-8">
                             <ul class="list-group">
-                                <li class="list-group-item noclick-header">Learn the Fights</li>
+                                <li class="list-group-item noclick-header">Learning the Fights</li>
                                 <li class="list-group-item list-group-item-action noclick">
                                     <span class="li-keyword"><a href="https://www.youtube.com/user/FatbossTV/videos">Fatboss</a></span>
                                     Watch videos on youtube to learn mechanics
@@ -235,7 +303,7 @@
 
                     <p class="v-space"/>
 
-                    <div class="row justify-content-start">
+                    <div class="row justify-content-start" id="prep-addons">
                         <div class="col-8">
                             <ul class="list-group">
                                 <li class="list-group-item noclick-header">Addons to Download Before Raid</li>
@@ -327,142 +395,348 @@
                                 </ul>
                         </ul>
                         <blockquote class="blockquote">
-                            <h3 style="margin-left: 1.5rem;"><em>Everyone is grouped up and staring down the boss so now:</em></h3>
+                            <h4 style="margin-left: 1.5rem;"><em>Everyone is grouped up and staring down the boss so now:</em></h4>
                             <ol type="1" style="margin-left: 2.5rem;">
-                                <li>Raid leader will go over mechanics briefly, highlighting important aspects and placing markers* around the room and on players if necessary</li>
+                                <li>Raid leader will go over mechanics briefly, highlighting important aspects and placing <span data-toggle="collapse" data-target="#markers" aria-expanded="true" aria-controls="markers"><a class="g" href="#h-markers">markers</a></span> around the room and on players if necessary</li>
                                 <li>Ready check will appear on your screen, select ready ONLY if you actually are, not if you still need to fiddle with something but think you might have time</li>
                                 <li>Pull timer will appear on your screen, counting down typically from 10 seconds, at 0 the tanks will engage the boss and start the fight but before then…</li>
-                                <li>Pre-pot* when there’s around 3 seconds left on the timer</li>
+                                <li><span data-toggle="collapse" data-target="#prepot" aria-expanded="true" aria-controls="prepot"><a class="g" href="#h-prepot">Pre-pot</a></span> when there’s around 3 seconds left on the timer</li>
                             </ol>
                         </blockquote>
                     </div>
                 </p>
 
 
+
+
                 <p id="during-fight">
                     <div class="card text-card">
                         <h3>During the Fight</h3>
-                            <span style="font-variant: small-caps;">Staying alive and doing mechanics is more important than dps</span>
-                            Boss phases
-                            Sometimes fights will be separated into phases with differing mechanics and objectives
-                            These are commonly triggered by
-                            Time - Example: 180 secs per phase
-                            HP - Example: phases at 80%, 60%, 40%
-                            Mechanics - Example: the add is dead, next phase
-                            We will discuss mechanics on a phase by phase basis when this is the case
-                            Heroism/Bloodlust/Drums
-                            An overwhelming buff that charges us with lots of good power to kick ass
-                            Affects the entire raid group
-                            Has a 10 minute cooldown, therefore it is used once per boss
-                            Used at strategic moments to maximize effectiveness
-                            <span style="font-variant: small-caps;">Do not hero/lust/drums without being told to by raid leader</span>
-                            Sometimes used on trash packs and then “reset” by engaging the boss, everyone “tagging” the boss by attacking it with something, and then running out of the room to reset the fight and the ability to benefit from heroism
-                            Battle Resurrection/B-Rez
-                            Used to revive dead players during combat, not in between fights
-                            We start with 1 but can earn more by going long periods of time without using one
-                            Can take up to 10 minutes to earn your next one once it is used
-                            <span style="font-variant: small-caps;">Do not use b-rez without being told to by raid leader</span>
-                            Wipes
-                            They will happen, don’t expect otherwise or else you’ll be disappointed
-                            Raid leader will sometimes call for a wipe if the outcome is clearly going to be bad
-                            When you see/hear this, die quickly – don’t be a hero
-                            Please find the nearest cliff to jump off of or fire to stand in
-                            Hell, go poke the boss in the eye if you want
-                            Regroup quickly after wipes to maximize the amount of time we spend raiding instead of waiting
-                            Movement
-                            Be aware of your location, look at your character placement not your dps meters
-                            Spread* when told to or if you notice you and the person next to you are catching each other on fire
-                            Stack* when told to for mechanics
-                            When in doubt, stand by someone of a similar role if you’re unsure of where to go
-                            Try not to hide in corners or run too far way from the group so that healers can reach you and you don’t break LOS*
-                            Use a range check* when necessary to maintain enough distance for specific mechanics
-                            Communication
-                            Our eyes can’t be everywhere at once so vocalizing the following can help us work better as a group
-                            Dispel
-                            Sometimes a fight will require you to be dispelled once you are away from the group, call it out once you’re good
-                            Interrupts
-                            Let us know when you’ve got an interrupt so we don’t waste multiple
-                            Cleave awareness
-                            Many abilities cleave*, be aware of if your cleave range will break the following CC* of nearby enemies
-                            Stun
-                            Roots
-                            Slow
-                            Etc
-                            Also be aware if cleave is causing certain enemies to die faster than they are supposed to
-                            Remember: Mechanics > DPS so if you have to use a less powerful spell, please do so
-                            Directions
-                            Please learn the following directions and how to identify them on your minimap and on the screen
-                            Clockwise
-                            Counterclockwise
-                            North
-                            South
-                            East
-                            West
 
+                        <div class="alert alert-danger" role="alert" style="width: 95%">
+                            <div class="important" id="importantMessages">Staying alive and doing mechanics is more important than dps</div>
                         </div>
+                        <script type="text/javascript">
+                            // Rotating important message text
+                            var messages = ["Staying alive and doing mechanics is more important than dps!", "Do not hero/lust/drums without being told to by raid leader!", "Do not use B-Rez without being told to by raid leader!"];
+                            var time = 4 * 1000;  // time in seconds * 1000 (needs to be <5 seconds or css needs changed)
+                            var fadeout_time = 0.75 * 1000;  // fadein time defined in css
+                            curMessage = 0;
+
+                            changeText()  // run once when page loads
+                            setInterval(changeText, time)  // set a timer to run every 'time' seconds
+
+                            function changeText() {
+                                // Swap in new message with fade-in class
+                                $("#importantMessages").html(messages[curMessage%3]).addClass("anim-in");
+                                // Just before next swap, replace current message's fade-in class with fade-out class
+                                setTimeout(function(){$("#importantMessages").removeClass("anim-in").addClass("anim-out")}, time-fadeout_time);
+                                curMessage += 1;
+                            }
+                        </script>
+
+
+                        <div class="card" style="width:95%; padding:0.75rem; background: #E7F7F9;">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="list-group" id="list-tab" role="tablist">
+                                    <a class="list-group-item list-group-item-action active" id="list-f_phases-list" data-toggle="list" href="#list-f_phases" role="tab" aria-controls="f_phases">Boss Phases</a>
+                                    <a class="list-group-item list-group-item-action" id="list-f_hero-list" data-toggle="list" href="#list-f_hero" role="tab" aria-controls="f_hero">Heroism/Bloodlust/Drums</a>
+                                    <a class="list-group-item list-group-item-action" id="list-f_brez-list" data-toggle="list" href="#list-f_brez" role="tab" aria-controls="f_brez">Battle Resurrection/B-Rez</a>
+                                    <a class="list-group-item list-group-item-action" id="list-f_wipes-list" data-toggle="list" href="#list-f_wipes" role="tab" aria-controls="f_wipes">Wipes</a>
+                                    <a class="list-group-item list-group-item-action" id="list-f_move-list" data-toggle="list" href="#list-f_move" role="tab" aria-controls="f_move">Movement</a>
+                                    <a class="list-group-item list-group-item-action" id="list-f_comm-list" data-toggle="list" href="#list-f_comm" role="tab" aria-controls="f_comm">Communication</a>
+                                    <a class="list-group-item list-group-item-action" id="list-f_cleave-list" data-toggle="list" href="#list-f_cleave" role="tab" aria-controls="f_cleave">Cleave Awareness</a>
+                                    <a class="list-group-item list-group-item-action" id="list-f_direct-list" data-toggle="list" href="#list-f_direct" role="tab" aria-controls="f_direct">Directions</a>
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="tab-content" id="nav-fightTabs" style="font-size:18pt;">
+                                    <div class="tab-pane fade show active" id="list-f_phases" role="tabpanel" aria-labelledby="list-f_phases-list">
+                                        <h4 class="mb-0">Sometimes fights will be separated into phases with differing mechanics and objectives.</h4><br />
+                                        These are commonly triggered by:
+                                        <ul>
+                                            <li>Time<ul><li><em>Example: 180 secs per phase</em></ul></li></li>
+                                            <li>HP<ul><li><em>Example: phases at 80%, 60%, 40%</em></ul></li></li>
+                                            <li>Mechanics<ul><li><em>Example: the add is dead, next phase</em></ul></li></li>
+                                        </ul>
+                                        We will discuss mechanics on a phase by phase basis when this is the case.
+
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-f_hero" role="tabpanel" aria-labelledby="list-f_hero-list">
+                                        <h4 class="mb-0">An overwhelming buff that charges us with lots of good power to kick ass.</h4><br />
+                                        <ul>
+                                            <li>Affects the entire raid group</li>
+                                            <li>Has a 10 minute cooldown, therefore it is used once per boss</li>
+                                            <li>Used at strategic moments to maximize effectiveness</li>
+                                            <li>Sometimes used on trash packs and then “reset” by engaging the boss, everyone “tagging” the boss by attacking it with something, and then running out of the room to reset the fight and the ability to benefit from heroism</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-f_brez" role="tabpanel" aria-labelledby="list-f_brez-list">
+                                        <h4 class="mb-0">Used to revive dead players during combat, not in between fights.</h4><br />
+                                        <ul>
+                                            <li>We start with 1 but can earn more by going long periods of time without using one</li>
+                                            <li>Can take up to 10 minutes to earn your next one once it is used</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-f_wipes" role="tabpanel" aria-labelledby="list-f_wipes-list">
+                                        <h4 class="mb-0">They will happen, don’t expect otherwise or else you’ll be disappointed</h4><br />
+                                        <ul>
+                                            <li>Raid leader will sometimes call for a wipe if the outcome is clearly going to be bad</li>
+                                            <li>When you see/hear this, die quickly – don’t be a hero</li>
+                                            <li>Please find the nearest cliff to jump off of or fire to stand in</li>
+                                            <li>Hell, go poke the boss in the eye if you want</li>
+                                            <li>Regroup quickly after wipes to maximize the amount of time we spend raiding instead of waiting</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-f_move" role="tabpanel" aria-labelledby="list-f_move-list">
+                                        <ul>
+                                            <li>Be aware of your location, look at your character placement not your dps meters</li>
+                                            <li><span data-toggle="collapse" data-target="#spread" aria-expanded="true" aria-controls="spread"><a class="g" href="#h-spread">Spread</a></span> when told to or if you notice you and the person next to you are catching each other on fire</li>
+                                            <li><span data-toggle="collapse" data-target="#stack" aria-expanded="true" aria-controls="stack"><a class="g" href="#h-stack">Stack</a></span> when told to for mechanics</li>
+                                            <li>When in doubt, stand by someone of a similar role if you’re unsure of where to go</li>
+                                            <li>Try not to hide in corners or run too far way from the group so that healers can reach you and you don’t break <span data-toggle="collapse" data-target="#los" aria-expanded="true" aria-controls="los"><a class="g" href="#h-los">LOS</a></span></li>
+                                            <li>Use a <span data-toggle="collapse" data-target="#rangecheck" aria-expanded="true" aria-controls="rangecheck"><a class="g" href="#h-rangecheck">range check</a></span> when necessary to maintain enough distance for specific mechanics</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-f_comm" role="tabpanel" aria-labelledby="list-f_comm-list">
+                                        Our eyes can’t be everywhere at once so vocalizing the following can help us work better as a group
+                                        <ul>
+                                            <li>Dispel
+                                                <ul><li>Sometimes a fight will require you to be dispelled once you are away from the group, call it out once you’re good</ul></li>
+                                            </li>
+                                            <li>Interrupts
+                                                <ul><li>Let us know when you’ve got an interrupt so we don’t waste multiple</ul></li>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-f_cleave" role="tabpanel" aria-labelledby="list-f_cleave-list">
+                                        <h4 class="mb-0">Many abilities <span data-toggle="collapse" data-target="#cleave" aria-expanded="true" aria-controls="cleave"><a class="g" href="#h-cleave">cleave</a></span>, be aware of if your cleave range will break the following <span data-toggle="collapse" data-target="#cctrl" aria-expanded="true" aria-controls="cctrl"><a class="g" href="#h-cctrl">CC</a></span> of nearby enemies</h4><br />
+                                        <ul>
+                                            <li>Stun</li>
+                                            <li>Roots</li>
+                                            <li>Slow</li>
+                                            <li>Etc.</li>
+                                        </ul>
+                                        Also be aware if cleave is causing certain enemies to die faster than they are supposed to.<br /><br />
+                                        <em>Remember: Mechanics > DPS so if you have to use a less powerful spell, please do so.</em>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-f_direct" role="tabpanel" aria-labelledby="list-f_direct-list">
+                                        Please learn the following directions and how to identify them on your minimap and on the screen<br /><br />
+                                        <ul>
+                                            <li>Clockwise</li>
+                                            <li>Counterclockwise</li>
+                                            <li>North</li>
+                                            <li>South</li>
+                                            <li>East</li>
+                                            <li>West</li>
+                                        </ul>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                        </div></div>
+                    </div>
                 </p>
+
 
 
                 <p id="mechanics">
                     <div class="card text-card">
                         <h3>Mechanics</h3>
-                        <span class="li-header">Some common things to expect</span>
-
-                        Soak/stand in the goo – One or more players needs to stand in a marked spot to absorb or prevent damage
-                        Don’t stand in the bad – Everyone needs to avoid spots on the ground
-                        Stack to soak – Converge on marked player(s) to absorb damage
-                        This player should stand still to make it easy for people to stand on them
-                        Sometimes this means a few people running to another player, other times it means the entire raid stacks on the tanks, it depends
-                        Can also be used to describe standing in the way of a beam targeted at another player, not just a spot directly on them
-                        Adds – Often bosses will bring out additional mobs that have to be handled specifically such as
-                        Melt them, kill them as quick as possible before they do bad stuff
-                        Focus all DPS on one at a time and kill them individually
-                        Kill them at strategic times because their death triggers a good or bad event (a ticking debuff or a pile of goo on the floor that saves us from another mechanic)
-                        FIXATED – a player marked with this needs to run away from the add fixated on them because being touched will do enormous damage
-                        Extra action button – Things will happen during the fight that involve the use of an extra button they provide you, use it when necessary whether that is when a gauge is filled or when the button goes off cooldown
-                        Examples of what the buttons can do
-                        Clear debuffs
-                        Buff you with good stuff
-                        Take you somewhere else
-                        Unleash an attack
-                        Cast a shield
-                        Splitting teams – Fights can require us to send people to different places and the raid leader will split the groups accordingly. Some examples are
-                        Fully split fights
-                        A different boss in each realm, each requiring dedicated tank, healers, dps for the whole fight
-                        Phase splits
-                        Teams will break off for a phase to kick ass in different places, often one has the main boss and the other area(s) will be fighting adds and mini bosses
-                        Tower defense
-                        Mobs will come from different places at different times and the group will be split to cover them efficiently
-                        Boss filling bar/Energy fill – Once the boss’s gauge fills up they will do an action that requires mechanics
-                        “Bar” may fill from time, adds killed, mechanics triggered, damage done to the boss, etc
-                        “Bar” may not be a bar and may be a counter or something similar
-                        Cheese strat – Finding a way around mechanics that makes it possible to beat the boss without doing what Blizz wants us to do. For example
-                        Adding a 3rd tank to avoid difficult 2 tank mechanics
-                        Exploiting a specific class ability such as DK Grip or Warlock teleport
-                        Brute force the boss down with sheer power and way too much HP on our side, usually done when farming older content
-                        Avoid the ball/orb - Giant ball(s) floating around the room will hurt, slow, stun, etc. Do not touch.
-                        Hey the ball/goo gives me a buff - Stand in a spot or touch something in the room to gain a buff (rare, and sarcastic players will tell you this in a “don’t stand in the bad” situation)
-                        Clear debuff – As a debuff builds, run to a designated spot in the room to cleanse it
-                        Drop off your bad – Players who have been marked with something bad that is about to fall off of them should run it out away from the group so it drops off at a safe distance
-                        Usually everyone will drop off their bad in the same place so it’s neatly tucked away but be careful not to step in someone else’s
-                        HIDE – Stand behind a provided pillar for protection from a boss attack
-                        Tethered players – Two players will have a mark above their head or a colorful line connecting them, these mechanics are broken two ways depending on the fight
-                        Run away until the connection breaks
-                        Run towards each other to touch
-                        Dodge and dance– Various and often moving things can go off in boss rooms such as giant beams, laser grids, streaks of lava, fire vents, etc. Focus on avoiding them until the mechanic is done
-                        Kick your own/friend’s ass – Players may be possessed, have a copy made of them, encased in a trap, or some other predicament that can only be fixed by turning on them and doing damage
-                        Aiming a ray – When targeted with a ray of bad from the boss to the player, they should run around to aim it so that it goes off away from the group and don’t run it through melee when it comes out of the boss if possible
-                        Pop mines/balls – Explosives will trigger when touched so we have to avoid them except for when designated players such as the off tank are told to go touch a few on purpose so we get rid of some in the room
-                        Run to the shield – Part of the room will offer protection from damage, scurry over to it quickly
-                        Leave room for Jesus (sometimes Ganesh if it’s big) – Players will have an infectious debuff such as lightning, fire, poison, pulsing damage etc, and need to leave plenty of room between themselves and others (use a range check here if necessary)
-                        Sorry the wording on this has become a guild classic
-                        Marked for damage – A player is the target of incoming damage and needs to run away from others so it doesn’t splash onto them
-                        Heal the boss – Yep, sometimes we have to do this, perhaps if the boss is mind controlled to fight for us momentarily while we focus* an add
-                        Tower defense/Protect the NPC – We aren’t fighting the boss but packs of mobs that we must defeat before they can destroy our ally or whatever we’re protecting
+                        <span class="li-header">Some common things to expect</span><br />
 
 
+                        <div class="card" style="width:95%; padding:0.75rem; background: #E7F7F9;">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="list-group" id="list-tab" role="tablist">
+                                    <a class="list-group-item list-group-item-action lgi-short active" id="list-m_adds-list" data-toggle="list" href="#list-m_adds" role="tab" aria-controls="m_adds">Adds</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_aiming-list" data-toggle="list" href="#list-m_aiming" role="tab" aria-controls="m_aiming">Aiming a Ray</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_avoidball-list" data-toggle="list" href="#list-m_avoidball" role="tab" aria-controls="m_avoidball">Avoid the Ball/Orb</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_gauges-list" data-toggle="list" href="#list-m_gauges" role="tab" aria-controls="m_gauges">Boss Gauges/Energy Bars</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_cheese-list" data-toggle="list" href="#list-m_cheese" role="tab" aria-controls="m_cheese">Cheese Strats</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_debuff-list" data-toggle="list" href="#list-m_debuff" role="tab" aria-controls="m_debuff">Clear Debuff</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_dodge-list" data-toggle="list" href="#list-m_dodge" role="tab" aria-controls="m_dodge">Dodge and Dance</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_dontstand-list" data-toggle="list" href="#list-m_dontstand" role="tab" aria-controls="m_dontstand">Don't Stand in The Bad</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_dropoff-list" data-toggle="list" href="#list-m_dropoff" role="tab" aria-controls="m_dropoff">Drop Off Your Bad</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_extra-action-list" data-toggle="list" href="#list-m_extra-action" role="tab" aria-controls="m_extra-action">Extra Action Button</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_healboss-list" data-toggle="list" href="#list-m_healboss" role="tab" aria-controls="m_healboss">Heal the Boss</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_buff-list" data-toggle="list" href="#list-m_buff" role="tab" aria-controls="m_buff">"Hey this Stuff Gives Me a Buff!"</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_hide-list" data-toggle="list" href="#list-m_hide" role="tab" aria-controls="m_hide">HIDE!</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_kickass-list" data-toggle="list" href="#list-m_kickass" role="tab" aria-controls="m_kickass">Kick Your Friend's Ass</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_jesus-list" data-toggle="list" href="#list-m_jesus" role="tab" aria-controls="m_jesus">Leave Room for Jesus</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_marked-list" data-toggle="list" href="#list-m_marked" role="tab" aria-controls="m_marked">Marked for Damage</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_popmines-list" data-toggle="list" href="#list-m_popmines" role="tab" aria-controls="m_popmines">Pop Mines/Balls</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_shield-list" data-toggle="list" href="#list-m_shield" role="tab" aria-controls="m_shield">Run to The Shield</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_split-list" data-toggle="list" href="#list-m_split" role="tab" aria-controls="m_split">Splitting Teams</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_soak-list" data-toggle="list" href="#list-m_soak" role="tab" aria-controls="m_soak">Stack to Soak</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_stand-list" data-toggle="list" href="#list-m_stand" role="tab" aria-controls="m_stand">Stand in The Goo</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_tethered-list" data-toggle="list" href="#list-m_tethered" role="tab" aria-controls="m_tethered">Tethered Players</a>
+                                    <a class="list-group-item list-group-item-action lgi-short" id="list-m_protec-list" data-toggle="list" href="#list-m_protec" role="tab" aria-controls="m_protec">Tower Defense/Protect the NPC</a>
+                                </div>
+                            </div>
+                            <div class="col-8" style="display: table; height: 80%; width: 100%;">
+                                <div class="tab-content" id="nav-mechanicsTabs" style="font-size:18pt; display: table-cell; vertical-align: middle;">
 
+                                    <div class="tab-pane fade show active" id="list-m_adds" role="tabpanel" aria-labelledby="list-m_adds-list">
+                                        <h4 class="mb-0">Often bosses will bring out additional mobs that have to be handled specifically.</h4><br />
+                                        For example:
+                                        <ul>
+                                            <li>Melt them, kill them as quick as possible before they do bad stuff</li>
+                                            <li>Focus all DPS on one at a time and kill them individually</li>
+                                            <li>Kill them at strategic times because their death triggers a good or bad event (a ticking debuff or a pile of goo on the floor that saves us from another mechanic)</li>
+                                            <li><b>Fixated</b> – a player marked with this needs to run away from the add fixated on them because being touched will do enormous damage</li>
+                                        </ul>
 
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_aiming" role="tabpanel" aria-labelledby="list-m_aiming-list">
+                                        <h4 class="mb-0">When targeted with a ray of bad from the boss to the player, they should run around to aim it so that it goes off away from the group and don’t run it through melee when it comes out of the boss if possible.</h4><br />
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_avoidball" role="tabpanel" aria-labelledby="list-m_avoidball-list">
+                                        <h4 class="mb-0">Giant ball(s) floating around the room will hurt, slow, stun, etc. Do not touch.</h4><br />
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_gauges" role="tabpanel" aria-labelledby="list-m_gauges-list">
+                                        <h4 class="mb-0">Once the boss’s gauge fills up they will do an action that requires mechanics.</h4><br />
+                                        <ul>
+                                            <li>“Bar” may fill from time, adds killed, mechanics triggered, damage done to the boss, etc.</li>
+                                            <li>“Bar” may not be a bar and may be a counter or something similar</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_cheese" role="tabpanel" aria-labelledby="list-m_cheese-list">
+                                        <h4 class="mb-0">Finding a way around mechanics that makes it possible to beat the boss without doing what Blizz wants us to do.</h4><br />
+                                        For example:
+                                        <ul>
+                                            <li>Adding a 3rd tank to avoid difficult 2 tank mechanics</li>
+                                            <li>Exploiting a specific class ability such as DK Grip or Warlock teleport</li>
+                                            <li>Brute force the boss down with sheer power and way too much HP on our side, usually done when farming older content</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_debuff" role="tabpanel" aria-labelledby="list-m_debuff-list">
+                                        <h4 class="mb-0">As a debuff builds, run to a designated spot in the room to cleanse it.</h4><br />
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_dodge" role="tabpanel" aria-labelledby="list-m_dodge-list">
+                                        <h4 class="mb-0">Various and often moving things can go off in boss rooms such as giant beams, laser grids, streaks of lava, fire vents, etc. Focus on avoiding them until the mechanic is done.</h4><br />
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_dontstand" role="tabpanel" aria-labelledby="list-m_dontstand-list">
+                                        <h4 class="mb-0">Everyone needs to avoid spots on the ground.</h4><br />
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_dropoff" role="tabpanel" aria-labelledby="list-m_dropoff-list">
+                                        <h4 class="mb-0">Players who have been marked with something bad that is about to fall off of them should run it out away from the group so it drops off at a safe distance.</h4><br />
+                                        Usually everyone will drop off their bad in the same place so it’s neatly tucked away but be careful not to step in someone else’s.
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_extra-action" role="tabpanel" aria-labelledby="list-m_extra-action-list">
+                                        <h4 class="mb-0">Things will happen during the fight that involve the use of an extra button they provide you, use it when necessary whether that is when a gauge is filled or when the button goes off cooldown.</h4><br />
+                                        Examples of what the buttons can do:
+                                        <ul>
+                                            <li>Clear debuffs</li>
+                                            <li>Buff you with good stuff</li>
+                                            <li>Take you somewhere else</li>
+                                            <li>Unleash an attack</li>
+                                            <li>Cast a shield</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_healboss" role="tabpanel" aria-labelledby="list-m_healboss-list">
+                                        <h4 class="mb-0">Yep, sometimes we have to do this, perhaps if the boss is mind controlled to fight for us momentarily while we <span data-toggle="collapse" data-target="#focus" aria-expanded="true" aria-controls="focus"><a class="g" href="#h-focus">focus</a></span> an add.</h4><br />
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_buff" role="tabpanel" aria-labelledby="list-m_buff-list">
+                                        <h4 class="mb-0">Stand in a spot or touch something in the room to gain a buff.</h4><br />
+                                        (These are rare, and sarcastic players will tell you this in a “don’t stand in the bad” situation.)
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_hide" role="tabpanel" aria-labelledby="list-m_hide-list">
+                                        <h4 class="mb-0">Stand behind a provided pillar for protection from a boss attack.</h4><br />
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_kickass" role="tabpanel" aria-labelledby="list-m_kickass-list">
+                                        <h4 class="mb-0">Players may be possessed, have a copy made of them, encased in a trap, or some other predicament that can only be fixed by turning on them and doing damage.</h4><br />
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_jesus" role="tabpanel" aria-labelledby="list-m_jesus-list">
+                                        <h4 class="mb-0">Players will have an infectious debuff such as lightning, fire, poison, pulsing damage etc, and need to leave plenty of room between themselves and others (use a range check here if necessary).</h4><br />
+                                        Also: "Leave Room for Ganesh"<br /><br />
+
+                                        <em>Sorry the wording on this has become a guild classic.</em>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_marked" role="tabpanel" aria-labelledby="list-m_marked-list">
+                                        <h4 class="mb-0">A player is the target of incoming damage and needs to run away from others so it doesn’t splash onto them.</h4><br />
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_popmines" role="tabpanel" aria-labelledby="list-m_popmines-list">
+                                        <h4 class="mb-0">Explosives will trigger when touched so we have to avoid them except for when designated players such as the off tank are told to go touch a few on purpose so we get rid of some in the room.</h4><br />
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_shield" role="tabpanel" aria-labelledby="list-m_shield-list">
+                                        <h4 class="mb-0">Part of the room will offer protection from damage, scurry over to it quickly.</h4><br />
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_split" role="tabpanel" aria-labelledby="list-m_split-list">
+                                        <h4 class="mb-0">Fights can require us to send people to different places and the raid leader will split the groups accordingly.</h4><br />
+                                        Some examples are:
+                                        <ul>
+                                            <li>Fully split fights
+                                                <ul><li>A different boss in each realm, each requiring dedicated tank, healers, dps for the whole fight</li></ul>
+                                            </li>
+                                            <li>Phase splits
+                                                <ul><li>Teams will break off for a phase to kick ass in different places, often one has the main boss and the other area(s) will be fighting adds and mini bosses</li></ul>
+                                            </li>
+                                            <li>Tower defense
+                                                <ul><li>Mobs will come from different places at different times and the group will be split to cover them efficiently</li></ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_soak" role="tabpanel" aria-labelledby="list-m_soak-list">
+                                        <h4 class="mb-0">Converge on marked player(s) to absorb damage.</h4><br />
+                                        <ul>
+                                            <li>This player should stand still to make it easy for people to stand on them</li>
+                                            <li>Sometimes this means a few people running to another player, other times it means the entire raid stacks on the tanks, it depends</li>
+                                            <li>Can also be used to describe standing in the way of a beam targeted at another player, not just a spot directly on them</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_stand" role="tabpanel" aria-labelledby="list-m_stand-list">
+                                        <h4 class="mb-0">One or more players needs to stand in a marked spot to absorb or prevent damage.</h4><br />
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_tethered" role="tabpanel" aria-labelledby="list-m_tethered-list">
+                                        <h4 class="mb-0">Two players will have a mark above their head or a colorful line connecting them.</h4><br />
+                                        These mechanics are broken two ways depending on the fight:
+                                        <ul>
+                                            <li>Run away until the connection breaks</li>
+                                            <li>Run towards each other to touch</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="list-m_protec" role="tabpanel" aria-labelledby="list-m_protec-list">
+                                        <h4 class="mb-0">We aren’t fighting the boss but packs of mobs that we must defeat before they can destroy our ally or whatever we’re protecting.</h4><br />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div></div>
                     </div>
                 </p>
 
@@ -471,47 +745,79 @@
                 <p id="after-fight">
                     <div class="card text-card">
                         <h3>After the Fight</h3>
-                        <span class="li-header">LOOT!</span>
+                        <span class="li-header">LOOT!</span><br />
 
-                        GG, congrats, loot the boss and see what you get!
-                        Use the dungeon guide to see what loot to possibly expect
-                        Use bonus roll seals to get an extra chance at stuff you want
-                        Don’t cry when you get AP
-                        Link any gear that isn’t an upgrade for yourself into the raid for others to roll on
-                        Bonus rolled gear cannot be traded so do not link it
-                        Give it about a moment so everyone has a chance to roll
-                        Give a clear timer of when the rolling window will close
-                        Promptly trade gear to the highest winner
-                        Only roll on gear you actually need, please
-                        Transmogs can be discussed if no one rolls on it for gear purposes
-                        Try to keep the chat orderly and wait to start rolls on your item after one finishes
-                        Do not whisper people begging for gear
-                        It is expected that we will all be honest and give a fair chance for people to roll so there is no need to try to sneak in and nab gear before others get a chance
-                        Be thankful that we are respectful, honest, and helpful adults and we don’t have to use something like RC Loot Council :)
-                        Please wrap up looting and trading quickly and get ready to move on to the next boss and do it all over again
+                        <h4 class="mb-0">GG, congrats, loot the boss and see what you get!</h4><br />
+                        <ul>
+                            <li>Use the dungeon guide to see what loot to possibly expect</li>
+                            <li>Use bonus roll seals to get an extra chance at stuff you want
+                                <ul><li>Don’t cry when you get AP</li></ul>
+                            </li>
+                            <li>Link any gear that isn’t an upgrade for yourself into the raid for others to roll on
+                                <ul>
+                                    <li>Bonus rolled gear cannot be traded so do not link it</li>
+                                    <li>Give it about a moment so everyone has a chance to roll</li>
+                                    <li>Give a clear timer of when the rolling window will close</li>
+                                    <li>Promptly trade gear to the highest winner</li>
+                                </ul>
+                            </li>
+                            <li>Only roll on gear you actually need, please
+                                <ul><li>Transmogs can be discussed if no one rolls on it for gear purposes</li></ul>
+                            </li>
+                            <li>Try to keep the chat orderly and wait to start rolls on your item after one finishes</li>
+                            <li>Do not whisper people begging for gear
+                                <ul><li>It is expected that we will all be honest and give a fair chance for people to roll so there is no need to try to sneak in and nab gear before others get a chance</li></ul>
+                            </li>
+                            <li>Be thankful that we are respectful, honest, and helpful adults and we don’t have to use something like RC Loot Council :)</li>
+                        </ul>
+                        <br />
+                        <h4 class="mb-0">Please wrap up looting and trading quickly and get ready to move on to the next boss and do it all over again</h4><br />
 
 
                     </div>
                 </p>
+
+
 
 
 
                 <h2 id="final">Final Notes</h2> <hr>
 
-                <p id="remember">
-                    <div class="card text-card">
-                        <h3>The most important things to remember</h3>
+                <div class="row justify-content-start" id="remember">
+                    <div class="col-8">
+                        <ul class="list-group">
+                            <li class="list-group-item noclick-header">The most important things to remember</li>
 
-                        Have a good attitude. This is a game and there are real human beings playing with you so keep it fun.
-                        Progress involves failure, but as long as we’re learning, adapting, and doing better as we go along then we’re not failing.
-                        Mechanics will always be more important than DPS
-                        And of course
-                        Be cool
-                        C’mon…
-                        Niiice
-
+                            <li class="list-group-item list-group-item-action noclick">
+                                <span class="li-keyword">Have a good attitude.</span>
+                                 This is a game and there are real human beings playing with you so keep it fun.
+                            </li>
+                            <li class="list-group-item list-group-item-action noclick">
+                                <span class="li-keyword">Progress involves failure.</span>
+                                As long as we’re learning, adapting, and doing better as we go along then we’re not failing.
+                            </li>
+                            <li class="list-group-item list-group-item-action noclick">
+                                <span class="li-keyword">Mechanics > DPS</span>
+                                Mechanics will always be more important than DPS.
+                            </li>
+                        </ul>
                     </div>
-                </p>
+                </div>
+
+                <br /><br />
+
+                <div class="row justify-content-start" id="rules">
+                    <div class="col-8">
+                        <ul class="list-group">
+                            <li class="list-group-item noclick-header" style="font-size: 28pt;">And of course:</li>
+                            <li class="list-group-item list-group-item-action noclick" style="font-size: 26pt;">1.  Be cool</li>
+                            <li class="list-group-item list-group-item-action noclick" style="font-size: 26pt;">2.  C’mon…</li>
+                            <li class="list-group-item list-group-item-action noclick" style="font-size: 26pt;">3.  Niiice</li>
+                        </ul>
+                    </div>
+
+
+                </div>
 
 
 
@@ -900,6 +1206,15 @@
     });
     </script>
     -->
+
+
+
+
+
+
+
+
+
 
 </body>
 
