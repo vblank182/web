@@ -3,6 +3,7 @@
 <head>
 	<title>WoW - Raiding 101</title>
 	<meta charset="utf-8">
+    <link rel="shortcut icon" type="image/png" href="img/tmaicon.png"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Bootstrap - CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -14,7 +15,6 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/raiding101.css">
 
     <!-- Template: https://github.com/BlackrockDigital/startbootstrap-simple-sidebar -->
@@ -39,17 +39,23 @@
                     <a href="#prep">&bull; Preparation</a>
                 </li>
                 <li>
-                    <a href="#bosses">&bull; Bosses</a>
+                    <a href="#etiquette">&bull; Etiquette</a>
                 </li>
-                <li>
-                    <a href="#" class="subitem">&bull; Mechanics</a>
-                </li>
+                    <li>
+                        <a href="#etiquette-discord" class="subitem">&bull; Discord</a>
+                    </li>
+                    <li>
+                        <a href="#etiquette-timeliness" class="subitem">&bull; Timeliness</a>
+                    </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
+
+
+
             <div class="container-fluid">
                 <h2 id="comp">Composition</h2> <hr>
                 <p>
@@ -69,9 +75,11 @@
                         <div class="col-6">
                             <ul class="list-group">
                                 <li class="list-group-item noclick-header">Raid team roles</li>
-                                <li class="list-group-item list-group-item-action noclick">Raid leader (that’s me, Fae, and others when designated) will be your primary point of contact throughout the raid.</li>
-                                <li class="list-group-item list-group-item-action noclick">Tanks will also have Assist* and will communicate with each other often to coordinate.</li>
-                                <li class="list-group-item list-group-item-action noclick">Team captains are one representative each from healers, range dps, and melee dps who will assist others in their roles by keeping an eye out for improvements to be made and communicating to help things be noticed. We currently do not use team captains regularly but be aware of this concept.</li>
+                                <li class="list-group-item list-group-item-action noclick">The <b>Raid leader</b> will be your primary point of contact throughout the raid.</li>
+                                <li class="list-group-item list-group-item-action noclick"><b>Tanks</b> will also have
+                                        <span data-toggle="collapse" data-target="#assist" aria-expanded="true" aria-controls="assist"><a class="g" href="#h-assist">assist</a></span>
+                                     and will communicate with each other often to coordinate.</li>
+                                <li class="list-group-item list-group-item-action noclick"><b>Team captains</b> are one representative each from healers, range dps, and melee dps who will assist others in their roles by keeping an eye out for improvements to be made and communicating to help things be noticed. We currently do not use team captains regularly but be aware of this concept.</li>
                             </ul>
                         </div>
                     </div>
@@ -96,15 +104,50 @@
                         <div class="col-8">
                             <div class="tab-content" id="nav-tabContent" style="font-size:18pt;">
                                 <div class="tab-pane fade show active" id="list-food" role="tabpanel" aria-labelledby="list-food-list">
-                                    We will likely have group feasts* but have a stack of food with your primary stat to eat between pulls*.</div>
+                                    We will likely have group
+                                        <span data-toggle="collapse" data-target="#feast" aria-expanded="true" aria-controls="feast"><a class="g" href="#h-feast">feasts</a></span>
+                                    but have a stack of food with your primary stat to eat between
+                                        <span data-toggle="collapse" data-target="#pull" aria-expanded="true" aria-controls="pull"><a class="g" href="#h-pull">pulls</a></span>.
+                                    <p style="padding-top: 1rem; font-size: 16pt;">
+                                        <a href="https://www.wowhead.com/spell=259416" target="_blank">Honey-Glazed Haunches</a> (+55 Critical Strike)<br />
+                                        <a href="https://www.wowhead.com/spell=259441" target="_blank">Sailor's Pie</a> (+55 Mastery)<br />
+                                        <a href="https://www.wowhead.com/spell=259429" target="_blank">Swamp Fish 'n Chips</a> (+55 Haste)<br />
+                                        <a href="https://www.wowhead.com/spell=259447" target="_blank">Spiced Snapper</a> (+55 Versatility)
+                                    </p>
+
+                                </div>
                                 <div class="tab-pane fade" id="list-flasks" role="tabpanel" aria-labelledby="list-flasks-list">
-                                    Similarly we will usually have a group cauldron* but bring flasks appropriate for your class, enough to last 3 hours (they are 1 hour duration each).</div>
+                                    We will usually have a group
+                                        <span data-toggle="collapse" data-target="#cauldron" aria-expanded="true" aria-controls="cauldron"><a class="g" href="#h-cauldron">cauldron</a></span>
+                                    but bring flasks appropriate for your class, enough to last 3 hours (they are 1 hour duration each).
+                                    <p style="padding-top: 1rem; font-size: 16pt;">
+                                        <a href="https://www.wowhead.com/item=152641" target="_blank">Flask of the Undertow</a> (+238 Strength)<br />
+                                        <a href="https://www.wowhead.com/item=152640" target="_blank">Flask of the Vast Horizon</a> (+357 Stamina)<br />
+                                        <a href="https://www.wowhead.com/item=152639" target="_blank">Flask of Endless Fathoms</a> (+238 Intellect)<br />
+                                        <a href="https://www.wowhead.com/item=152638" target="_blank">Flask of the Currents</a> (+238 Agility)
+                                    </p>
+                                </div>
                                 <div class="tab-pane fade" id="list-potions" role="tabpanel" aria-labelledby="list-potions-list">
-                                    Augment runes can aide your performance but aren’t required, just recommended.</div>
+                                    Bring plenty of potions specific to your role, you will typically use 2 per boss pull.
+                                    <p style="padding-top: 1rem; font-size: 16pt;">
+                                        <a href="https://www.wowhead.com/item=163223" target="_blank">Battle Potion of Agility</a> (+900 Agility)<br />
+                                        <a href="https://www.wowhead.com/item=163225" target="_blank">Battle Potion of Stamina</a> (+1100 Stamina)<br />
+                                        <a href="https://www.wowhead.com/item=163224" target="_blank">Battle Potion of Strength</a> (+900 Strength)<br />
+                                        <a href="https://www.wowhead.com/item=163222" target="_blank">Battle Potion of Intellect</a> (+900 Intellect)
+                                    </p>
+                                </div>
                                 <div class="tab-pane fade" id="list-runes" role="tabpanel" aria-labelledby="list-runes-list">
-                                    Bring plenty of potions specific to your role, you will typically use 2 per boss pull.</div>
+                                    Augment runes can aide your performance but aren’t required, just recommended.
+                                    <p style="padding-top: 1rem; font-size: 16pt;">
+                                        <a href="https://www.wowhead.com/item=160053" target="_blank">Battle-Scarred Augment Rune</a><br />
+                                    </p>
+                                </div>
                                 <div class="tab-pane fade" id="list-seals" role="tabpanel" aria-labelledby="list-seals-list">
-                                    Obtained on a weekly basis, these give you extra chances to roll on loot, don’t be the one who makes the raid wait while you hearth back to get them!</div>
+                                    Obtained on a weekly basis, these give you extra chances to roll on loot, don’t be the one who makes the raid wait while you hearth back to get them!
+                                    <p style="padding-top: 1rem; font-size: 16pt;">
+                                        <a href="https://www.wowhead.com/currency=1580" target="_blank">Seal of Wartorn Fate</a><br />
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div></div>
@@ -138,11 +181,11 @@
                             <ul class="list-group">
                                 <li class="list-group-item noclick-header">Learn the Fights</li>
                                 <li class="list-group-item list-group-item-action noclick">
-                                    <span class="li-keyword">Fatboss</span>
+                                    <span class="li-keyword"><a href="https://www.youtube.com/user/FatbossTV/videos">Fatboss</a></span>
                                     Watch videos on youtube to learn mechanics
                                 </li>
                                 <li class="list-group-item list-group-item-action noclick">
-                                    <span class="li-keyword">Wowhead</span>
+                                    <span class="li-keyword"><a href="https://www.wowhead.com/uldir-raid-boss-abilities-battle-for-azeroth">Wowhead</a></span>
                                     Read text overviews on WoWhead
                                 </li>
                                 <li class="list-group-item list-group-item-action noclick">
@@ -160,15 +203,15 @@
                             <ul class="list-group">
                                 <li class="list-group-item noclick-header">Addons to Download Before Raid</li>
                                 <li class="list-group-item list-group-item-action noclick">
-                                    <span class="li-keyword">Deadly Boss Mods (DBM)</span>
-                                    This is the essential raid add on and it will help you by alerting you to dangerous mechanics and also helps us organize things like ready checks* and pull timers*
+                                    <span class="li-keyword"><a href="https://wow.curseforge.com/projects/deadly-boss-mods?gameCategorySlug=addons&projectID=3358">Deadly Boss Mods (DBM)</a></span>
+                                    This is the essential raid add on and it will help you by alerting you to dangerous mechanics and also helps us organize things like <span data-toggle="collapse" data-target="#ready" aria-expanded="true" aria-controls="ready"><a class="g" href="#h-ready">ready checks</a></span> and <span data-toggle="collapse" data-target="#pulltimer" aria-expanded="true" aria-controls="pulltimer"><a class="g" href="#h-pulltimer">pull timers</a></span>
                                 </li>
                                 <li class="list-group-item list-group-item-action noclick">
-                                    <span class="li-keyword">Details</span>
+                                    <span class="li-keyword"><a href="https://wow.curseforge.com/projects/details?gameCategorySlug=addons&projectID=61284">Details</a></span>
                                     Keep track of stats such as DPS, healing done, interrupts
                                 </li>
                                 <li class="list-group-item list-group-item-action noclick">
-                                    <span class="li-keyword">Pawn</span>
+                                    <span class="li-keyword"><a href="https://wow.curseforge.com/projects/pawn?gameCategorySlug=addons&projectID=4646">Pawn</a></span>
                                     Used to weigh stats on gear and will guide you on what is and isn’t an upgrade
                                 </li>
                             </ul>
@@ -177,20 +220,438 @@
                 </p>
 
 
+                <h2 id="etiquette">Etiquette</h2> <hr>
+
+                <p id="etiquette-discord">
+                    <div class="card text-card">
+                        <h3>Discord</h3>
+                        <span class="li-header">General rules and etiquette for voice chat</span>
+                        <ul>
+                            <li>Be logged in and in Raid voice chat promptly</li>
+                            <li>You need to at least listen, even if you do not have a mic</li>
+                            <li>Keep chatter to a minimum once it’s Go Time</li>
+                            <li>If raid leader, tank, or team captain announce “CLEAR CHANNEL” that means be quiet and immediately stop talking, they need to communicate urgently</li>
+                        </ul>
+                    </div>
+                </p>
+
+<span data-toggle="collapse" data-target="#TERMHERE" aria-expanded="true" aria-controls="TERMHERE"><a class="g" href="#h-TERMHERE">TERMHERE</a></span>
+                <p id="etiquette-timeliness">
+                    <div class="card text-card">
+                        <h3>Timeliness</h3>
+                        <span class="li-header">Follow these guidelines to keep things running efficiently</span>
+                        <ul>
+                            <li>Be logged in and ready to summon 5 minutes before raid start time</li>
+                                <ul>
+                                    <li>Our goal is to clear <span data-toggle="collapse" data-target="#trash" aria-expanded="true" aria-controls="trash"><a class="g" href="#h-trash">trash</a></span> and be ready for our first boss pull at start time, not waiting to get people in the group and summoned</li>
+                                </ul>
+                            <li>RSVP on the Guild Calendar</li>
+                                <ul>
+                                    <li>Knowing who to expect helps us adjust our composition well before raid start time so RSVP accurately and change your answer if necessary</li>
+                                    <li>We value game/life balance and do not require 100% attendance, just that you do your best to communicate when you will and won’t be here</li>
+                                    <li>Once we move on from Normal to Heroic, if you have missed several nights of raid you may have to <span data-toggle="collapse" data-target="#pug" aria-expanded="true" aria-controls="pug"><a class="g" href="#h-pug">PUG</a></span> or see if the guild can run Normal to get you ready for Heroic due to the scale in difficulty</li>
+                                </ul>
+                            <li>Communicate if you are running late or will be absent unexpectedly whenever possible</li>
+                            <li>Plan your AFKs</li>
+                                <ul>
+                                    <li>Starting to feel a tingle in your bladder or need to smoke? Pick a time such as trash fights whenever possible and let us know you’re away</li>
+                                    <li>Be considerate of others’ time. You’re allowed to be human but do so quickly</li>
+                                </ul>
+                            <li>Don’t go into the raid until it’s confirmed ready</li>
+                                <ul>
+                                    <li>If someone goes in but it’s set to the wrong difficulty wastes time as we have to get everyone back out to change it</li>
+                                </ul>
+                            <li>Be quick reforming between wipes</li>
+                                <ul>
+                                    <li>We will often wipe*, when it happens please listen to instructions (such as if you’re told “DON’T RELEASE”), get back alive, eat your food, and be prepared to briefly assess our strategy and try again</li>
+                                    <li>Try not to use wipes as bio breaks if possible, see above for AFK planning. This is a poor use of group time</li>
+                                </ul>
+                    </div>
+                </p>
 
 
 
 
-            </div>
-
-        </div>
-        <!-- /#page-content-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
 
 
 
+
+
+
+
+
+                <h2 id="glossary">Glossary</h2> <hr>
+                <div class="accordion" id="glossary-accdn">
+
+                    <div class="card">
+                        <div class="card-header" id="h-assist">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#assist" aria-expanded="true" aria-controls="assist">
+                                    Assist
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="assist" class="collapse show" aria-labelledby="h-assist" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                A DBM (Deadly Boss Mod) function. Players with assist are granted permissions similar to the raid leader and can move, add, and kick players in the raid. They can also perform tasks such as ready checks and pull timers. Players with assist are typically another form of leadership in the raid.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-cctrl">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#cctrl" aria-expanded="true" aria-controls="cctrl">
+                                    Crowd Control / CC
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="cctrl" class="collapse" aria-labelledby="h-cctrl" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                Spells and abilities that change or limit the movement of enemies. Includes stuns, banish, slows, roots, etc.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-cauldron">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#cauldron" aria-expanded="true" aria-controls="cauldron">
+                                    Cauldron
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="cauldron" class="collapse" aria-labelledby="h-cauldron" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                Created by alchemists and set down at the beginning of raid night. It has 30 flasks inside of it that adapt to be the primary stat for the character that drinks it. Replaces the need for individual flasks when available. To maximize its usefulness, if there are less than 30 people some (ideally a group of 15 so everyone can…) people can grab a flask from the cauldron, drink it, and then grab another for 1hr later when the first flask expires. These do not stack with individual flasks and you may only have 1 in your inventory at a time.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-cheese">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#cheese" aria-expanded="true" aria-controls="cheese">
+                                    Cheese Strats
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="cheese" class="collapse" aria-labelledby="h-cheese" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                Finding a way around mechanics that makes it possible to beat the boss without doing what Blizz wants us to do.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-cleave">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#cleave" aria-expanded="true" aria-controls="cleave">
+                                    Cleave
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="cleave" class="collapse" aria-labelledby="h-cleave" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                Damage done by spells or abilities in a radius around the target enemy; hits other enemies in that radius. Use caution to avoid hitting enemies you do not want to touch.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-feast">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#feast" aria-expanded="true" aria-controls="feast">
+                                    Feast
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="feast" class="collapse" aria-labelledby="h-feast" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                Created by cooks and set down at the beginning of raid night and in between pulls/wipes if available. Feeds multiple people and provides the Well Fed buff with the player’s primary stat. Replaces the need for individual food. Does not stack with individual food buffs and one will replace the other. Feast buffs are typically better.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-focus">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#focus" aria-expanded="true" aria-controls="focus">
+                                    Focus
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="focus" class="collapse" aria-labelledby="h-focus" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                Ignore all other enemies, mechanics, etc and concentrate all power on killing the enemy you are being told to focus. For example, the boss is on 1% but the next round of mechanics that will wipe the group is going to go off, you might hear “Focus boss!” because the group’s ability to kill the boss if we work together is faster than the impending doom of mechanics. Also used when a mechanic is not being concentrated enough and is threatening large amounts of trouble. In that case you might hear “Focus adds!” and you’d stop doing damage to the boss in order to hurt the adds.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-groups">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#groups" aria-expanded="true" aria-controls="groups">
+                                    Groups
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="groups" class="collapse" aria-labelledby="h-groups" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                In raid there are multiple groups of 5 people shown on your user interface’s raid frames. These groups are often reorganized and people are moved around. Pay attention as sometimes you are told that groups may do different tasks.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-los">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#los" aria-expanded="true" aria-controls="los">
+                                    Line of Sight / LOS
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="los" class="collapse" aria-labelledby="h-los" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                The path of visibility from one character or NPC to another. Obstructing it on purpose or on accident can have various effects. A good effect: breaking line of sight by hiding behind something for a boss mechanic so it can’t hit you. A bad effect: breaking line of sight by hanging out around a corner where the healer’s spells can’t reach you.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-markers">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#markers" aria-expanded="true" aria-controls="markers">
+                                    Markers
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="markers" class="collapse" aria-labelledby="h-markers" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                Created by Raid Leader and Assists in DBM. Colorful shapes that can identify players and/or around the room.
+                                <br />They are:
+                                <ul style="line-height: 1.6rem;">
+                                    <li><img class="small-image" src="img/raid_moon.jpg"> Silver moon</li>
+                                    <li><img class="small-image" src="img/raid_star.jpg"> Yellow star</li>
+                                    <li><img class="small-image" src="img/raid_square.jpg"> Blue square</li>
+                                    <li><img class="small-image" src="img/raid_x.jpg"> Red X</li>
+                                    <li><img class="small-image" src="img/raid_skull.jpg"> White skull</li>
+                                    <li><img class="small-image" src="img/raid_triangle.jpg"> Green triangle</li>
+                                    <li><img class="small-image" src="img/raid_circle.jpg"> Orange circle</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-pug">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#pug" aria-expanded="true" aria-controls="pug">
+                                    Pick Up Group / PUG
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="pug" class="collapse" aria-labelledby="h-pug" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                A group of people who do not normally play together such as guildmates do. Can be used to describe the group as a whole (“I was in a pug with people from LFG”) or individuals (“We didn’t have enough guildies on tonight so I had to get 2 pugs”).
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-prepot">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#prepot" aria-expanded="true" aria-controls="prepot">
+                                    Pre-Potion / Pre-Pot
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="prepot" class="collapse" aria-labelledby="h-prepot" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                Players can only consume 1 potion per battle, so to get around this, pre-potions are taken a few seconds before combat actually starts so it doesn’t count towards your 1 potion maximum. This way, you can benefit from a second potion later on in the fight. A great trick to amplify the effect is to take your second potion during heroism.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-pull">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#pull" aria-expanded="true" aria-controls="pull">
+                                    Pull
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="pull" class="collapse" aria-labelledby="h-pull" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                A term used to refer to engaging the boss in combat (“The tank will pull the boss and then we attack”) but also to refer to the entire attempt at killing the boss (“We killed that boss in 1 pull, nice!”).
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-pulltimer">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#pulltimer" aria-expanded="true" aria-controls="pulltimer">
+                                    Pull Timer
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="pulltimer" class="collapse" aria-labelledby="h-pulltimer" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                DBM function. Your DBM will start counting down to alert players that at 0 the tank will engage the boss in combat. Typically set to 10 seconds though it is based on preference.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-rangecheck">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#rangecheck" aria-expanded="true" aria-controls="rangecheck">
+                                    Range Check
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="rangecheck" class="collapse" aria-labelledby="h-rangecheck" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                <code style="font-size: 14pt;">/range n</code><br />
+                                When used, a small window will pop up showing what players are in that range. For example, if you need to stay 10 yards away from other players for a mechanic you would do <code>/range 10</code> and make sure that no names pop up in that window or else that means you’re too close.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-ready">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#ready" aria-expanded="true" aria-controls="ready">
+                                    Ready Check
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="ready" class="collapse" aria-labelledby="h-ready" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                Will pop up and ask if you are ready and will show a check mark on player frames who are ready and an X on those who are not. Also sometimes used to answer questions in yes/no format.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-soak">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#soak" aria-expanded="true" aria-controls="soak">
+                                    Soak
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="soak" class="collapse" aria-labelledby="h-soak" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                To purposefully take damage, usually for the sake of a mechanic. For example, if a spot will do raid wide damage if no one stands in it but a moderate amount of damage if someone does stand in it, then someone should stand in it to save the raid massive damage and they would be soaking it instead.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-spread">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#spread" aria-expanded="true" aria-controls="spread">
+                                    Spread
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="spread" class="collapse" aria-labelledby="h-spread" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                To move away from others in the raid. Do not stand on or near players if you are supposed to be spreading.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-stack">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#stack" aria-expanded="true" aria-controls="stack">
+                                    Stack
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="stack" class="collapse" aria-labelledby="h-stack" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                To stand on top of other player(s) location in the raid. Sometimes stacking will require just a few people, other times it will be the entire raid. Stacking can also be done in formations such as a line, where players are essentially close and touching but each one just slightly away from the one next to them.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-trash">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#trash" aria-expanded="true" aria-controls="trash">
+                                    Trash
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="trash" class="collapse" aria-labelledby="h-trash" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                Packs of enemies between bosses. These are sometimes as difficult as some bosses and can require strategy and mechanics occasionally. Often times they are just in the way and can be beaten down easily.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="h-wipe">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#wipe" aria-expanded="true" aria-controls="wipe">
+                                    Wipe
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="wipe" class="collapse" aria-labelledby="h-wipe" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                To die or fail an attempt at defeating the boss. A wipe can happen because everyone is dead or can be used to call for everyone to die because the outcome is clear that the fight will not be won and it is faster to die and reset to try again.
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- Glossary Link Template
+                    <span data-toggle="collapse" data-target="#TERMHERE" aria-expanded="true" aria-controls="TERMHERE"><a class="g" href="#h-TERMHERE">TERMHERE</a></span>
+                    -->
+
+
+                    <!-- Glossary Item Template
+                    <div class="card">
+                        <div class="card-header" id="h-TERMHERE">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link glossary-header" type="button" data-toggle="collapse" data-target="#TERMHERE" aria-expanded="true" aria-controls="TERMHERE">
+                                    TERMHERE
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="TERMHERE" class="collapse" aria-labelledby="h-TERMHERE" data-parent="#glossary-accdn">
+                            <div class="card-body">
+                                DESCRIPTION
+                            </div>
+                        </div>
+                    </div>
+                    -->
+
+
+
+
+
+
+
+
+
+
+                </div> <!-- End of Accordian -->
+
+
+            </div> <!-- End of .container-fluid -->
+        </div> <!-- End of #page-content-wrapper -->
+    </div> <!-- End of #wrapper -->
+
+
+    <p style="padding-bottom: 20rem;"/>
 
 
     <!-- Menu Toggle Script

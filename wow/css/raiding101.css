@@ -31,6 +31,13 @@ hr {
     margin-left: 0rem;
 }
 
+a {
+    color: #10A5C2;
+}
+a:hover {
+    color: #0690AB;
+}
+
 #wrapper {
   padding-left: 0;
   -webkit-transition: all 0.5s ease;
@@ -200,4 +207,38 @@ hr {
 .noclick-header {
     font-size: 20pt;
     background-color: #BADBE1
+}
+
+
+/* Other Elemenets */
+
+.text-card {
+    width: 80%;
+    font-size: 16pt;
+    padding: 0.5rem;
+    background: #E7F7F9;
+}
+
+.li-header {
+    margin-left: 0.2rem;
+    font-size: 18pt;
+    font-style: italic;
+}
+
+.small-image {
+    height: 16px;
+    width: auto;
+}
+
+.glossary-header {
+    font-size: 20px;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+}
+
+a.g {  /* Glossary links */
+    color: #1899B3;
+}
+a.g:hover {
+    color: #1DB2D1;
 }
