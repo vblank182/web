@@ -117,6 +117,7 @@ a:hover {
 .sidebar-nav li {
   text-indent: 20px;
   line-height: 40px;
+  font-size: 14pt;
 }
 
 .sidebar-nav li a {
@@ -129,7 +130,7 @@ a:hover {
 .sidebar-nav li a:hover {
   text-decoration: none;
   color: #fff;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .sidebar-nav li a:active, .sidebar-nav li a:focus {
@@ -161,6 +162,7 @@ a:hover {
 
 .subitem {
     padding-left: 1.2rem;
+    font-size: 13pt;
 }
 
 @media(min-width:768px) {
