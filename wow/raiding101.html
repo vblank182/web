@@ -3,6 +3,7 @@
 <head>
 	<title>WoW - Raiding 101</title>
 	<meta charset="utf-8">
+    <meta name="author" content="tragicmuffin">
     <link rel="shortcut icon" type="image/png" href="img/tmaicon.png"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Bootstrap - CSS -->
@@ -29,9 +30,14 @@
             <ul class="sidebar-nav" id="nav">
                 <li class="sidebar-brand">
                     <a href="#">
+                        <span style="font-size: 26pt;">&#120073;&#120094;&#120098;&#120097;&#120111;&#120098;&#120107;&#x00B4;&#120112;</span><br />
+                    </a>
+                    <a href="#">
                         Raiding 101
                     </a>
                 </li>
+
+                <hr class="sidebar-divider">
 
                 <li>
                     <a href="#composition">&bull; Composition</a>
@@ -84,24 +90,33 @@
                     <a href="#glossary">&bull; Glossary</a>
                 </li>
             </ul>
+
+            <div style="position: fixed; bottom: 0; padding-left: 1rem; padding-bottom: 0.5rem; color: #e8e8e8; font-size: 11pt;"><em>Made by Tenxian</em></div>
         </div>
 
 
         <!-- Sidebar scroll highlighting -->
         <!-- Script from: https://codepen.io/joxmar/pen/NqqMEg -->
         <script type="text/javascript">
-            /*
             // Cache selectors
             var lastId,
-             topMenu = $("#nav"),
-             topMenuHeight = topMenu.outerHeight()+1,
-             // Get all list items
-             menuItems = topMenu.find("a"),
-             // Get anchors corresponding to list items
-             scrollItems = menuItems.map(function(){
-               var item = $(this).attr("href");
-                if (item.length) { return item; }
-             });
+            topMenu = $("#nav"),
+            // Get all list items
+            menuItems = topMenu.find("a"),
+            scrollItems = [];
+
+            // Get anchors corresponding to list items
+            for (i=0; i < menuItems.length; i++) {
+                if ($(menuItems[i]).attr("href").length > 1) {
+                    scrollItems.push($(menuItems[i]).attr("href"));
+                }
+            }
+
+            /*
+            scrollItems = menuItems.map(function(){
+            var item = $(this).attr("href");
+            if (item.length) { return item; }
+            });*/
 
 
             // Bind click handler to menu items
@@ -113,36 +128,42 @@
                   scrollTop: offsetTop
               }, 850);
               e.preventDefault();
-              });*
+            });*/
+
+            lastCur = 0
 
             // Bind to scroll
             $(window).scroll(function(){
-               // Get container scroll position
-               var fromTop = $(this).scrollTop() + topMenuHeight;
+                // Get container scroll position
+                var fromTop = $(this).scrollTop();
 
-               // Get id of current scroll item
-               console.log(scrollItems);
-               var cur = scrollItems.map(function(){
-                   console.log($(this));
-                   if ($(this).offset().top < fromTop) { return this; }
-               });
-
-               // Get the id of the current element
-               cur = cur[cur.length-1];
-               var id = cur && cur.length ? cur[0].id : "";
+                //console.log("----")
+                //console.log(fromTop)
+                console.log($(scrollItems[12]).offset().top)
 
 
+                // Get id of current scroll item
+                var cur;
+                for (var i = 0; i < scrollItems.length; i++) {
+                    if ($(scrollItems[i]).offset().top-50 < fromTop)
+                    {
+                        // Keep changing current item until we reach the last one
+                        cur = menuItems[i+2];
+                    }
+                }
 
-               if (lastId !== id) {
-                   lastId = id;
-                   // Set/remove active class
-                   menuItems
-                     .parent().removeClass("scrolled")
-                     .end().filter('[href="#'+id+'"]').parent().addClass("scrolled");
-               }
+                if (cur !== lastCur) {
+                    // Set/remove active class
+                    $(lastCur).removeClass("scrolled")
+                    lastCur = cur;
+
+                    $(cur).addClass("scrolled");
+                }
             });
-            */
         </script>
+
+
+
 
         <!-- /#sidebar-wrapper -->
 
@@ -155,14 +176,14 @@
                 <div class="container" style="margin-left: 2rem; color: white">
                     <h1 class="display-3" style="font-family: Impact;">The Midnight Amendments</h1>
                     <p class="lead display-4"><em>
-                        &#120073;&#120094;&#120098;&#120097;&#120111;&#120098;&#120107;&#x00B4;&#120112;
-                        <span style="font-size:38pt;">Raiding 101</span></em></p>
+                        &#120073;&#120094;&#120098;&#120097;&#120111;&#120098;&#120107;<span style="margin-left: 6px; margin-right: -6px;">&#x00B4;</span>&#120112;
+                        <span style="font-size:38pt; margin-left:8px;">Raiding 101</span></em></p>
                 </div>
             </div>
 
 
             <div class="container-fluid">
-                <h2 id="composition">Composition</h2> <hr>
+                <h2 id="composition">Composition</h2> <hr class="title-underline">
                 <p>
                     Compositions are broken down by the necessary number of tanks/healers/dps with the goal of having enough damage to kill the boss and enough healing to go around for all. Simply stated, the larger the group the more health the boss has so we can’t just bulk up with people and overpower them.
 
@@ -192,7 +213,7 @@
                 </p>
 
 
-                <h2 id="preparation">Preparation</h2> <hr>
+                <h2 id="preparation">Preparation</h2> <hr class="title-underline">
 
                 <p>
                     <div class="card" style="width:80%; padding:0.75rem; background: #E7F7F9;">
@@ -325,7 +346,7 @@
                 </p>
 
 
-                <h2 id="etiquette">Etiquette</h2> <hr>
+                <h2 id="etiquette">Etiquette</h2> <hr class="title-underline">
 
                 <p id="etiquette-discord">
                     <div class="card text-card">
@@ -363,12 +384,12 @@
                                 </ul>
                             <li>Don’t go into the raid until it’s confirmed ready</li>
                                 <ul>
-                                    <li>If someone goes in but it’s set to the wrong difficulty wastes time as we have to get everyone back out to change it</li>
+                                    <li>If someone goes in but it’s set to the wrong difficulty, it wastes time as we have to get everyone back out to change it</li>
                                 </ul>
                             <li>Be quick reforming between wipes</li>
                                 <ul>
-                                    <li>We will often <span data-toggle="collapse" data-target="#wipe" aria-expanded="true" aria-controls="wipe"><a class="g" href="#h-wipe">wipe</a></span>, when it happens please listen to instructions (such as if you’re told “DON’T RELEASE!”), get back alive, eat your food, and be prepared to briefly assess our strategy and try again</li>
-                                    <li>Try not to use wipes as bio breaks if possible, see above for AFK planning. This is a poor use of group time</li>
+                                    <li>We will often <span data-toggle="collapse" data-target="#wipe" aria-expanded="true" aria-controls="wipe"><a class="g" href="#h-wipe">wipe</a></span>. When it happens please listen to instructions (such as if you’re told “DON’T RELEASE!”), get back alive, eat your food, and be prepared to briefly assess our strategy and try again</li>
+                                    <li>Try not to use wipes as bio breaks if possible (see above for AFK planning). This is a poor use of group time</li>
                                 </ul>
                     </div>
                 </p>
@@ -376,7 +397,7 @@
 
 
 
-                <h2 id="bosses">Bosses</h2> <hr>
+                <h2 id="bosses">Bosses</h2> <hr class="title-underline">
 
                 <p id="before-pull">
                     <div class="card text-card">
@@ -471,6 +492,7 @@
                                             <li>Has a 10 minute cooldown, therefore it is used once per boss</li>
                                             <li>Used at strategic moments to maximize effectiveness</li>
                                             <li>Sometimes used on trash packs and then “reset” by engaging the boss, everyone “tagging” the boss by attacking it with something, and then running out of the room to reset the fight and the ability to benefit from heroism</li>
+                                            <li><b>Do not hero/lust/drums without being told to by raid leader!</b></li>
                                         </ul>
                                     </div>
 
@@ -479,6 +501,7 @@
                                         <ul>
                                             <li>We start with 1 but can earn more by going long periods of time without using one</li>
                                             <li>Can take up to 10 minutes to earn your next one once it is used</li>
+                                            <li><b>Do not use B-Rez without being told to by raid leader!</b></li>
                                         </ul>
                                     </div>
 
@@ -781,7 +804,7 @@
 
 
 
-                <h2 id="final">Final Notes</h2> <hr>
+                <h2 id="final">Final Notes</h2> <hr class="title-underline">
 
                 <div class="row justify-content-start" id="remember">
                     <div class="col-8">
@@ -822,7 +845,7 @@
 
 
 
-                <h2 id="glossary">Glossary</h2> <hr>
+                <h2 id="glossary">Glossary</h2> <hr class="title-underline">
                 <div class="accordion" id="glossary-accdn">
 
                     <div class="card">

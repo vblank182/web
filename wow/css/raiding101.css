@@ -20,7 +20,15 @@ p {
     font-size: 16pt;
 }
 
-hr {
+
+a {
+    color: #10A5C2;
+}
+a:hover {
+    color: #0690AB;
+}
+
+.title-underline {  /* hr */
     margin-top: -0.7rem;
     margin-bottom: 2.5rem;
     height: 3px;
@@ -31,11 +39,12 @@ hr {
     margin-left: 0rem;
 }
 
-a {
-    color: #10A5C2;
-}
-a:hover {
-    color: #0690AB;
+.sidebar-divider {  /* hr */
+    height: 1px;
+    background: #fff;
+    border: none;
+    width: 100%;
+    margin-top: -0.2rem;
 }
 
 #wrapper {
@@ -120,7 +129,7 @@ a:hover {
 .sidebar-nav li a:hover {
   text-decoration: none;
   color: #fff;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .sidebar-nav li a:active, .sidebar-nav li a:focus {
@@ -128,13 +137,16 @@ a:hover {
 }
 
 .sidebar-nav li a.scrolled {  /* Sidebar scroll follow */
-    color: #222;
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .sidebar-nav>.sidebar-brand {
-  height: 75px;
+  height: 120px;
   font-size: 26px;
-  line-height: 70px;
+  padding-top: 0.8rem;
+  line-height: 2.8rem;
   text-shadow: 1px 1px #2698AD;
 }
 
