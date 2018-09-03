@@ -34,7 +34,7 @@ a:hover {
     height: 3px;
     background: #cacaca;
     border: none;
-    width: 80%;
+    width: 100%;
     align: "left";
     margin-left: 0rem;
 }
@@ -165,7 +165,7 @@ a:hover {
     font-size: 13pt;
 }
 
-@media(min-width:768px) {  /* Screen size >= 768px */
+@media (min-width:768px) {  /* Screen size >= 768px */
     /* Toggle functionality diabled: Element always set to 'toggled'
     #wrapper {
         padding-left: 0;
@@ -194,10 +194,30 @@ a:hover {
         position: relative;
         margin-right: 0;
     }
+    .text-card {
+        padding: 0.75rem;
+        padding-right: 18rem;
+    }
 }
 
-/* Hide sidebar under this size */
-@media(max-width:768px) {  /* Screen size <= 768px */
+/******************/
+/* MEDIUM SCREENS */
+@media (max-width:1600px) {
+    .text-card {
+        padding: 0.75rem;
+    }
+}
+@media (max-width:1200px) {
+    p {
+        width: 100%;
+        font-size: 16pt;
+    }
+
+}
+
+/*****************/
+/* SMALL SCREENS */
+@media (max-width:768px) {  /* Screen size <= 768px */
     #wrapper.toggled {
         padding-left: 0;
     }
@@ -213,6 +233,8 @@ a:hover {
         padding: 20px;
         position: relative;
     }
+
+
 }
 
 
@@ -267,9 +289,7 @@ a:hover {
 /* Other Elemenets */
 
 .text-card {
-    width: 80%;
     font-size: 16pt;
-    padding: 0.5rem;
     background: #E7F7F9;
 }
 
