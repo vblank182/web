@@ -96,7 +96,7 @@
 
 
         <!-- Sidebar scroll highlighting -->
-        <!-- Script from: https://codepen.io/joxmar/pen/NqqMEg -->
+        <!-- Script adapted from: https://codepen.io/joxmar/pen/NqqMEg -->
         <script type="text/javascript">
             // Cache selectors
             var lastId,
@@ -163,8 +163,6 @@
         </script>
 
 
-
-
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
@@ -188,7 +186,7 @@
                     Compositions are broken down by the necessary number of tanks/healers/dps with the goal of having enough damage to kill the boss and enough healing to go around for all. Simply stated, the larger the group the more health the boss has so we can’t just bulk up with people and overpower them.
 
                     <div class="row justify-content-start">
-                        <div class="col-3">
+                        <div class="col-xl-3">
                             <ul class="list-group">
                                 <li class="list-group-item noclick-header">Common compositions</li>
                                 <li class="list-group-item list-group-item-action noclick">10 people: 2/2/6</li>
@@ -198,7 +196,7 @@
                                 <li class="list-group-item list-group-item-action noclick">30 people: 2/6/22</li>
                             </ul>
                         </div>
-                        <div class="col-6">
+                        <div class="col-xl-6">
                             <ul class="list-group">
                                 <li class="list-group-item noclick-header">Raid team roles</li>
                                 <li class="list-group-item list-group-item-action noclick">The <b>Raid leader</b> will be your primary point of contact throughout the raid.</li>
@@ -218,7 +216,7 @@
                 <p>
                     <div class="card" style="width:80%; padding:0.75rem; background: #E7F7F9;">
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-xl-3">
                             <div class="list-group" id="list-tab" role="tablist">
                                 <a class="list-group-item list-group-item-action active" id="list-food-list" data-toggle="list" href="#list-food" role="tab" aria-controls="food">Food</a>
                                 <a class="list-group-item list-group-item-action" id="list-flasks-list" data-toggle="list" href="#list-flasks" role="tab" aria-controls="flasks">Flasks</a>
@@ -227,7 +225,7 @@
                                 <a class="list-group-item list-group-item-action" id="list-seals-list" data-toggle="list" href="#list-seals" role="tab" aria-controls="seals">Seals</a>
                             </div>
                         </div>
-                        <div class="col-8">
+                        <div class="col-xl-8">
                             <div class="tab-content" id="nav-prepTabs" style="font-size:18pt;">
                                 <div class="tab-pane fade show active" id="list-food" role="tabpanel" aria-labelledby="list-food-list">
                                     We will likely have group
@@ -282,7 +280,7 @@
                     <p class="v-space"/>
 
                     <div class="row justify-content-start" id="prep-gear">
-                        <div class="col-8">
+                        <div class="col-9">
                             <ul class="list-group">
                                 <li class="list-group-item noclick-header">Gear Preparation
                                 </li>
@@ -303,7 +301,7 @@
                     <p class="v-space"/>
 
                     <div class="row justify-content-start" id="prep-learning">
-                        <div class="col-8">
+                        <div class="col-9">
                             <ul class="list-group">
                                 <li class="list-group-item noclick-header">Learning the Fights</li>
                                 <li class="list-group-item list-group-item-action noclick">
@@ -325,7 +323,7 @@
                     <p class="v-space"/>
 
                     <div class="row justify-content-start" id="prep-addons">
-                        <div class="col-8">
+                        <div class="col-9">
                             <ul class="list-group">
                                 <li class="list-group-item noclick-header">Addons to Download Before Raid</li>
                                 <li class="list-group-item list-group-item-action noclick">
@@ -440,7 +438,7 @@
                         <script type="text/javascript">
                             // Rotating important message text
                             var messages = ["Staying alive and doing mechanics is more important than dps!", "Do not hero/lust/drums without being told to by raid leader!", "Do not use B-Rez without being told to by raid leader!"];
-                            var time = 4 * 1000;  // time in seconds * 1000 (needs to be <5 seconds or css needs changed)
+                            var time = 5 * 1000;  // time in seconds * 1000 (needs to be <5 seconds or css needs changed)
                             var fadeout_time = 0.75 * 1000;  // fadein time defined in css
                             curMessage = 0;
 
@@ -459,7 +457,7 @@
 
                         <div class="card" style="width:95%; padding:0.75rem; background: #E7F7F9;">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-xl-4">
                                 <div class="list-group" id="list-tab" role="tablist">
                                     <a class="list-group-item list-group-item-action active" id="list-f_phases-list" data-toggle="list" href="#list-f_phases" role="tab" aria-controls="f_phases">Boss Phases</a>
                                     <a class="list-group-item list-group-item-action" id="list-f_hero-list" data-toggle="list" href="#list-f_hero" role="tab" aria-controls="f_hero">Heroism/Bloodlust/Drums</a>
@@ -471,7 +469,7 @@
                                     <a class="list-group-item list-group-item-action" id="list-f_direct-list" data-toggle="list" href="#list-f_direct" role="tab" aria-controls="f_direct">Directions</a>
                                 </div>
                             </div>
-                            <div class="col-8">
+                            <div class="col-xl-8">
                                 <div class="tab-content" id="nav-fightTabs" style="font-size:18pt;">
                                     <div class="tab-pane fade show active" id="list-f_phases" role="tabpanel" aria-labelledby="list-f_phases-list">
                                         <h4 class="mb-0">Sometimes fights will be separated into phases with differing mechanics and objectives.</h4><br />
@@ -582,7 +580,7 @@
 
                         <div class="card" style="width:95%; padding:0.75rem; background: #E7F7F9;">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-xl-4">
                                 <div class="list-group" id="list-tab" role="tablist">
                                     <a class="list-group-item list-group-item-action lgi-short active" id="list-m_adds-list" data-toggle="list" href="#list-m_adds" role="tab" aria-controls="m_adds">Adds</a>
                                     <a class="list-group-item list-group-item-action lgi-short" id="list-m_aiming-list" data-toggle="list" href="#list-m_aiming" role="tab" aria-controls="m_aiming">Aiming a Ray</a>
@@ -609,7 +607,7 @@
                                     <a class="list-group-item list-group-item-action lgi-short" id="list-m_protec-list" data-toggle="list" href="#list-m_protec" role="tab" aria-controls="m_protec">Tower Defense/Protect the NPC</a>
                                 </div>
                             </div>
-                            <div class="col-8" style="display: table; height: 80%; width: 100%;">
+                            <div class="col-xl-8" style="display: table; height: 80%; width: 100%;">
                                 <div class="tab-content" id="nav-mechanicsTabs" style="font-size:18pt; display: table-cell; vertical-align: middle;">
 
                                     <div class="tab-pane fade show active" id="list-m_adds" role="tabpanel" aria-labelledby="list-m_adds-list">

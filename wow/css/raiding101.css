@@ -165,27 +165,54 @@ a:hover {
     font-size: 13pt;
 }
 
-@media(min-width:768px) {
-  #wrapper {
-    padding-left: 0;
-  }
-  #wrapper.toggled {
-    padding-left: 250px;
-  }
-  #sidebar-wrapper {
-    width: 0;
-  }
-  #wrapper.toggled #sidebar-wrapper {
-    width: 250px;
-  }
-  #page-content-wrapper {
-    padding: 20px;
-    position: relative;
-  }
-  #wrapper.toggled #page-content-wrapper {
-    position: relative;
-    margin-right: 0;
-  }
+@media(min-width:768px) {  /* Screen size >= 768px */
+    /* Toggle functionality diabled: Element always set to 'toggled'
+    #wrapper {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+    */
+
+    #wrapper.toggled {
+        padding-left: 250px;
+    }
+    #sidebar-wrapper {
+        width: 250px;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        width: 250px;
+    }
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+/* Hide sidebar under this size */
+@media(max-width:768px) {  /* Screen size <= 768px */
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+    #sidebar-wrapper.toggled {
+        display: none;
+        width: 0px;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        display: none;
+        width: 0px;
+    }
+    #page-content-wrapper.toggled {
+        padding: 20px;
+        position: relative;
+    }
 }
 
 
@@ -215,11 +242,6 @@ a:hover {
     /* Shorter list group selection boxes */
     padding-top: 0.3rem;
     padding-bottom: 0.3rem;
-}
-.tab-pane-lowered {
-    /* Tab panes with text that starts lower in pane */
-    /*padding-top: 6rem;*/
-
 }
 
 .blockquote {
