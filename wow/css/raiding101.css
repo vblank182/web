@@ -28,6 +28,11 @@ a:hover {
     color: #0690AB;
 }
 
+@font-face {
+    font-family: "Selima";
+    src: url("fonts/Selima.otf");
+}
+
 .title-underline {  /* hr */
     margin-top: -0.7rem;
     margin-bottom: 2.5rem;
