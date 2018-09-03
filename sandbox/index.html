@@ -6,10 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Bootstrap - CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<!-- Bootstrap - JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!-- jQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -45,8 +46,33 @@
 			<a href="tictactoe.html" class="btn btn-primary btn-lg" role="button">Tic-Tac-Toe</a>
 		</div>
 	</div>
+
+
+
+    <div class="row well well-lg" style="position: fixed; bottom: 0; padding-top: 1rem; padding-bottom: 1rem;">
+        <span id="jumbletext" style="font-family: Monospace; font-size: 14pt; font-align: center;"></span>
+	</div>
 </div>
 
+<script type="text/javascript">
+    var chars = 108;
+    setInterval(function(){
+        var uchar_dec = [];
+        var uchar_str = "";
+        for (var i = 0; i < chars; i++) {
+            // Generate random unicode char decimals
+            //uchar_dec.push(Math.floor(Math.random() * 74) + 48);  // returns a random integer from 48 to 122
+            uchar_dec.push(Math.floor(Math.random() * 25) + 65);  // Random capital letter. Returns a random integer from 65 to 90
+
+
+            // Load a string with random unicode chars
+            uchar_str += "&#" + uchar_dec[i] + ";";
+
+        }
+        $("#jumbletext").html(uchar_str);
+    }, 10);
+
+</script>
 
 
 
