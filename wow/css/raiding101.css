@@ -153,6 +153,7 @@ a:hover {
 
 .sidebar-nav>.sidebar-brand a {
   color: #fff;
+  text-shadow: 1px 1px #2698AD;
 }
 
 .sidebar-nav>.sidebar-brand a:hover {
@@ -160,83 +161,16 @@ a:hover {
   background: none;
 }
 
+a.authorlink {
+    color: #082F35;
+    font-size: 11pt;
+    text-shadow: 0px 1px 1px #2AC3E0;
+}
+
 .subitem {
     padding-left: 1.2rem;
     font-size: 13pt;
 }
-
-@media (min-width:768px) {  /* Screen size >= 768px */
-    /* Toggle functionality diabled: Element always set to 'toggled'
-    #wrapper {
-        padding-left: 0;
-    }
-
-    #sidebar-wrapper {
-        width: 0;
-    }
-
-    #page-content-wrapper {
-        padding: 20px;
-        position: relative;
-    }
-    */
-
-    #wrapper.toggled {
-        padding-left: 250px;
-    }
-    #sidebar-wrapper {
-        width: 250px;
-    }
-    #wrapper.toggled #sidebar-wrapper {
-        width: 250px;
-    }
-    #wrapper.toggled #page-content-wrapper {
-        position: relative;
-        margin-right: 0;
-    }
-    .text-card {
-        padding: 0.75rem;
-        padding-right: 18rem;
-    }
-}
-
-/******************/
-/* MEDIUM SCREENS */
-@media (max-width:1600px) {
-    .text-card {
-        padding: 0.75rem;
-    }
-}
-@media (max-width:1200px) {
-    p {
-        width: 100%;
-        font-size: 16pt;
-    }
-
-}
-
-/*****************/
-/* SMALL SCREENS */
-@media (max-width:768px) {  /* Screen size <= 768px */
-    #wrapper.toggled {
-        padding-left: 0;
-    }
-    #sidebar-wrapper.toggled {
-        display: none;
-        width: 0px;
-    }
-    #wrapper.toggled #sidebar-wrapper {
-        display: none;
-        width: 0px;
-    }
-    #page-content-wrapper.toggled {
-        padding: 20px;
-        position: relative;
-    }
-
-
-}
-
 
 /* Overloaded Bootstrap styles */
 .list-group-item {
@@ -310,6 +244,8 @@ a:hover {
     padding-bottom: 0.2rem;
 }
 
+
+
 a.g {  /* Glossary links */
     color: #1899B3;
 }
@@ -372,4 +308,76 @@ a.g:hover {
 
     -webkit-animation-timing-function: ease;
     animation-timing-function: ease;
+}
+
+
+
+@media (min-width:768px) {  /* Screen size >= 768px */
+    /* Toggle functionality diabled: Element always set to 'toggled'
+    #wrapper {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+    */
+
+    #wrapper.toggled {
+        padding-left: 250px;
+    }
+    #sidebar-wrapper {
+        width: 250px;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        width: 250px;
+    }
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+    .text-card {
+        padding: 0.75rem;
+        padding-right: 18rem;
+    }
+}
+
+/******************/
+/* MEDIUM SCREENS */
+@media (max-width:1600px) {
+    .text-card {
+        padding: 0.75rem;
+    }
+}
+@media (max-width:1200px) {
+    p {
+        width: 100%;
+        font-size: 20pt;
+    }
+
+}
+
+/*****************/
+/* SMALL SCREENS */
+@media (max-width:768px) {  /* Screen size <= 768px */
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+    #sidebar-wrapper.toggled {
+        display: none;
+        width: 0px;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        display: none;
+        width: 0px;
+    }
+    #page-content-wrapper.toggled {
+        padding: 20px;
+        position: relative;
+    }
 }
