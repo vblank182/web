@@ -138,8 +138,7 @@ function generateKeyListTable() {
             for (i = 0; i < fields.length; i++) {
                 if (fields[i] == 'datetimeadded') {
                     // Return formatted date
-                    console.log(doc.data());
-                    var unformattedDate = new Date(doc.data()[fields[i]].seconds);  // UNIX timestamp
+                    var unformattedDate = new Date(doc.data()[fields[i]].seconds * 1000);  // UNIX timestamp (in ms)
 
                     var options = { weekday: 'short', month: 'short', day: 'numeric' };
                     formattedDate = unformattedDate.toLocaleDateString("en-US", options);
