@@ -1,6 +1,6 @@
 // Initialize Cloud Firestore through Firebase
 firebase.initializeApp({
-  apiKey: 'AIzaSyC7Lo3tXfiC9yrCh5FwfVB4psR9H2PPOvc',
+  apiKey: '---',
   authDomain: '/',
   projectId: 'tragicmuffin-cloudapps'
 });
@@ -68,13 +68,29 @@ $(function() {  // Document Ready event
                     datetimeadded: firebase.firestore.Timestamp.fromDate(new Date()),
                     availability: $('#availability').val(),
                 };
+
                 db.collection("TMA-Mythic-Keys").add(document)
-                .then(function(docRef) {
-                    console.log("Document written with ID: ", docRef.id);
+                .then(function(docRef) {  // on success
+                    console.log("Document successfully written with ID: ", docRef.id);
+
+                    // Reset all form fields
+                    $('#keyform').trigger("reset");
+                    $('#submit-key').removeClass("btn-success").addClass("btn-outline-danger disabled").prop('disabled', true);
+
+                    // Show submission alert message
+                    $('#keyform').append('<div class="alert alert-success alert-dismissible fade show" role="alert">Key submitted successfully!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+
                 })
-                .catch(function(error) {
+                .catch(function(error) {  // on failure
                     console.error("Error adding document: ", error);
+
+                    // Show failure alert message
+                    $('#keyform').append('<div class="alert alert-danger alert-dismissible fade show" role="alert">There was an issue submitting your key. Please report this message to Tenxian.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
                 });
+
+
+
+
             }
         }
     )
@@ -84,14 +100,14 @@ $(function() {  // Document Ready event
         {
             // Handle tab switching
             switch ( $(event.target).attr('id') ) {
-                case "nav-keyform":
-                    $('#nav-content-keyform').show()
-                    $('#nav-content-keylist').hide()
-                    $('#nav-content-schedule').hide()
-                    break;
                 case "nav-keylist":
                     $('#nav-content-keyform').hide()
                     $('#nav-content-keylist').show()
+                    $('#nav-content-schedule').hide()
+                    break;
+                case "nav-keyform":
+                    $('#nav-content-keyform').show()
+                    $('#nav-content-keylist').hide()
                     $('#nav-content-schedule').hide()
                     break;
                 case "nav-schedule":

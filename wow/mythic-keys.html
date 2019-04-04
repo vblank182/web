@@ -49,7 +49,7 @@
     function init() {
         $('input[id="keyLevel"]').val("1");
 
-        $('#nav-content-keylist').hide()
+        $('#nav-content-keyform').hide()
         $('#nav-content-schedule').hide()
     }
 </script>
@@ -66,8 +66,8 @@
 <div class="container">
     <nav>
         <div class="nav nav-tabs" id="nav-tabs" role="tablist">
-            <a class="nav-item nav-link active border unselectable" id="nav-keyform" data-toggle="tab" role="tab" aria-controls="nav-keyform" aria-selected="true">Submit a Mythic+ Key</a>
-            <a class="nav-item nav-link border unselectable" id="nav-keylist" data-toggle="tab" role="tab" aria-controls="nav-keylist" aria-selected="false">List of Mythic+ Keys</a>
+            <a class="nav-item nav-link active border unselectable" id="nav-keylist" data-toggle="tab" role="tab" aria-controls="nav-keylist" aria-selected="true">List of Mythic+ Keys</a>
+            <a class="nav-item nav-link border unselectable" id="nav-keyform" data-toggle="tab" role="tab" aria-controls="nav-keyform" aria-selected="false">Submit a Mythic+ Key</a>
             <a class="nav-item nav-link border unselectable" id="nav-schedule" data-toggle="tab" role="tab" aria-controls="nav-schedule" aria-selected="false">Schedule</a>
         </div>
     </nav>
@@ -76,9 +76,17 @@
 <!-- Main Content Container -->
 <div class="container border shadow p-3 mb-5 rounded" style="background: #bebf8924;">
 
+    <div id="nav-content-keylist">
+
+        some shit
+
+
+
+    </div>  <!-- End of Key List -->
+
     <!-- Key Submission Form -->
     <div id="nav-content-keyform">
-        <form>
+        <form id="keyform">
             <div class="row">
                 <div class="col-md">
                     <div class="form-group">
@@ -125,20 +133,12 @@
 
             <div class="row">
                 <div class="col-md">
-                    <button type="button" class="btn btn-lg btn-outline-danger disabled" id="submit-key" disabled="true">Submit Key</button>
+                    <button type="button" class="btn btn-lg btn-outline-danger disabled" id="submit-key" disabled="true" style="margin-bottom: 0.5em">Submit Key</button>
                 </div>
             </div>
 
         </form>
     </div>  <!-- End of Key Submission Form -->
-
-    <div id="nav-content-keylist">
-
-        some shit
-
-
-
-    </div>  <!-- End of Key List -->
 
     <div id="nav-content-schedule">
 
