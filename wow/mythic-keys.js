@@ -90,11 +90,11 @@ $(function() {  // Document Ready event
 
                 //// Firebase DB write
                 var document = {
-                    discordname: $('#discordName').val(),
-                    dungeonname: $('#keyDungeon').val(),
-                    keylevel: $('#keyLevel').val(),
+                    discordname: escapeHtml($('#discordName').val()),
+                    dungeonname: escapeHtml($('#keyDungeon').val()),
+                    keylevel: escapeHtml($('#keyLevel').val()),
                     datetimeadded: firebase.firestore.Timestamp.fromDate(new Date()),
-                    availability: $('#availability').val(),
+                    availability: escapeHtml($('#availability').val()),
                 };
 
                 db.collection("TMA-Mythic-Keys").add(document)
@@ -122,6 +122,12 @@ $(function() {  // Document Ready event
 
 });  // End of Document Ready event
 
+
+function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+}
 
 function generateKeyListTable() {
 
