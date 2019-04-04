@@ -27,3 +27,7 @@
     font-size: 1.5em;
     box-shadow: none;
 }
+
+#keylist-thead {
+    background: #41422f21;
+}

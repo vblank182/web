@@ -1,12 +1,40 @@
 // Initialize Cloud Firestore through Firebase
 firebase.initializeApp({
-  apiKey: '---',
+  apiKey: 'AIzaSyC7Lo3tXfiC9yrCh5FwfVB4psR9H2PPOvc',
   authDomain: '/',
   projectId: 'tragicmuffin-cloudapps'
 });
 var db = firebase.firestore();
 
 $(function() {  // Document Ready event
+
+    $('#nav-tabs').on("click", function(event)
+        {
+            // Handle tab switching
+            switch ( $(event.target).attr('id') ) {
+                case "nav-keylist":
+                    $('#nav-content-keyform').hide()
+                    $('#nav-content-keylist').show()
+                    $('#nav-content-schedule').hide()
+                    generateKeyListTable();
+                    break;
+                case "nav-keyform":
+                    $('#nav-content-keyform').show()
+                    $('#nav-content-keylist').hide()
+                    $('#nav-content-schedule').hide()
+                    break;
+                case "nav-schedule":
+                    $('#nav-content-keyform').hide()
+                    $('#nav-content-keylist').hide()
+                    $('#nav-content-schedule').show()
+                    break;
+                default:
+                    console.log("Unknown tab ID: '" + $(event.target).attr('id') + "'");
+                    break;
+            }
+
+        }
+    )
 
     //// Key Level number selection ////
     $('#keyLevel').spinner({ min: 1, max: 25, step: 1 });  // create jQuery UI spinner
@@ -88,39 +116,53 @@ $(function() {  // Document Ready event
                     $('#keyform').append('<div class="alert alert-danger alert-dismissible fade show" role="alert">There was an issue submitting your key. Please report this message to Tenxian.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
                 });
 
-
-
-
             }
         }
     )
 
 
-    $('#nav-tabs').on("click", function(event)
-        {
-            // Handle tab switching
-            switch ( $(event.target).attr('id') ) {
-                case "nav-keylist":
-                    $('#nav-content-keyform').hide()
-                    $('#nav-content-keylist').show()
-                    $('#nav-content-schedule').hide()
-                    break;
-                case "nav-keyform":
-                    $('#nav-content-keyform').show()
-                    $('#nav-content-keylist').hide()
-                    $('#nav-content-schedule').hide()
-                    break;
-                case "nav-schedule":
-                    $('#nav-content-keyform').hide()
-                    $('#nav-content-keylist').hide()
-                    $('#nav-content-schedule').show()
-                    break;
-                default:
-                    console.log("Unknown tab ID: '" + $(event.target).attr('id') + "'");
-                    break;
-            }
+    function generateKeyListTable() {
 
-        }
-    )
+        db.collection("TMA-Mythic-Keys").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+
+                /* Generate HTML for table row
+                html = '<tr>'
+                for field in doc {
+                    html += '<th scope="col">' + FIELDNAME + '</th>'
+                }
+                html += '</tr>'*/
+
+
+                console.log("Document data:", doc.data());
+            });
+        });
+
+
+        var table = `
+        <table id="keylist-table" class="table">
+            <thead id="keylist-thead">
+                <tr>
+                    <th scope="col">Discord Name</th>
+                    <th scope="col">Dungeon</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">Availability</th>
+                    <th scope="col">Date Added</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                </tr>
+            </tbody>
+        </table>
+        `
+
+        $("#keylist-table").html(table)
+    }
 
 });
