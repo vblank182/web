@@ -1,6 +1,6 @@
 // Initialize Cloud Firestore through Firebase
 firebase.initializeApp({
-  apiKey: '---',
+  apiKey: 'AIzaSyC7Lo3tXfiC9yrCh5FwfVB4psR9H2PPOvc',
   authDomain: '/',
   projectId: 'tragicmuffin-cloudapps'
 });
@@ -120,24 +120,43 @@ $(function() {  // Document Ready event
         }
     )
 
+});  // End of Document Ready event
 
-    function generateKeyListTable() {
 
-        db.collection("TMA-Mythic-Keys").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
+function generateKeyListTable() {
 
-                /* Generate HTML for table row
-                html = '<tr>'
-                for field in doc {
-                    html += '<th scope="col">' + FIELDNAME + '</th>'
+    var tableRows = '';
+
+    db.collection("TMA-Mythic-Keys").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+
+            var fields = ['discordname', 'dungeonname', 'keylevel', 'availability', 'datetimeadded'];
+
+            // Generate HTML for table row
+            var tableRow = '<tr>';
+
+            for (i = 0; i < fields.length; i++) {
+                if (fields[i] == 'datetimeadded') {
+                    // Return formatted date
+                    console.log(doc.data());
+                    var unformattedDate = new Date(doc.data()[fields[i]].seconds);  // UNIX timestamp
+
+                    var options = { weekday: 'short', month: 'short', day: 'numeric' };
+                    formattedDate = unformattedDate.toLocaleDateString("en-US", options);
+
+                    tableRow += '<th scope="col">' + formattedDate + '</th>';
                 }
-                html += '</tr>'*/
+                else {
+                    tableRow += '<th scope="col">' + doc.data()[fields[i]] + '</th>';
+                }
+            }
 
+            tableRow += '</tr>';
 
-                console.log("Document data:", doc.data());
-            });
+            tableRows += tableRow;
+
+            //console.log("Document data:", doc.data());
         });
-
 
         var table = `
         <table id="keylist-table" class="table">
@@ -151,18 +170,12 @@ $(function() {  // Document Ready event
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                </tr>
+        ` + tableRows + `
             </tbody>
         </table>
-        `
+        `;
 
-        $("#keylist-table").html(table)
-    }
+        $("#keylist-table").html(table);
 
-});
+    });
+}
