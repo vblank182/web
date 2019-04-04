@@ -152,7 +152,7 @@ function generateKeyListTable() {
                     tableRow += '<th scope="col">' + formattedDate + '</th>';
                 }
                 else {
-                    tableRow += '<th scope="col">' + doc.data()[fields[i]] + '</th>';
+                    tableRow += '<th scope="col">' + escapeHtml( doc.data()[fields[i]] ).slice(0, 100) + '</th>';
                 }
             }
 
