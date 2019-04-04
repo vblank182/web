@@ -1,0 +1,157 @@
+<html>
+
+<head>
+	<title>WoW</title>
+	<meta charset="utf-8">
+    <link rel="shortcut icon" type="image/png" href="img/tmaicon.png"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap - CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- jQuery UI - CSS -->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <!-- Bootstrap - JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- jQuery Mousewheel Plugin -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+
+    <!-- jQueryUI + Bootstrap patch -->
+    <script type="text/javascript">
+        $.widget.bridge('uitooltip', $.ui.tooltip);
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+
+    <!-- Popper.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+    <!-- Firebase & Cloud Firestore DB libraries -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-firestore.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/wow.css">
+    <link rel="stylesheet" href="css/mythic-keys.css">
+
+    <!-- Custom JS -->
+    <script type="text/javascript" src="mythic-keys.js"></script>
+
+</head>
+
+
+<!-- Initialization Script -->
+<body onload="init();">
+<script type="text/javascript">
+    function init() {
+        $('input[id="keyLevel"]').val("1");
+
+        $('#nav-content-keylist').hide()
+        $('#nav-content-schedule').hide()
+    }
+</script>
+
+
+<!-- Header -->
+<div class="jumbotron jumbotron-fluid" id="header">
+    <div class="container">
+        <h1 class="display-4">Mythic+ Keys</h1>
+    </div>
+</div>
+
+<!-- Navigation Tabs -->
+<div class="container">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tabs" role="tablist">
+            <a class="nav-item nav-link active border unselectable" id="nav-keyform" data-toggle="tab" role="tab" aria-controls="nav-keyform" aria-selected="true">Submit a Mythic+ Key</a>
+            <a class="nav-item nav-link border unselectable" id="nav-keylist" data-toggle="tab" role="tab" aria-controls="nav-keylist" aria-selected="false">List of Mythic+ Keys</a>
+            <a class="nav-item nav-link border unselectable" id="nav-schedule" data-toggle="tab" role="tab" aria-controls="nav-schedule" aria-selected="false">Schedule</a>
+        </div>
+    </nav>
+</div>
+
+<!-- Main Content Container -->
+<div class="container border shadow p-3 mb-5 rounded" style="background: #bebf8924;">
+
+    <!-- Key Submission Form -->
+    <div id="nav-content-keyform">
+        <form>
+            <div class="row">
+                <div class="col-md">
+                    <div class="form-group">
+                        <label for="discordName">Discord Name</label>
+                        <input type="text" class="form-control required empty" id="discordName" aria-describedby="discordName-help" placeholder="(Required)">
+                        <!-- <small id="discordName-help" class="form-text text-muted">[Extra description text...]</small> -->
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-group">
+                        <label for="keyDungeon">Mythic+ Key Dungeon</label>
+                        <select class="form-control" id="keyDungeon">
+                            <option>Atal'Dazar</option>
+                            <option>Freehold</option>
+                            <option>King's Rest</option>
+                            <option>Shrine of the Storm</option>
+                            <option>Siege of Boralus</option>
+                            <option>Temple of Sethraliss</option>
+                            <option>The MOTHERLODE!!!</option>
+                            <option>The Underrot</option>
+                            <option>Tol Dagor</option>
+                            <option>Waycrest Manor</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-group">
+                        <label for="keyLevel">Mythic+ Key Level</label>
+                        <input class="form-control required" id="keyLevel" aria-describedby="keyDungeon-help">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- TEMP: Replace with calendar/scheduling solution. -->
+                <div class="col-lg">
+                    <label for="availability">Availability</label>
+                    <input type="text" class="form-control" id="availability" aria-describedby="availability-help" placeholder="(Optional)">
+                    <small id="availability-help" class="form-text text-muted">Enter any days & times you are available to run your key.</small>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+                <div class="col-md">
+                    <button type="button" class="btn btn-lg btn-outline-danger disabled" id="submit-key" disabled="true">Submit Key</button>
+                </div>
+            </div>
+
+        </form>
+    </div>  <!-- End of Key Submission Form -->
+
+    <div id="nav-content-keylist">
+
+        some shit
+
+
+
+    </div>  <!-- End of Key List -->
+
+    <div id="nav-content-schedule">
+
+        more shit
+
+
+
+    </div>  <!-- End of Schedule -->
+
+
+</div>  <!-- End of Main Content Container -->
+
+
+</body>
+
+</html>

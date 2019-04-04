@@ -1,0 +1,29 @@
+/* Bootstrap Overrides */
+.form-control {
+    font-size: 1.15em;
+    padding: 0.3rem 0.75rem;
+}
+
+.nav-item, .nav-item:hover, .nav-item:active {  /* All nav tabs */
+    background: #bebf8912;
+    color: #666;
+    font-size: 1rem;
+    margin-top: 0.2em;
+}
+
+.nav-link.active {  /* Selected nav tab */
+    background: #bebf8924 !important;
+    color: #000 !important;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 0em;
+}
+
+/* */
+#keyLevel {
+    margin: 0em 2em 0em 0.4em;
+    padding-right: 2em;
+    text-align: center;
+    font-size: 1.5em;
+    box-shadow: none;
+}

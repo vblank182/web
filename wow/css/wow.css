@@ -1,0 +1,34 @@
+#header-index {
+    background-image: url("../img/cover-3.jpg");
+    background-size: cover;
+    height: 50%;
+    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+    -webkit-mask-image: -webkit-linear-gradient(top, rgba(0,0,0,1), rgba(0,0,0,1) 60%, rgba(0,0,0,0));
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1) 60%, rgba(0,0,0,0));
+}
+
+#header {
+    background-image: url("../img/cover-3.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 35%;
+    background-size: cover;
+}
+
+.btn-huge {  /* Extra modifier to make btn-lg buttons larger */
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
+    font-size: 1.75rem;
+}
+
+.btn-wow-menu {
+    color: #fff;
+    background-color: #875497;
+    border-color: #613d6d;
+}
+.btn-wow-menu:hover {
+    background-color: #593465;
+    border-color: #512d5d;
+}

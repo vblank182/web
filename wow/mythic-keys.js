@@ -1,0 +1,110 @@
+// Initialize Cloud Firestore through Firebase
+firebase.initializeApp({
+  apiKey: 'AIzaSyC7Lo3tXfiC9yrCh5FwfVB4psR9H2PPOvc',
+  authDomain: '/',
+  projectId: 'tragicmuffin-cloudapps'
+});
+var db = firebase.firestore();
+
+$(function() {  // Document Ready event
+
+    //// Key Level number selection ////
+    $('#keyLevel').spinner({ min: 1, max: 25, step: 1 });  // create jQuery UI spinner
+    $('#keyLevel').keydown(function(event)
+    {
+        safe_cmds = ["Backspace", "Delete", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowUp", "Down", "Left", "Right", "Up", "Home", "End"]
+        if ($.isNumeric(event.key) || safe_cmds.includes(event.key)) {
+            // Allow keypress
+            return true;
+        }
+        else {
+            // Ignore keypress
+            event.preventDefault();  // remove default keydown behavior (i.e. entering characters)
+            return false;
+        }
+    });
+    $('#keyLevel').change(function()
+    {
+        // If value falls outside of allowed range after a key is entered, snap it back into range
+        var newValue = $(this).val();
+        if (newValue < 1)
+            $(this).val("1");
+        else if (newValue > 25)
+            $(this).val("25");
+    });
+
+
+    //// Submit button validation ////
+    $('.required').on("keyup", function()
+        {
+            // Update this field's 'empty' state
+            if ($(this).val().trim() == "")
+                $(this).addClass("empty");
+            else
+                $(this).removeClass("empty");
+
+            // Check if any '.required' field is empty
+            var empty_reqfields = $('.required').hasClass("empty");
+
+            // Enable submit button if all fields are valid
+            if (empty_reqfields)
+                $('#submit-key').removeClass("btn-success").addClass("btn-outline-danger disabled").prop('disabled', true);
+            else
+                $('#submit-key').removeClass("btn-outline-danger disabled").addClass("btn-success").prop('disabled', false);
+        }
+    )
+
+    //// Form submit ////
+    $('#submit-key').on("click", function(event)
+        {
+            if ( !$('#submit-key').hasClass("disabled") ) {
+                // Read all fields, send to database, reset all fields, and show success modal/message
+
+                //// Firebase DB write
+                var document = {
+                    discordname: $('#discordName').val(),
+                    dungeonname: $('#keyDungeon').val(),
+                    keylevel: $('#keyLevel').val(),
+                    datetimeadded: firebase.firestore.Timestamp.fromDate(new Date()),
+                    availability: $('#availability').val(),
+                };
+                db.collection("TMA-Mythic-Keys").add(document)
+                .then(function(docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+                })
+                .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                });
+            }
+        }
+    )
+
+
+    $('#nav-tabs').on("click", function(event)
+        {
+            // Handle tab switching
+            switch ( $(event.target).attr('id') ) {
+                case "nav-keyform":
+                    $('#nav-content-keyform').show()
+                    $('#nav-content-keylist').hide()
+                    $('#nav-content-schedule').hide()
+                    break;
+                case "nav-keylist":
+                    $('#nav-content-keyform').hide()
+                    $('#nav-content-keylist').show()
+                    $('#nav-content-schedule').hide()
+                    break;
+                case "nav-schedule":
+                    $('#nav-content-keyform').hide()
+                    $('#nav-content-keylist').hide()
+                    $('#nav-content-schedule').show()
+                    break;
+                default:
+                    console.log("Unknown tab ID: '" + $(event.target).attr('id') + "'");
+                    break;
+            }
+
+        }
+    )
+
+});
