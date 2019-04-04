@@ -1,6 +1,6 @@
 // Initialize Cloud Firestore through Firebase
 firebase.initializeApp({
-  apiKey: 'AIzaSyC7Lo3tXfiC9yrCh5FwfVB4psR9H2PPOvc',
+  apiKey: '---',
   authDomain: '/',
   projectId: 'tragicmuffin-cloudapps'
 });
