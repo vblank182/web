@@ -159,8 +159,6 @@ function generateKeyListTable() {
             tableRow += '</tr>';
 
             tableRows += tableRow;
-
-            //console.log("Document data:", doc.data());
         });
 
         var table = `
