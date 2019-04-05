@@ -149,10 +149,10 @@ function generateKeyListTable() {
                     var options = { weekday: 'short', month: 'short', day: 'numeric' };
                     formattedDate = unformattedDate.toLocaleDateString("en-US", options);
 
-                    tableRow += '<th scope="col">' + formattedDate + '</th>';
+                    tableRow += '<td scope="col" unixtime="' + doc.data()[fields[i]].seconds + '">' + formattedDate + '</td>';
                 }
                 else {
-                    tableRow += '<th scope="col">' + escapeHtml( doc.data()[fields[i]] ).slice(0, 100) + '</th>';
+                    tableRow += '<td scope="col">' + escapeHtml( doc.data()[fields[i]] ).slice(0, 40) + '</td>';
                 }
             }
 
@@ -164,18 +164,18 @@ function generateKeyListTable() {
         });
 
         var table = `
-        <table id="keylist-table" class="table">
+        <table id="keylist-table" class="table table-bordered">
             <thead id="keylist-thead">
                 <tr>
-                    <th scope="col">Discord Name</th>
-                    <th scope="col">Dungeon</th>
-                    <th scope="col">Level</th>
-                    <th scope="col">Availability</th>
-                    <th scope="col">Date Added</th>
+                    <th scope="col" class="keylist-col" id="keylist-col-discordname" onclick="sortTable(0, 'str')">Discord Name</th>
+                    <th scope="col" class="keylist-col" id="keylist-col-dungeonname" onclick="sortTable(1, 'str')">Dungeon</th>
+                    <th scope="col" class="keylist-col" id="keylist-col-keylevel" onclick="sortTable(2, 'int')">Level</th>
+                    <th scope="col" class="keylist-col" id="keylist-col-availability" onclick="sortTable(3, 'str')">Availability</th>
+                    <th scope="col" class="keylist-col" id="keylist-col-datetimeadded" onclick="sortTable(4, 'date')">Date Added</th>
                 </tr>
             </thead>
             <tbody>
-        ` + tableRows + `
+            ` + tableRows + `
             </tbody>
         </table>
         `;
@@ -183,4 +183,90 @@ function generateKeyListTable() {
         $("#keylist-table").html(table);
 
     });
+}
+
+
+function sortTable(column, dataType) {
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById("keylist-table");
+    switching = true;
+    //Set the sorting direction to ascending:
+    dir = "asc";
+    // Make a loop that will continue until no switching has been done:
+    while (switching) {
+        //start by saying: no switching is done:
+        switching = false;
+        rows = table.getElementsByTagName("tr");
+        // Loop through all table rows (except the first, which contains table headers):
+        for (i = 1; i < (rows.length - 1); i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            // Get the two elements you want to compare, one from current row and one from the next:
+            x = rows[i].getElementsByTagName("td")[column];
+            y = rows[i + 1].getElementsByTagName("td")[column];
+
+            // Check if the two rows should switch place, based on the direction, asc or desc:
+            if (dir == "asc") {
+                // Sort case: Strings
+                if (dataType == 'str') {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                else if (dataType == 'int') {
+                    if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                else if (dataType == 'date') {
+                    if (parseInt(x.getAttribute('unixtime')) > parseInt(y.getAttribute('unixtime'))) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            else if (dir == "desc") {
+                if (dataType == 'str') {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                else if (dataType == 'int') {
+                    if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                else if (dataType == 'date') {
+                    if (parseInt(x.getAttribute('unixtime')) < parseInt(y.getAttribute('unixtime'))) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if (shouldSwitch) {
+            // If a switch has been marked, make the switch and mark that a switch has been done:
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            //Each time a switch is done, increase this count by 1:
+            switchcount ++;
+        } else {
+            // If no switching has been done AND the direction is "asc", set the direction to "desc" and run the while loop again.
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
+        }
+
+    }
 }

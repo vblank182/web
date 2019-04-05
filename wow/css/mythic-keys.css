@@ -31,3 +31,7 @@
 #keylist-thead {
     background: #41422f21;
 }
+
+.keylist-col {
+    cursor: pointer;
+}
