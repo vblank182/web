@@ -140,7 +140,7 @@ function generateKeyListTable() {
             // Check client ID in DB against client's cookie to see whether we should add a "Delete" button to this row.
             var tableRow_deleteButton = '';
             if (doc.data()['clientID'] == getClientID())
-                tableRow_deleteButton = '<button type="button" onclick="deleteKeyEntry(doc.id);" id="key-delete-button" class="btn btn-danger btn-sm">&times;</button>';
+                tableRow_deleteButton = '<button type="button" onclick="deleteKeyEntry(' + doc.id + ');" id="key-delete-button" class="btn btn-danger btn-sm">&times;</button>';
 
             for (i = 0; i < fields.length; i++) {
                 if (fields[i] == 'datetimeadded') {
