@@ -125,7 +125,6 @@ $(function() {  // Document Ready event
 });  // End of Document Ready event
 
 
-
 function generateKeyListTable() {
 
     var tableRows = '';
@@ -141,7 +140,7 @@ function generateKeyListTable() {
             // Check client ID in DB against client's cookie to see whether we should add a "Delete" button to this row.
             var tableRow_deleteButton = '';
             if (doc.data()['clientID'] == getClientID())
-                tableRow_deleteButton = '<button type="button" id="key-delete-button" class="btn btn-danger btn-sm">&times;</button>';
+                tableRow_deleteButton = '<button type="button" onclick="deleteKeyEntry(doc.id);" id="key-delete-button" class="btn btn-danger btn-sm">&times;</button>';
 
             for (i = 0; i < fields.length; i++) {
                 if (fields[i] == 'datetimeadded') {
@@ -276,6 +275,10 @@ function escapeHtml(str) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
+}
+
+function deleteKeyEntry(docID) {
+    db.collection("TMA-Mythic-Keys").doc(docID).delete()
 }
 
 function getOrGenerateClientID() {
