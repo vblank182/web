@@ -4,6 +4,8 @@
   TODO: Allow players to delete their used keys (or mark them as used)
   TODO: Make auto-delete script for expired keys
   TODO: Add 'Show my keys' checkbox
+
+  TODO: Add "Character Name" field to form. Optional. Displays on list undreneath Discord name to save space.
 -->
 
 <head>
@@ -85,7 +87,10 @@
     <div id="nav-content-keylist">
 
         <div id="keylist-table"></div>  <!-- Key list table will be created here -->
-        <script type="text/javascript"> generateKeyListTable(); </script>
+        <script type="text/javascript">
+            generateKeyListTable();
+            sortTable(4, 'date');
+        </script>
 
     </div>  <!-- End of Key List -->
 

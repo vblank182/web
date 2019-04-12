@@ -196,7 +196,11 @@ function escapeHtml(str) {
 function deleteKeyEntry(docID) {
     // When the delete button is pressed on a table row, a confirmation modal is shown.
     // Add a function callback to the modal's 'Yes' buttton that will take the received docID and delete the DB document when clicked.
-    $('#modal-keydeletion-confirm').click( function(){db.collection("TMA-Mythic-Keys").doc(docID).delete();} );
+    $('#modal-keydeletion-confirm').click( function() {
+        db.collection("TMA-Mythic-Keys").doc(docID).delete();
+        generateKeyListTable();
+        sortTable(4, 'date');
+    });
 }
 
 function getOrGenerateClientID() {
