@@ -88,8 +88,7 @@
 
         <div id="keylist-table"></div>  <!-- Key list table will be created here -->
         <script type="text/javascript">
-            generateKeyListTable();
-            sortTable(4, 'date');
+            generateKeyListTable().then( function(){ sortTable(4, 'date'); } );
         </script>
 
     </div>  <!-- End of Key List -->

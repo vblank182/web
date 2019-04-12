@@ -198,8 +198,7 @@ function deleteKeyEntry(docID) {
     // Add a function callback to the modal's 'Yes' buttton that will take the received docID and delete the DB document when clicked.
     $('#modal-keydeletion-confirm').click( function() {
         db.collection("TMA-Mythic-Keys").doc(docID).delete();
-        generateKeyListTable();
-        sortTable(4, 'date');
+        generateKeyListTable().then( function(){ sortTable(4, 'date'); } );
     });
 }
 
