@@ -187,6 +187,76 @@ function generateKeyListTable() {
 }
 
 
+function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+}
+
+function deleteKeyEntry(docID) {
+    // When the delete button is pressed on a table row, a confirmation modal is shown.
+    // Add a function callback to the modal's 'Yes' buttton that will take the received docID and delete the DB document when clicked.
+    $('#modal-keydeletion-confirm').click( function(){db.collection("TMA-Mythic-Keys").doc(docID).delete();} );
+}
+
+function getOrGenerateClientID() {
+    cookie_name = 'mythicKeyClientID';
+
+    // First, check client's cookies to see if they already have a stored ID.
+    clientID = getCookie(cookie_name);
+
+    if (clientID == "") {
+        // If client has no stored ID, generate a new one and save cookie.
+        cookie_lifetime = 60*60*24*60;  // set cookie to live for 60 days
+
+        // Generate a random 8-character ID string
+        var cookie_ID = [];
+        for (var i = 0; i < 8; i++)
+            cookie_ID.push( alphanumerics[Math.floor(Math.random()*alphanumerics.length)] );
+        cookie_ID = cookie_ID.join("");
+
+        setCookie(cookie_name, cookie_ID, cookie_lifetime);
+
+        return cookie_ID;  // return the new ID so it can also be stored in the DB
+    }
+
+    // If client does have a stored ID, just return it so the new DB document can use the same ID
+    else {
+        return clientID;
+    }
+
+}
+
+function getClientID() {
+    cookie_name = 'mythicKeyClientID';
+    return getCookie(cookie_name);
+}
+
+// Cookie Helpers
+function setCookie(cname, cvalue, cexp) {
+    var d = new Date();
+    d.setTime(d.getTime() + cexp*1000);
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
 function sortTable(column, dataType) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("keylist-table");
@@ -271,75 +341,5 @@ function sortTable(column, dataType) {
 
     }
 }
-
-function escapeHtml(str) {
-    var div = document.createElement('div');
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
-}
-
-function deleteKeyEntry(docID) {
-    // When the delete button is pressed on a table row, a confirmation modal is shown.
-    // Add a function callback to the modal's 'Yes' buttton that will take the received docID and delete the DB document when clicked.
-    $('modal-keydeletion-confirm').click( function(){db.collection("TMA-Mythic-Keys").doc(docID).delete();} );
-}
-
-function getOrGenerateClientID() {
-    cookie_name = 'mythicKeyClientID';
-
-    // First, check client's cookies to see if they already have a stored ID.
-    clientID = getCookie(cookie_name);
-
-    if (clientID == "") {
-        // If client has no stored ID, generate a new one and save cookie.
-        cookie_lifetime = 60*60*24*60;  // set cookie to live for 60 days
-
-        // Generate a random 8-character ID string
-        var cookie_ID = [];
-        for (var i = 0; i < 8; i++)
-            cookie_ID.push( alphanumerics[Math.floor(Math.random()*alphanumerics.length)] );
-        cookie_ID = cookie_ID.join("");
-
-        setCookie(cookie_name, cookie_ID, cookie_lifetime);
-
-        return cookie_ID;  // return the new ID so it can also be stored in the DB
-    }
-
-    // If client does have a stored ID, just return it so the new DB document can use the same ID
-    else {
-        return clientID;
-    }
-
-}
-
-function getClientID() {
-    cookie_name = 'mythicKeyClientID';
-    return getCookie(cookie_name);
-}
-
-// Cookie Helpers
-function setCookie(cname, cvalue, cexp) {
-    var d = new Date();
-    d.setTime(d.getTime() + cexp*1000);
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
 
 alphanumerics = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
