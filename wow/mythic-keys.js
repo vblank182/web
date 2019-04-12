@@ -139,8 +139,9 @@ function generateKeyListTable() {
 
             // Check client ID in DB against client's cookie to see whether we should add a "Delete" button to this row.
             var tableRow_deleteButton = '';
-            if (doc.data()['clientID'] == getClientID())
-                tableRow_deleteButton = '<button type="button" onclick="deleteKeyEntry(' + doc.id + ');" id="key-delete-button" class="btn btn-danger btn-sm">&times;</button>';
+            if (doc.data()['clientID'] == getClientID()) {
+                tableRow_deleteButton = '<button type="button" onclick="deleteKeyEntry(' + doc.id + ');" id="key-delete-button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-keydeletion">&times;</button>';
+            }
 
             for (i = 0; i < fields.length; i++) {
                 if (fields[i] == 'datetimeadded') {
@@ -278,7 +279,9 @@ function escapeHtml(str) {
 }
 
 function deleteKeyEntry(docID) {
-    db.collection("TMA-Mythic-Keys").doc(docID).delete()
+    // When the delete button is pressed on a table row, a confirmation modal is shown.
+    // Add a function callback to the modal's 'Yes' buttton that will take the received docID and delete the DB document when clicked.
+    $('modal-keydeletion-confirm').click( function(){db.collection("TMA-Mythic-Keys").doc(docID).delete();} );
 }
 
 function getOrGenerateClientID() {
