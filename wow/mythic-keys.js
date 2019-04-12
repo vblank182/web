@@ -82,6 +82,7 @@ $(function() {  // Document Ready event
         }
     )
 
+
     //// Form submit ////
     $('#submit-key').on("click", function(event)
         {
@@ -95,6 +96,7 @@ $(function() {  // Document Ready event
                     keylevel: escapeHtml($('#keyLevel').val()),
                     datetimeadded: firebase.firestore.Timestamp.fromDate(new Date()),
                     availability: escapeHtml($('#availability').val()),
+                    clientID: getOrGenerateClientID(),
                 };
 
                 db.collection("TMA-Mythic-Keys").add(document)
@@ -123,11 +125,6 @@ $(function() {  // Document Ready event
 });  // End of Document Ready event
 
 
-function escapeHtml(str) {
-    var div = document.createElement('div');
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
-}
 
 function generateKeyListTable() {
 
@@ -141,6 +138,11 @@ function generateKeyListTable() {
             // Generate HTML for table row
             var tableRow = '<tr>';
 
+            // Check client ID in DB against client's cookie to see whether we should add a "Delete" button to this row.
+            var tableRow_deleteButton = '';
+            if (doc.data()['clientID'] == getClientID())
+                tableRow_deleteButton = '<button type="button" id="key-delete-button" class="btn btn-danger btn-sm">&times;</button>';
+
             for (i = 0; i < fields.length; i++) {
                 if (fields[i] == 'datetimeadded') {
                     // Return formatted date
@@ -149,8 +151,9 @@ function generateKeyListTable() {
                     var options = { weekday: 'short', month: 'short', day: 'numeric' };
                     formattedDate = unformattedDate.toLocaleDateString("en-US", options);
 
-                    tableRow += '<td scope="col" unixtime="' + doc.data()[fields[i]].seconds + '">' + formattedDate + '</td>';
+                    tableRow += '<td scope="col" unixtime="' + doc.data()[fields[i]].seconds + '">' + formattedDate + tableRow_deleteButton + '</td>';
                 }
+
                 else {
                     tableRow += '<td scope="col">' + escapeHtml( doc.data()[fields[i]] ).slice(0, 40) + '</td>';
                 }
@@ -268,3 +271,69 @@ function sortTable(column, dataType) {
 
     }
 }
+
+function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+}
+
+function getOrGenerateClientID() {
+    cookie_name = 'mythicKeyClientID';
+
+    // First, check client's cookies to see if they already have a stored ID.
+    clientID = getCookie(cookie_name);
+
+    if (clientID == "") {
+        // If client has no stored ID, generate a new one and save cookie.
+        cookie_lifetime = 60*60*24*60;  // set cookie to live for 60 days
+
+        // Generate a random 8-character ID string
+        var cookie_ID = [];
+        for (var i = 0; i < 8; i++)
+            cookie_ID.push( alphanumerics[Math.floor(Math.random()*alphanumerics.length)] );
+        cookie_ID = cookie_ID.join("");
+
+        setCookie(cookie_name, cookie_ID, cookie_lifetime);
+
+        return cookie_ID;  // return the new ID so it can also be stored in the DB
+    }
+
+    // If client does have a stored ID, just return it so the new DB document can use the same ID
+    else {
+        return clientID;
+    }
+
+}
+
+function getClientID() {
+    cookie_name = 'mythicKeyClientID';
+    return getCookie(cookie_name);
+}
+
+// Cookie Helpers
+function setCookie(cname, cvalue, cexp) {
+    var d = new Date();
+    d.setTime(d.getTime() + cexp*1000);
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
+alphanumerics = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
