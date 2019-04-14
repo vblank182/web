@@ -15,19 +15,19 @@ $(function() {  // Document Ready event
                 case "nav-keylist":
                     $('#nav-content-keyform').hide()
                     $('#nav-content-keylist').show()
-                    $('#nav-content-schedule').hide()
+                    //$('#nav-content-schedule').hide()
                     generateKeyListTable();
                     break;
                 case "nav-keyform":
                     $('#nav-content-keyform').show()
                     $('#nav-content-keylist').hide()
-                    $('#nav-content-schedule').hide()
+                    //$('#nav-content-schedule').hide()
                     break;
-                case "nav-schedule":
-                    $('#nav-content-keyform').hide()
-                    $('#nav-content-keylist').hide()
-                    $('#nav-content-schedule').show()
-                    break;
+                //case "nav-schedule":
+                    //$('#nav-content-keyform').hide()
+                    //$('#nav-content-keylist').hide()
+                    //$('#nav-content-schedule').show()
+                    //break;
                 default:
                     console.log("Unknown tab ID: '" + $(event.target).attr('id') + "'");
                     break;
@@ -154,6 +154,21 @@ function generateKeyListTable() {
                     tableRow += '<td scope="col" unixtime="' + doc.data()[fields[i]].seconds + '">' + formattedDate + tableRow_deleteButton + '</td>';
                 }
 
+                else if (fields[i] == 'availability') {
+
+                    var avail_tooltip = escapeHtml( doc.data()[fields[i]] );  // get availability input from DB
+                    avail_tooltip = avail_tooltip.replace("\n", "<br />");  // turn newlines from input into html breaks
+
+                    if (avail_tooltip != "") {  // only show availability icon if input was provided
+                        tableRow += '<td scope="col" class="keylist-availability-item">'
+                            + '<span style="cursor:pointer; font-size:1.5rem; line-height: 1rem;" data-toggle="tooltip" data-placement="right" data-html="true" title="' + avail_tooltip + '">&#x1F551;</span>'
+                            + '</td>';
+                    }
+                    else {
+                        tableRow += '<td scope="col" class="keylist-availability-item"></td>';
+                    }
+                }
+
                 else {
                     tableRow += '<td scope="col">' + escapeHtml( doc.data()[fields[i]] ).slice(0, 40) + '</td>';
                 }
@@ -171,7 +186,7 @@ function generateKeyListTable() {
                     <th scope="col" class="keylist-col" id="keylist-col-discordname" onclick="sortTable(0, 'str')">Discord Name</th>
                     <th scope="col" class="keylist-col" id="keylist-col-dungeonname" onclick="sortTable(1, 'str')">Dungeon</th>
                     <th scope="col" class="keylist-col" id="keylist-col-keylevel" onclick="sortTable(2, 'int')">Level</th>
-                    <th scope="col" class="keylist-col" id="keylist-col-availability" onclick="sortTable(3, 'str')">Availability</th>
+                    <th scope="col" id="keylist-col-availability">Availability</th>
                     <th scope="col" class="keylist-col" id="keylist-col-datetimeadded" onclick="sortTable(4, 'date')">Date Added</th>
                 </tr>
             </thead>
@@ -181,9 +196,15 @@ function generateKeyListTable() {
         </table>
         `;
 
-        $("#keylist-table").html(table);
+        $("#keylist-table-div").html(table);
 
     });
+
+    setTimeout(function() {
+        $(function () { $('[data-toggle="tooltip"]').tooltip() })  // Initialize all tooltips
+        sortTable(4, 'date');
+    }, 500);
+
 }
 
 
@@ -198,7 +219,7 @@ function deleteKeyEntry(docID) {
     // Add a function callback to the modal's 'Yes' buttton that will take the received docID and delete the DB document when clicked.
     $('#modal-keydeletion-confirm').click( function() {
         db.collection("TMA-Mythic-Keys").doc(docID).delete();
-        generateKeyListTable().then( function(){ sortTable(4, 'date'); } );
+        generateKeyListTable();
     });
 }
 
@@ -235,7 +256,18 @@ function getClientID() {
     return getCookie(cookie_name);
 }
 
-// Cookie Helpers
+function saveOptions(state_showMyKeys) {
+    // Currently only saving one bit for show/hide keys toggle.
+    cookie_name = 'mythicKeyListOptions';
+    cookie_lifetime = 60*60*24*365;  // set cookie to live for 1 year
+    cookie_flags = state_showMyKeys + 0;  // turns bool flag into 0/1
+
+    return setCookie(cookie_name, "", cookie_lifetime);
+}
+
+
+////////////////////
+// Cookie Helpers //
 function setCookie(cname, cvalue, cexp) {
     var d = new Date();
     d.setTime(d.getTime() + cexp*1000);
@@ -258,6 +290,8 @@ function getCookie(cname) {
     }
     return "";
 }
+////////////////////
+////////////////////
 
 
 function sortTable(column, dataType) {

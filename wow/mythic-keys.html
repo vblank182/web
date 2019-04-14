@@ -1,11 +1,14 @@
 <html>
 
 <!--
-  TODO: Allow players to delete their used keys (or mark them as used)
-  TODO: Make auto-delete script for expired keys
-  TODO: Add 'Show my keys' checkbox
-
+  TODO: Add 'Show/hide my keys' checkbox
+  TODO: Make auto-delete script for expired keys. Add JS funtion to check for old keys and delete from DB from user end.
   TODO: Add "Character Name" field to form. Optional. Displays on list undreneath Discord name to save space.
+  TODO: Change color scheme?
+
+  TODO: [FIX] After moving Bootstrap to load after jQueryUI, key level selector is broken again.
+
+  IDEA: Have Jeeves keep a JSON list of discord usernames/mentions. Add JS to get this file from server and use it to auto-complete (find package) name entry.
 -->
 
 <head>
@@ -20,8 +23,6 @@
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-    <!-- Bootstrap - JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <!-- jQuery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <!-- jQuery Mousewheel Plugin -->
@@ -34,7 +35,10 @@
     </script>
 
     <!-- Popper.js -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Bootstrap - JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
     <!-- Firebase & Cloud Firestore DB libraries -->
     <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
@@ -52,13 +56,13 @@
 
 
 <!-- Initialization Script -->
-<body onload="init();">
+<body onload="init();" style="padding-bottom: 4rem;">
 <script type="text/javascript">
     function init() {
         $('input[id="keyLevel"]').val("1");
 
         $('#nav-content-keyform').hide();
-        $('#nav-content-schedule').hide();
+        //$('#nav-content-schedule').hide();
     }
 </script>
 
@@ -76,7 +80,7 @@
         <div class="nav nav-tabs" id="nav-tabs" role="tablist">
             <a class="nav-item nav-link active border unselectable" id="nav-keylist" data-toggle="tab" role="tab" aria-controls="nav-keylist" aria-selected="true">List of Mythic+ Keys</a>
             <a class="nav-item nav-link border unselectable" id="nav-keyform" data-toggle="tab" role="tab" aria-controls="nav-keyform" aria-selected="false">Submit a Mythic+ Key</a>
-            <a class="nav-item nav-link border unselectable" id="nav-schedule" data-toggle="tab" role="tab" aria-controls="nav-schedule" aria-selected="false">Schedule</a>
+            <!-- <a class="nav-item nav-link border unselectable" id="nav-schedule" data-toggle="tab" role="tab" aria-controls="nav-schedule" aria-selected="false">Schedule</a> -->
         </div>
     </nav>
 </div>
@@ -86,9 +90,19 @@
 
     <div id="nav-content-keylist">
 
-        <div id="keylist-table"></div>  <!-- Key list table will be created here -->
+        <div id="keylist-table-div">
+            <!-- Key list table will be created here -->
+
+        </div>
+
+        <div class="card" id="keylist-options">
+            <div class="card-body">
+                <input type="checkbox" id="show-own-keys-toggle" class="css-checkbox" onclick="saveOptions($('#show-own-keys-toggle').checked);">
+                <label for="show-own-keys-toggle" class="css-checkbox-label">Show My Keys</label>
+            </div>
+        </div>
         <script type="text/javascript">
-            generateKeyListTable().then( function(){ sortTable(4, 'date'); } );
+            generateKeyListTable();
         </script>
 
     </div>  <!-- End of Key List -->
@@ -133,7 +147,7 @@
                 <!-- TEMP: Replace with calendar/scheduling solution. -->
                 <div class="col-lg">
                     <label for="availability">Availability</label>
-                    <input type="text" class="form-control" id="availability" aria-describedby="availability-help" placeholder="(Optional)">
+                    <textarea class="form-control" id="availability" aria-describedby="availability-help" placeholder="(Optional)"></textarea>
                     <small id="availability-help" class="form-text text-muted">Enter any days & times you are available to run your key.</small>
                 </div>
             </div>
@@ -149,11 +163,13 @@
         </form>
     </div>  <!-- End of Key Submission Form -->
 
+
+    <!--
     <div id="nav-content-schedule">
 
         Nothing here yet...
 
-    </div>  <!-- End of Schedule -->
+    </div>   End of Schedule -->
 
 
 </div>  <!-- End of Main Content Container -->
