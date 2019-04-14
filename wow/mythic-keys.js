@@ -125,12 +125,17 @@ $(function() {  // Document Ready event
 });  // End of Document Ready event
 
 
-function generateKeyListTable() {
+function generateKeyListTable(showOwn=true) {
 
     var tableRows = '';
 
     db.collection("TMA-Mythic-Keys").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
+
+            if (!showOwn && doc.data()['clientID'] == getClientID()) {
+                // If 'Show My Keys' box is unchecked, skip this row if it has the user's client ID.
+                continue;
+            }
 
             var fields = ['discordname', 'dungeonname', 'keylevel', 'availability', 'datetimeadded'];
 
@@ -254,6 +259,20 @@ function getOrGenerateClientID() {
 function getClientID() {
     cookie_name = 'mythicKeyClientID';
     return getCookie(cookie_name);
+}
+
+function changeOption_showOwnKeys(state) {
+    // If we get 'true', option was toggled on.
+    if (state) {
+        // Redraw table including all keys
+        generateKeyListTable(showOwn=true);
+    }
+    else {
+        // Redraw table including only keys that don't match client ID
+        generateKeyListTable(showOwn=false);
+    }
+
+    saveOptions(state);
 }
 
 function saveOptions(state_showMyKeys) {

@@ -2,6 +2,7 @@
 
 <!--
   TODO: Add 'Show/hide my keys' checkbox
+  TODO: Obfuscate DB API key.
   TODO: Make auto-delete script for expired keys. Add JS funtion to check for old keys and delete from DB from user end.
   TODO: Add "Character Name" field to form. Optional. Displays on list undreneath Discord name to save space.
   TODO: Change color scheme?
@@ -97,7 +98,7 @@
 
         <div class="card" id="keylist-options">
             <div class="card-body">
-                <input type="checkbox" id="show-own-keys-toggle" class="css-checkbox" onclick="saveOptions($('#show-own-keys-toggle').prop('checked'));">
+                <input type="checkbox" id="show-own-keys-toggle" class="css-checkbox" onclick="changeOption_showOwnKeys($('#show-own-keys-toggle').prop('checked'));">
                 <label for="show-own-keys-toggle" class="css-checkbox-label">Show My Keys</label>
             </div>
         </div>
