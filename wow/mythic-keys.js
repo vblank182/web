@@ -262,7 +262,7 @@ function saveOptions(state_showMyKeys) {
     cookie_lifetime = 60*60*24*365;  // set cookie to live for 1 year
     cookie_flags = state_showMyKeys + 0;  // turns bool flag into 0/1
 
-    return setCookie(cookie_name, "", cookie_lifetime);
+    return setCookie(cookie_name, cookie_flags, cookie_lifetime);
 }
 
 
