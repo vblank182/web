@@ -1,16 +1,14 @@
 <html>
 
-<!--
-  TODO: Add 'Show/hide my keys' checkbox
-  TODO: Obfuscate DB API key.
-  TODO: Make auto-delete script for expired keys. Add JS funtion to check for old keys and delete from DB from user end.
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  TODO: Make auto-delete script for expired keys. *Add JS funtion to check for old keys and delete from DB from user end.
   TODO: Add "Character Name" field to form. Optional. Displays on list undreneath Discord name to save space.
   TODO: Change color scheme?
 
-  TODO: [FIX] After moving Bootstrap to load after jQueryUI, key level selector is broken again.
+  BUG: Find a way to fix graphical glitch when table is redrawn (unsorted table is momentarily shown before table is sorted)
 
   IDEA: Have Jeeves keep a JSON list of discord usernames/mentions. Add JS to get this file from server and use it to auto-complete (find package) name entry.
--->
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <head>
 	<title>WoW</title>
@@ -129,9 +127,10 @@
                     <div class="form-group">
                         <label for="discordName">Discord Name</label>
                         <input type="text" class="form-control required empty" id="discordName" aria-describedby="discordName-help" placeholder="(Required)">
-                        <!-- <small id="discordName-help" class="form-text text-muted">[Extra description text...]</small> -->
+                        <!-- <small id="discordName-help" class="form-text text-muted">Enter your name on Discord.</small> -->
                     </div>
                 </div>
+
                 <div class="col-md">
                     <div class="form-group">
                         <label for="keyDungeon">Mythic+ Key Dungeon</label>
@@ -149,16 +148,26 @@
                         </select>
                     </div>
                 </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="characterName">Character Name</label>
+                        <input type="text" class="form-control" id="characterName" aria-describedby="characterName-help" placeholder="(Optional)">
+                        <!-- <small id="characterName-help" class="form-text text-muted">[Extra description text...]</small> -->
+                    </div>
+                </div>
+
                 <div class="col-2">
                     <div class="form-group">
                         <label for="keyLevel">Mythic+ Key Level</label>
-                        <input class="form-control required" id="keyLevel" aria-describedby="keyDungeon-help">
+                        <input type="number" class="form-control required" id="keyLevel" aria-describedby="keyDungeon-help">
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <!-- TEMP: Replace with calendar/scheduling solution. -->
                 <div class="col-lg">
                     <label for="availability">Availability</label>
                     <textarea class="form-control" id="availability" aria-describedby="availability-help" placeholder="(Optional)"></textarea>
