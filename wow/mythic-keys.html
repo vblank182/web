@@ -58,12 +58,16 @@
 
 <!-- Initialization Script -->
 <body onload="init();" style="padding-bottom: 4rem;">
+
 <script type="text/javascript">
     function init() {
         $('input[id="keyLevel"]').val("1");
 
         $('#nav-content-keyform').hide();
         //$('#nav-content-schedule').hide();
+
+        $('#show-own-keys-toggle').prop('checked', true);  // set default 'Show My Keys' state
+        loadOptions();  // load options from cookie, including 'Show My Keys' state
     }
 </script>
 

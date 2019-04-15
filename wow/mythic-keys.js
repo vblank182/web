@@ -287,6 +287,21 @@ function saveOptions(state_showMyKeys) {
     return setCookie(cookie_name, cookie_flags, cookie_lifetime);
 }
 
+function loadOptions() {
+    // Read options cookies when page is loaded and set interface accordingly.
+    cookie_name = 'mythicKeyListOptions';
+    options = getCookie(cookie_name);
+
+    // Currently only loading one bit for show/hide keys toggle.
+    if (options != "") {
+        showMyKeys = options && true;  // turns 0/1 into bool flag
+
+        // Only redraw table if saved state is different from default state
+        if (showMyKeys == false)
+            changeOption_showOwnKeys(showMyKeys)
+    }
+}
+
 
 ////////////////////
 // Cookie Helpers //
