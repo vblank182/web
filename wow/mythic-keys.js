@@ -134,7 +134,7 @@ function generateKeyListTable(showOwn=true) {
 
             if (!showOwn && doc.data()['clientID'] == getClientID()) {
                 // If 'Show My Keys' box is unchecked, skip this row if it has the user's client ID.
-                continue;
+                return;
             }
 
             var fields = ['discordname', 'dungeonname', 'keylevel', 'availability', 'datetimeadded'];
@@ -182,7 +182,10 @@ function generateKeyListTable(showOwn=true) {
             tableRow += '</tr>';
 
             tableRows += tableRow;
-        });
+        });  // end of forEach
+
+        // Set checkbox to correct state on init.
+
 
         var table = `
         <table id="keylist-table" class="table table-bordered">
