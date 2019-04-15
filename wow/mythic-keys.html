@@ -66,8 +66,17 @@
         $('#nav-content-keyform').hide();
         //$('#nav-content-schedule').hide();
 
-        $('#show-own-keys-toggle').prop('checked', true);  // set default 'Show My Keys' state
-        loadOptions();  // load options from cookie, including 'Show My Keys' state
+
+        // Load 'Show My Keys' option from cookie.
+        if (loadOption_showMyKeys() == 'None') {
+            // If no cookie exists, set checkbox to default state (checked)
+            $('#show-own-keys-toggle').prop('checked', true);
+        }
+        else {
+            // If a cookie exists, set checkbox state to match (generateKeyListTable function will read from the same cookie later to draw table)
+            $('#show-own-keys-toggle').prop('checked', loadOption_showMyKeys());
+        }
+
     }
 </script>
 

@@ -125,14 +125,14 @@ $(function() {  // Document Ready event
 });  // End of Document Ready event
 
 
-function generateKeyListTable(showOwn=true) {
+function generateKeyListTable() {
 
     var tableRows = '';
 
     db.collection("TMA-Mythic-Keys").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
 
-            if (!showOwn && doc.data()['clientID'] == getClientID()) {
+            if (loadOption_showMyKeys() == false && doc.data()['clientID'] == getClientID()) {
                 // If 'Show My Keys' box is unchecked, skip this row if it has the user's client ID.
                 return;
             }
@@ -265,17 +265,21 @@ function getClientID() {
 }
 
 function changeOption_showOwnKeys(state) {
-    // If we get 'true', option was toggled on.
-    if (state) {
-        // Redraw table including all keys
-        generateKeyListTable(showOwn=true);
-    }
-    else {
-        // Redraw table including only keys that don't match client ID
-        generateKeyListTable(showOwn=false);
-    }
+    // // If we get 'true', option was toggled on.
+    // if (state) {
+    //     // Redraw table including all keys
+    //     generateKeyListTable();
+    // }
+    // else {
+    //     // Redraw table including only keys that don't match client ID
+    //     generateKeyListTable();
+    // }
 
+    // Save new state in cookies
     saveOptions(state);
+
+    // Redraw table (this function will get new cookie value, skipping rows if box was unchecked)
+    generateKeyListTable();
 }
 
 function saveOptions(state_showMyKeys) {
@@ -287,18 +291,18 @@ function saveOptions(state_showMyKeys) {
     return setCookie(cookie_name, cookie_flags, cookie_lifetime);
 }
 
-function loadOptions() {
+function loadOption_showMyKeys() {
     // Read options cookies when page is loaded and set interface accordingly.
     cookie_name = 'mythicKeyListOptions';
-    options = getCookie(cookie_name);
+    options = getCookie(cookie_name);  // Currently only loading one bit for show/hide keys toggle.
 
-    // Currently only loading one bit for show/hide keys toggle.
     if (options != "") {
         showMyKeys = options && true;  // turns 0/1 into bool flag
 
-        // Only redraw table if saved state is different from default state
-        if (showMyKeys == false)
-            changeOption_showOwnKeys(showMyKeys)
+        return showMyKeys;
+    }
+    else {
+        return 'None';
     }
 }
 
