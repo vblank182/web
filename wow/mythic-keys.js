@@ -297,7 +297,7 @@ function loadOption_showMyKeys() {
     options = getCookie(cookie_name);  // Currently only loading one bit for show/hide keys toggle.
 
     if (options != "") {
-        showMyKeys = options && true;  // turns 0/1 into bool flag
+        showMyKeys = parseInt(options) && true;  // turns 0/1 into bool flag
 
         return showMyKeys;
     }
