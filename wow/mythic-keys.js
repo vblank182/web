@@ -133,8 +133,15 @@ function generateKeyListTable() {
         querySnapshot.forEach((doc) => {
 
             if (loadOption_showMyKeys() == false && doc.data()['clientID'] == getClientID()) {
-                // If 'Show My Keys' box is unchecked, skip this row if it has the user's client ID.
-                return;
+                // If 'Show My Keys' box is unchecked and this row matches the user's client ID:
+
+                // Save the unixtime in a hidden element for use by the clearExpiredKeys function, as long as the data doesn't already exist.
+                unixtime = doc.data()['datetimeadded'].seconds;  // get unix time of row (in seconds)
+                if (!getTimestampArray().includes(unixtime)) {
+                    $('#extra-unixtime-data').append("<div unixtime='" + unixtime + "'></div>");
+                }
+
+                return;  // Finally, skip adding this row to the table.
             }
 
             var fields = ['discordname', 'dungeonname', 'keylevel', 'availability', 'datetimeadded'];
@@ -265,16 +272,6 @@ function getClientID() {
 }
 
 function changeOption_showOwnKeys(state) {
-    // // If we get 'true', option was toggled on.
-    // if (state) {
-    //     // Redraw table including all keys
-    //     generateKeyListTable();
-    // }
-    // else {
-    //     // Redraw table including only keys that don't match client ID
-    //     generateKeyListTable();
-    // }
-
     // Save new state in cookies
     saveOptions(state);
 
@@ -304,6 +301,27 @@ function loadOption_showMyKeys() {
     else {
         return 'None';
     }
+}
+
+function getTimestampArray() {
+    // Returns a list of unix timestamps for all entries in the key DB (which are stored in 'unixtime' attributes in the page html).
+    var unixtimes = [];
+    $('[unixtime]').each( function() {
+        unixtimes.push($(this).attr('unixtime'))
+    });
+    return unixtimes;
+}
+
+function clearExpiredKeys() {
+    // This function will clear expired key entries from the database the first time a user loads the database after the expiry date.
+
+    // Mythic keys expire on Tuesday at
+    //expiryDay = ;
+    //expiryTime = ;
+
+    unixtimes = getTimestampArray();  // get array of all unix timestamps present in the DB
+    // calculate the nearest
+
 }
 
 

@@ -3,7 +3,6 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   TODO: Make auto-delete script for expired keys. *Add JS funtion to check for old keys and delete from DB from user end.
   TODO: Add "Character Name" field to form. Optional. Displays on list undreneath Discord name to save space.
-  TODO: Change color scheme?
 
   BUG: Find a way to fix graphical glitch when table is redrawn (unsorted table is momentarily shown before table is sorted)
 
@@ -222,7 +221,8 @@
 </div>
 
 
-
+<!-- This div holds 'unixtime' data from any rows left out of table for use in clearExpiredKeys function. -->
+<div id="extra-unixtime-data"></div>
 
 </body>
 
