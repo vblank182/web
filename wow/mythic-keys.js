@@ -136,7 +136,7 @@ function generateKeyListTable() {
                 // If 'Show My Keys' box is unchecked and this row matches the user's client ID:
 
                 // Save the unixtime in a hidden element for use by the clearExpiredKeys function, as long as the data doesn't already exist.
-                unixtime = doc.data()['datetimeadded'].seconds;  // get unix time of row (in seconds)
+                unixtime = doc.data()['datetimeadded'].seconds.toString();  // get unix time of row (in seconds)
                 if (!getTimestampArray().includes(unixtime)) {
                     $('#extra-unixtime-data').append("<div unixtime='" + unixtime + "'></div>");
                 }
