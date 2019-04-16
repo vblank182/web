@@ -329,6 +329,7 @@ function getTimestampArray(hiddenOnly=false) {
 
 function clearExpiredKeys() {
     // This function will clear expired key entries from the database the first time a user loads the database after the expiry date.
+    // (This runs once, 10 seconds after initial page load.)
 
     // Mythic keys on Proudmoore expire on Tuesday at 8am PST (UTC -7).
     // Tuesday @ 8:00 PST == Tuesday @ 15:00 UTC
@@ -380,9 +381,13 @@ function clearExpiredKeys() {
             });
         });
 
-        // TESTING: Just print out the expired DB entries //
-        console.log(expiredIDs);
-        ////////////////////////////////////////////////////
+        // For each expired key, delete it from the DB using its ID
+        for (var i = 0; i < expiredIDs.length; i++) {
+            db.collection("TMA-Mythic-Keys").doc(expiredIDs[i]).delete();
+        }
+
+        // Finally, redraw the table for the user
+        generateKeyListTable();
     }
 
 }
