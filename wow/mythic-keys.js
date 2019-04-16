@@ -137,7 +137,7 @@ function generateKeyListTable() {
 
                 // Save the unixtime in a hidden element for use by the clearExpiredKeys function, as long as the data doesn't already exist.
                 unixtime = doc.data()['datetimeadded'].seconds.toString();  // get unix time of row (in seconds)
-                if (!getTimestampArray().includes(unixtime)) {
+                if (!getTimestampArray(hiddenOnly=true).includes(unixtime)) {
                     $('#extra-unixtime-data').append("<div unixtime='" + unixtime + "'></div>");
                 }
 
@@ -303,12 +303,21 @@ function loadOption_showMyKeys() {
     }
 }
 
-function getTimestampArray() {
+function getTimestampArray(hiddenOnly=false) {
     // Returns a list of unix timestamps for all entries in the key DB (which are stored in 'unixtime' attributes in the page html).
     var unixtimes = [];
-    $('[unixtime]').each( function() {
-        unixtimes.push($(this).attr('unixtime'))
-    });
+    if (hiddenOnly) {
+        // Only return unixtime values that appear in the hidden 'extra-unixtime-data' div.
+        $('[unixtime]').filter('#extra-unixtime-data > div').each( function() {  // this filter selects only divs that are children of the 'extra-unixtime-data' div.
+            unixtimes.push($(this).attr('unixtime'))
+        });
+    }
+    else {
+        // Return all unixtime values (default).
+        $('[unixtime]').each( function() {
+            unixtimes.push($(this).attr('unixtime'))
+        });
+    }
     return unixtimes;
 }
 
