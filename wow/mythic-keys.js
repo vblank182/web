@@ -381,6 +381,7 @@ function clearExpiredKeys() {
             });
 
             // For each expired key, delete it from the DB using its ID
+            console.log(expiredIDs);
             for (var i = 0; i < expiredIDs.length; i++) {
                 db.collection("TMA-Mythic-Keys").doc(expiredIDs[i]).delete();
             }
