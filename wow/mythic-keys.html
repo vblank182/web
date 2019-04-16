@@ -1,13 +1,10 @@
 <html>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  TODO: Finish auto-delete script (remove test).
-  TODO: Add "Character Name" field to form. Optional. Displays on list undreneath Discord name to save space.
   TODO: Make "Key submitted successfully" message auto-fade after a few seconds.
   TODO: Add a tooltip (or just alt text?) to availability to show time of creation
 
   BUG: Find a way to fix graphical glitch when table is redrawn (unsorted table is momentarily shown before table is sorted)
-  BUG: Form can be submitted with Key Level blank (check requirements)
 
   IDEA: Have Jeeves keep a JSON list of discord usernames/mentions. Add JS to get this file from server and use it to auto-complete (find package) name entry.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -137,7 +134,7 @@
 
                 <div class="col-md">
                     <div class="form-group">
-                        <label for="discordName">Discord Name</label>
+                        <label for="discordName">Discord Name&nbsp;<small><em>(or whatever name you go by)</em></small></label>
                         <input type="text" class="form-control required empty" id="discordName" aria-describedby="discordName-help" placeholder="(Required)">
                         <!-- <small id="discordName-help" class="form-text text-muted">Enter your name on Discord.</small> -->
                     </div>

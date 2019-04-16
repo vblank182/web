@@ -106,7 +106,8 @@ $(function() {  // Document Ready event
                     console.log("Document successfully written with ID: ", docRef.id);
 
                     // Reset all form fields
-                    $('#keyform').trigger("reset");
+                    $('#keyform').trigger("reset");  // reset all fields
+                    $('input[id="keyLevel"]').val("1");  // set Key Level back to 1 (so it's not blank)
                     $('#submit-key').removeClass("btn-success").addClass("btn-outline-danger disabled").prop('disabled', true);
 
                     // Show submission alert message
