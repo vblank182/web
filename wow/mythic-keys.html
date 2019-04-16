@@ -1,7 +1,7 @@
 <html>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  TODO: Make auto-delete script for expired keys. *Add JS funtion to check for old keys and delete from DB from user end.
+  TODO: Set auto-delete script to run on page init(?). Finish auto-delete script (remove test).
   TODO: Add "Character Name" field to form. Optional. Displays on list undreneath Discord name to save space.
 
   BUG: Find a way to fix graphical glitch when table is redrawn (unsorted table is momentarily shown before table is sorted)
@@ -10,10 +10,13 @@
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <head>
-	<title>WoW</title>
+	<title>Mythic+ Keys</title>
+    <meta name="author" content="Jesse Williams">
+    <meta name="version" content="1.0">
 	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="img/tmaicon.png"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<!-- Bootstrap - CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <!-- jQuery UI - CSS -->
@@ -49,7 +52,6 @@
 
     <!-- Custom JS -->
     <script type="text/javascript" src="mythic-keys.js"></script>
-
 </head>
 
 
@@ -73,6 +75,9 @@
             // If a cookie exists, set checkbox state to match (generateKeyListTable function will read from the same cookie later to draw table)
             $('#show-own-keys-toggle').prop('checked', loadOption_showMyKeys());
         }
+
+        // Check if any keys are expired and delete them.
+        setTimeout(function() {clearExpiredKeys();}, 10000);  // wait 10 seconds before running function to let page load.
 
     }
 </script>
