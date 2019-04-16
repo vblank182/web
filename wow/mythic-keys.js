@@ -189,7 +189,7 @@ function generateKeyListTable() {
             tableRow += '</tr>';
 
             tableRows += tableRow;
-        });  // end of forEach
+        });  // end of 'forEach'
 
         // Set checkbox to correct state on init.
 
@@ -213,7 +213,7 @@ function generateKeyListTable() {
 
         $("#keylist-table-div").html(table);
 
-    });
+    });  // end of 'then'
 
     setTimeout(function() {
         $(function () { $('[data-toggle="tooltip"]').tooltip() })  // Initialize all tooltips
@@ -304,7 +304,7 @@ function loadOption_showMyKeys() {
 }
 
 function getTimestampArray(hiddenOnly=false) {
-    // Returns a list of unix timestamps for all entries in the key DB (which are stored in 'unixtime' attributes in the page html).
+    // Returns a list of unix timestamps (in seconds) for all entries in the key DB (which are stored in 'unixtime' attributes in the page html).
     var unixtimes = [];
     if (hiddenOnly) {
         // Only return unixtime values that appear in the hidden 'extra-unixtime-data' div.
@@ -317,6 +317,12 @@ function getTimestampArray(hiddenOnly=false) {
         $('[unixtime]').each( function() {
             unixtimes.push($(this).attr('unixtime'))
         });
+        // Filter out duplicates before returning (data stored in hidden divs will be redundant when all keys are being shown)
+        var unixtimesUnique = [];
+        $.each(unixtimes, function(i, el) {
+            if($.inArray(el, unixtimesUnique) === -1) unixtimesUnique.push(el);
+        });
+        unixtimes = unixtimesUnique;
     }
     return unixtimes;
 }
@@ -324,15 +330,62 @@ function getTimestampArray(hiddenOnly=false) {
 function clearExpiredKeys() {
     // This function will clear expired key entries from the database the first time a user loads the database after the expiry date.
 
-    // Mythic keys expire on Tuesday at
-    //expiryDay = ;
-    //expiryTime = ;
+    // Mythic keys on Proudmoore expire on Tuesday at 8am PST (UTC -7).
+    // Tuesday @ 8:00 PST == Tuesday @ 15:00 UTC
+    expiryDayUTC = 2;  // Day number for Tuesday
+    expiryHourUTC = 15;
 
-    unixtimes = getTimestampArray();  // get array of all unix timestamps present in the DB
-    // calculate the nearest
+    // Calculate the current unix time cutoff. Any keys with unix timestamps less than the cutoff will be considered expired.
+    var currentUnix = new Date();
+    var cutoff = new Date();
+
+    dayNum = currentUnix.getUTCDay();  // get current day-of-week number (Sun-Sat: 0-6)
+    if (dayNum == expiryDayUTC && currentUnix.getUTCHours() < expiryHourUTC) {
+        // If today is Tuesday, but it's before 8am PST, the cutoff day will still be one week ago.
+        cutoff.setUTCDate(currentUnix.getUTCDate() - 7);  // get date of last week's Tuesday (since it's too early for today to be the cutoff)
+    }
+    else {
+        // If it's any other day than Tuesday, use the most recent Tuesday. If it's Tuesday and after 8am PST, use today.
+        cutoff.setUTCDate(currentUnix.getUTCDate() - (dayNum-expiryDayUTC)%7);  // get date of most recent Tuesday
+    }
+
+    // Set the cutoff time to 8am PST (15:00 UTC)
+    cutoff = new Date(cutoff).setUTCHours(expiryHourUTC, 0, 0, 0);
+    cutoff = Math.floor(cutoff/1000);
+    // 'cutoff' now holds the unix time (in seconds) of the last key expiration date.
+
+
+    // Check if any DB entry has a unixtime less than the cutoff time.
+    expiredKeys = false;
+    keyTimestamps = getTimestampArray();
+    for (var i = 0; i < keyTimestamps.length; i++) {
+        // Loop through the array of timestamps to determine only whether any keys are expired.
+        if (parseInt(keyTimestamps[i]) < cutoff) {
+            // If we find any expired keys, stop this loop and move on to DB deletion procedure.
+            expiredKeys = true;
+            break;
+        }
+    }
+
+    // If any expired keys were found in the previous loop, we'll now do a full read of the DB and delete all expired keys.
+    if (expiredKeys) {
+
+        // Read DB and collect IDs of any expired keys
+        var expiredIDs = [];
+        db.collection("TMA-Mythic-Keys").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                var keyUnixtime = doc.data()['datetimeadded'].seconds;
+                if (keyUnixtime < cutoff)
+                    expiredIDs.push(doc.id);
+            });
+        });
+
+        // TESTING: Just print out the expired DB entries //
+        console.log(expiredIDs);
+        ////////////////////////////////////////////////////
+    }
 
 }
-
 
 ////////////////////
 // Cookie Helpers //
