@@ -55,7 +55,18 @@
     float: right;
 }
 
-
+/* ddSlick Plugin */
+.dd-selected {
+    padding-left: 0.4em !important;
+    padding-top: 0.3em !important;
+    padding-bottom: 0.3em !important;
+    padding-right: 0em !important;
+}
+.dd-select {
+    margin-top: 1.1em !important;
+    border-radius: 25px !important;
+    background-color: #fff !important;
+}
 
 /* Custom checkbox */
 input[type=checkbox].css-checkbox {

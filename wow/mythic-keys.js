@@ -92,6 +92,8 @@ $(function() {  // Document Ready event
                 //// Firebase DB write
                 var document = {
                     discordname: escapeHtml($('#discordName').val()),
+                    charactername: escapeHtml($('#characterName').val()),
+                    characterrole: $('.dd-selected-value').val(),  // 0=none, 1=dps, 2=healer, 3=tank
                     dungeonname: escapeHtml($('#keyDungeon').val()),
                     keylevel: escapeHtml($('#keyLevel').val()),
                     datetimeadded: firebase.firestore.Timestamp.fromDate(new Date()),
@@ -127,7 +129,7 @@ $(function() {  // Document Ready event
 
 function generateKeyListTable() {
 
-    var tableRows = '';
+    var tableRows = '';  // Full HTML for all table rows
 
     db.collection("TMA-Mythic-Keys").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -144,10 +146,6 @@ function generateKeyListTable() {
                 return;  // Finally, skip adding this row to the table.
             }
 
-            var fields = ['discordname', 'dungeonname', 'keylevel', 'availability', 'datetimeadded'];
-
-            // Generate HTML for table row
-            var tableRow = '<tr>';
 
             // Check client ID in DB against client's cookie to see whether we should add a "Delete" button to this row.
             var tableRow_deleteButton = '';
@@ -155,50 +153,82 @@ function generateKeyListTable() {
                 tableRow_deleteButton = '<button type="button" onclick="deleteKeyEntry(\'' + doc.id + '\');" id="key-delete-button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-keydeletion">&times;</button>';
             }
 
-            for (i = 0; i < fields.length; i++) {
-                if (fields[i] == 'datetimeadded') {
-                    // Return formatted date
-                    var unformattedDate = new Date(doc.data()[fields[i]].seconds * 1000);  // UNIX timestamp (in ms)
 
-                    var options = { weekday: 'short', month: 'short', day: 'numeric' };
-                    formattedDate = unformattedDate.toLocaleDateString("en-US", options);
+            var fieldnames = ['discordname', 'charactername', 'characterrole', 'dungeonname', 'keylevel', 'availability', 'datetimeadded'];
+            var rolevalues = {'0': 'img/rolesymbols-empty-icon.png',
+                              '1': 'img/rolesymbols-dps-icon.png',
+                              '2': 'img/rolesymbols-healer-icon.png',
+                              '3': 'img/rolesymbols-tank-icon.png'};  // img locations for role icon lookup
+            var roletitles = {'0': 'None', '1': 'DPS', '2': 'Healer', '3': 'Tank'};
 
-                    tableRow += '<td scope="col" unixtime="' + doc.data()[fields[i]].seconds + '">' + formattedDate + tableRow_deleteButton + '</td>';
+            // Collect all document fields in an object
+            doc_fields = {};
+            for (i = 0; i < fieldnames.length; i++) {
+                if (fieldnames[i] == 'datetimeadded') {
+                    doc_fields[fieldnames[i]] = doc.data()[fieldnames[i]].seconds;  // get UNIX timestamp in seconds
                 }
-
-                else if (fields[i] == 'availability') {
-
-                    var avail_tooltip = escapeHtml( doc.data()[fields[i]] );  // get availability input from DB
-                    avail_tooltip = avail_tooltip.replace("\n", "<br />");  // turn newlines from input into html breaks
-
-                    if (avail_tooltip != "") {  // only show availability icon if input was provided
-                        tableRow += '<td scope="col" class="keylist-availability-item">'
-                            + '<span style="cursor:pointer; font-size:1.5rem; line-height: 1rem;" data-toggle="tooltip" data-placement="right" data-html="true" title="' + avail_tooltip + '">&#x1F551;</span>'
-                            + '</td>';
-                    }
-                    else {
-                        tableRow += '<td scope="col" class="keylist-availability-item"></td>';
-                    }
-                }
-
                 else {
-                    tableRow += '<td scope="col">' + escapeHtml( doc.data()[fields[i]] ).slice(0, 40) + '</td>';
+                    doc_fields[fieldnames[i]] = doc.data()[fieldnames[i]];
                 }
             }
 
-            tableRow += '</tr>';
 
-            tableRows += tableRow;
+            //////////////////////////////////////////////////////
+            var tableRow = '<tr>';  // Start of HTML for table row
+
+            //// Column 1: Discord Name, Character Name, and Role ////
+            tableRow += '<td scope="col">'
+                + escapeHtml( doc_fields['discordname'] ).slice(0, 40)  // Discord Name
+                + '&nbsp;&nbsp;&nbsp;&nbsp;<small><em>' + escapeHtml( doc_fields['charactername'] ).slice(0, 40) + '</em></small>'  // Character Name
+                + '<div style="float:right;"><img src="' + rolevalues[doc_fields['characterrole']] + '" title="' + roletitles[doc_fields['characterrole']] + '"></div>'  // Role Icon
+                + '</td>';
+
+            //// Column 2: Dungeon Name ////
+            tableRow += '<td scope="col">'
+                + escapeHtml( doc_fields['dungeonname'] ).slice(0, 40)
+                + '</td>';
+
+            //// Column 3: Key Level ////
+            tableRow += '<td scope="col">'
+                + escapeHtml( doc_fields['keylevel'] ).slice(0, 4)
+                + '</td>';
+
+            //// Column 4: Availability ////
+            var avail_tooltip = escapeHtml( doc_fields['availability'] );  // get availability input
+            avail_tooltip = avail_tooltip.replace("\n", "<br />");  // turn newlines from input into html breaks
+
+            if (avail_tooltip != "") {  // only show availability icon if input was provided
+                tableRow += '<td scope="col" class="keylist-availability-item">'
+                    + '<span style="cursor:pointer; font-size:1.5rem; line-height: 1rem;" data-toggle="tooltip" data-placement="right" data-html="true" title="' + avail_tooltip + '">&#x1F551;</span>'
+                    + '</td>';
+            }
+            else {
+                tableRow += '<td scope="col" class="keylist-availability-item"></td>';  // add an empty column with no icon
+            }
+
+
+            //// Column 5: Date Added and Delete Button ////
+            unformattedDate = new Date(doc_fields['datetimeadded']*1000);  // convert UNIX timestamp to ms
+
+            options = { weekday: 'short', month: 'short', day: 'numeric' };
+            formattedDate = unformattedDate.toLocaleDateString("en-US", options);
+
+            tableRow += '<td scope="col" unixtime="' + doc_fields['datetimeadded'] + '">' + formattedDate + tableRow_deleteButton + '</td>';
+
+
+            tableRow += '</tr>';  // End of HTML for table row
+            //////////////////////////////////////////////////////
+
+
+            tableRows += tableRow;  // Add this row to full set of table rows
         });  // end of 'forEach'
-
-        // Set checkbox to correct state on init.
 
 
         var table = `
         <table id="keylist-table" class="table table-bordered">
             <thead id="keylist-thead">
                 <tr>
-                    <th scope="col" class="keylist-col" id="keylist-col-discordname" onclick="sortTable(0, 'str')">Discord Name</th>
+                    <th scope="col" class="keylist-col" id="keylist-col-discordname" onclick="sortTable(0, 'str')">Name & Role</th>
                     <th scope="col" class="keylist-col" id="keylist-col-dungeonname" onclick="sortTable(1, 'str')">Dungeon</th>
                     <th scope="col" class="keylist-col" id="keylist-col-keylevel" onclick="sortTable(2, 'int')">Level</th>
                     <th scope="col" id="keylist-col-availability">Availability</th>
@@ -381,7 +411,6 @@ function clearExpiredKeys() {
             });
 
             // For each expired key, delete it from the DB using its ID
-            console.log(expiredIDs);
             for (var i = 0; i < expiredIDs.length; i++) {
                 db.collection("TMA-Mythic-Keys").doc(expiredIDs[i]).delete();
             }

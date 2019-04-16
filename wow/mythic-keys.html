@@ -4,6 +4,7 @@
   TODO: Finish auto-delete script (remove test).
   TODO: Add "Character Name" field to form. Optional. Displays on list undreneath Discord name to save space.
   TODO: Make "Key submitted successfully" message auto-fade after a few seconds.
+  TODO: Add a tooltip (or just alt text?) to availability to show time of creation
 
   BUG: Find a way to fix graphical glitch when table is redrawn (unsorted table is momentarily shown before table is sorted)
   BUG: Form can be submitted with Key Level blank (check requirements)
@@ -46,6 +47,9 @@
     <!-- Firebase & Cloud Firestore DB libraries -->
     <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-firestore.js"></script>
+
+    <!-- ddSlick Dropdown Box Image Plugin (for Roles dropdown) -->
+    <script src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js"></script>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/main.css">
@@ -128,7 +132,9 @@
     <!-- Key Submission Form -->
     <div id="nav-content-keyform">
         <form id="keyform">
-            <div class="row">
+
+            <div class="row"> <!-- Form Row: Discord Name, Character Name, Role -->
+
                 <div class="col-md">
                     <div class="form-group">
                         <label for="discordName">Discord Name</label>
@@ -137,7 +143,43 @@
                     </div>
                 </div>
 
-                <div class="col-md">
+                <div class="col-5">
+                    <div class="form-group">
+                        <label for="characterName">Character Name</label>
+                        <input type="text" class="form-control" id="characterName" aria-describedby="characterName-help" placeholder="(Optional)">
+                        <!-- <small id="characterName-help" class="form-text text-muted">[Extra description text...]</small> -->
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-group">
+                            <label for="characterRole" style="line-height: 0em; margin: 0.6em 0em 0em 0.4em;">Role</label>
+                            <div id="characterRole"></div>  <!-- Placeholder for ddSlick dropdown -->
+
+                            <script type="text/javascript">
+                                // Create dropdown data
+                                var ddData = [
+                                    { text: "", value: 0, selected: true, description: "", imageSrc: "img/rolesymbols-empty-sm.png" },
+                                    { text: "", value: 1, selected: false, description: "", imageSrc: "img/rolesymbols-dps-sm.png" },
+                                    { text: "", value: 2, selected: false, description: "", imageSrc: "img/rolesymbols-healer-sm.png" },
+                                    { text: "", value: 3, selected: false, description: "", imageSrc: "img/rolesymbols-tank-sm.png" },
+                                ];
+                                // Attach ddSlick plugin
+                                // Value of selected role will be is "value" attribute of hidden input field ".dd-selected-value"
+                                $('#characterRole').ddslick({
+                                    data: ddData, width: 75, selectText: "Role", imagePosition: "left",
+                                    onSelected: function(selectedData){
+                                        // callback function
+                                    }
+                                });
+                            </script>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row"> <!-- Form Row: Key Dungeon, Key Level -->
+                <div class="col-6">
                     <div class="form-group">
                         <label for="keyDungeon">Mythic+ Key Dungeon</label>
                         <select class="form-control" id="keyDungeon">
@@ -154,16 +196,6 @@
                         </select>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="characterName">Character Name</label>
-                        <input type="text" class="form-control" id="characterName" aria-describedby="characterName-help" placeholder="(Optional)">
-                        <!-- <small id="characterName-help" class="form-text text-muted">[Extra description text...]</small> -->
-                    </div>
-                </div>
 
                 <div class="col-2">
                     <div class="form-group">
@@ -173,7 +205,8 @@
                 </div>
             </div>
 
-            <div class="row">
+
+            <div class="row"> <!-- Form Row: Availability -->
                 <div class="col-lg">
                     <label for="availability">Availability</label>
                     <textarea class="form-control" id="availability" aria-describedby="availability-help" placeholder="(Optional)"></textarea>
