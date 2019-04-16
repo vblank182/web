@@ -379,15 +379,17 @@ function clearExpiredKeys() {
                 if (keyUnixtime < cutoff)
                     expiredIDs.push(doc.id);
             });
-        });
 
-        // For each expired key, delete it from the DB using its ID
-        for (var i = 0; i < expiredIDs.length; i++) {
-            db.collection("TMA-Mythic-Keys").doc(expiredIDs[i]).delete();
-        }
+            // For each expired key, delete it from the DB using its ID
+            for (var i = 0; i < expiredIDs.length; i++) {
+                db.collection("TMA-Mythic-Keys").doc(expiredIDs[i]).delete();
+            }
 
-        // Finally, redraw the table for the user
-        generateKeyListTable();
+            // Finally, redraw the table for the user
+            generateKeyListTable();
+
+        });  // end of get().then
+
     }
 
 }
