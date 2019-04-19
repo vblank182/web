@@ -40,7 +40,7 @@ $(function() {  // Document Ready event
     $('#keyLevel').spinner({ min: 1, max: 25, step: 1 });  // create jQuery UI spinner
     $('#keyLevel').keydown(function(event)
     {
-        safe_cmds = ["Backspace", "Delete", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowUp", "Down", "Left", "Right", "Up", "Home", "End"]
+        safe_cmds = ["Backspace", "Delete", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowUp", "Down", "Left", "Right", "Up", "Home", "End", "Tab"]
         if ($.isNumeric(event.key) || safe_cmds.includes(event.key)) {
             // Allow keypress
             return true;
@@ -151,7 +151,7 @@ function generateKeyListTable() {
             // Check client ID in DB against client's cookie to see whether we should add a "Delete" button to this row.
             var tableRow_deleteButton = '';
             if (doc.data()['clientID'] == getClientID()) {
-                tableRow_deleteButton = '<button type="button" onclick="deleteKeyEntry(\'' + doc.id + '\');" id="key-delete-button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-keydeletion">&times;</button>';
+                tableRow_deleteButton = '<button type="button" onclick="deleteKeyEntry(\'' + doc.id + '\');" id="key-delete-button" class="btn btn-danger btn-sm" title="Delete Key" data-toggle="modal" data-target="#modal-keydeletion">&times;</button>';
             }
 
 
@@ -199,12 +199,12 @@ function generateKeyListTable() {
             avail_tooltip = avail_tooltip.replace("\n", "<br />");  // turn newlines from input into html breaks
 
             if (avail_tooltip != "") {  // only show availability icon if input was provided
-                tableRow += '<td scope="col" class="keylist-availability-item">'
+                tableRow += '<td scope="col" class="mobile-collapse keylist-availability-item">'
                     + '<span style="cursor:pointer; font-size:1.5rem; line-height: 1rem;" data-toggle="tooltip" data-placement="right" data-html="true" title="' + avail_tooltip + '">&#x1F551;</span>'
                     + '</td>';
             }
             else {
-                tableRow += '<td scope="col" class="keylist-availability-item"></td>';  // add an empty column with no icon
+                tableRow += '<td scope="col" class="mobile-collapse keylist-availability-item"></td>';  // add an empty column with no icon
             }
 
 
@@ -214,7 +214,7 @@ function generateKeyListTable() {
             options = { weekday: 'short', month: 'short', day: 'numeric' };
             formattedDate = unformattedDate.toLocaleDateString("en-US", options);
 
-            tableRow += '<td scope="col" unixtime="' + doc_fields['datetimeadded'] + '">' + formattedDate + tableRow_deleteButton + '</td>';
+            tableRow += '<td scope="col" class="mobile-collapse" unixtime="' + doc_fields['datetimeadded'] + '">' + formattedDate + tableRow_deleteButton + '</td>';
 
 
             tableRow += '</tr>';  // End of HTML for table row
@@ -225,6 +225,7 @@ function generateKeyListTable() {
         });  // end of 'forEach'
 
 
+
         var table = `
         <table id="keylist-table" class="table table-bordered">
             <thead id="keylist-thead">
@@ -232,8 +233,8 @@ function generateKeyListTable() {
                     <th scope="col" class="keylist-col" id="keylist-col-discordname" onclick="sortTable(0, 'str')">Name & Role</th>
                     <th scope="col" class="keylist-col" id="keylist-col-dungeonname" onclick="sortTable(1, 'str')">Dungeon</th>
                     <th scope="col" class="keylist-col" id="keylist-col-keylevel" onclick="sortTable(2, 'int')">Level</th>
-                    <th scope="col" id="keylist-col-availability">Availability</th>
-                    <th scope="col" class="keylist-col" id="keylist-col-datetimeadded" onclick="sortTable(4, 'date')">Date Added</th>
+                    <th scope="col" class="mobile-collapse" id="keylist-col-availability">Availability</th>
+                    <th scope="col" class="mobile-collapse keylist-col" id="keylist-col-datetimeadded" onclick="sortTable(4, 'date')">Date Added</th>
                 </tr>
             </thead>
             <tbody>

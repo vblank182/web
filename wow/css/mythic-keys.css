@@ -108,3 +108,7 @@ label.css-checkbox-label {
 
     margin-bottom: 0rem;
 }
+
+@media screen and (min-width: 0px) and (max-width: 767px) {
+  .mobile-collapse { display: none; }  /* show it on small screens */
+}
