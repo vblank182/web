@@ -379,7 +379,7 @@ function clearExpiredKeys() {
     }
     else {
         // If it's any other day than Tuesday, use the most recent Tuesday. If it's Tuesday and after 8am PST, use today.
-        cutoff.setUTCDate(currentUnix.getUTCDate() - (dayNum-expiryDayUTC)%7);  // get date of most recent Tuesday
+        cutoff.setUTCDate(currentUnix.getUTCDate() - mod(dayNum-expiryDayUTC, 7));  // get date of most recent Tuesday
     }
 
     // Set the cutoff time to 8am PST (15:00 UTC)
@@ -540,3 +540,8 @@ function sortTable(column, dataType) {
 }
 
 alphanumerics = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+function mod(n, m) {
+    // Modulus function that returns positive remainder (JS built-in % returns signed remainder)
+    return ((n % m) + m) % m;
+}
