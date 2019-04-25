@@ -50,7 +50,7 @@ $(function() {  // document ready
         word = pickRandomLetters(3);
         currentTransmission = word;
 
-        timing = getPhraseTiming(word);
+        timing = getWordTiming(word);
         repeat = 2;
         executeMorse(timing, repeat);
     });
@@ -60,7 +60,7 @@ $(function() {  // document ready
         word = pickEnglishWord(3, 5);
         currentTransmission = word;
 
-        timing = getPhraseTiming(word);
+        timing = getWordTiming(word);
         repeat = 2;
         executeMorse(timing, repeat);
     });
