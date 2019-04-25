@@ -55,6 +55,16 @@ $(function() {  // document ready
         executeMorse(timing, repeat);
     });
 
+    $("#randWordBtn").on("click", function() {
+        // Choose a word and number of repetitions and execute.
+        word = pickEnglishWord(3, 5);
+        currentTransmission = word;
+
+        timing = getPhraseTiming(word);
+        repeat = 2;
+        executeMorse(timing, repeat);
+    });
+
 });
 
 
@@ -225,6 +235,6 @@ const morseCodes = {'a':'.-', 'b':'-...', 'c':'-.-.', 'd':'-..',
                     'y':'-.--', 'z':'--..',
                     '1':'.----', '2':'..---', '3':'...--', '4':'....-', '5':'....',
                     '6':'-....', '7':'--...', '8':'---..', '9':'----.', '0':'-----',
-                    '-':'-....-', '.':'.-.-.-', ',':'--..--', '?':'..--..', '+':'.-.-.'};
+                    '-':'-....-', '.':'.-.-.-', ',':'--..--', '?':'..--..', '+':'.-.-.', '\'':'.----.'};
 
 const alphanumerics = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
