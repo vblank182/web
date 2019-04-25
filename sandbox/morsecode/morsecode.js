@@ -113,11 +113,19 @@ function pickRandomLetters(n, includeNumbers=false) {
     return randomWord;
 }
 
-function pickEnglishWord(min=1, max=20) {
+function pickEnglishWord(min=1, max=15) {
     // Function to choose a random English word with a length between min and max.
     // https://www.ef.com/wwen/english-resources/english-vocabulary/top-3000-words/
+    startIndex = 0;
+    endIndex = commonWords.length - 1;
 
-    return commonWords[Math.floor(Math.random()*commonWords.length)];
+    if (min > 1)
+        startIndex = commonWords.findIndex(function(e) { return (e.length >= min) });  // find first entry of length 'min'
+    if (max < 16)
+        endIndex = commonWords.findIndex(function(e) { return (e.length > max) });  // find first entry of length 'max'
+
+    commonWordsSlice = commonWords.slice(startIndex, endIndex);
+    return commonWordsSlice[Math.floor(Math.random()*commonWordsSlice.length)];  // get a random word in selected length range
 }
 
 
