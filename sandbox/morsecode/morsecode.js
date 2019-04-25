@@ -23,8 +23,14 @@ var timeoutID = 0;  // ID to keep track of setTimeout calls so they can be termi
 
 var currentTransmission = "";  // string to keep track of currently transmitting (or last transmitted) message
 
+const commonWords = readTextFile();  // get list of common english words
+
 $(function() {  // document ready
     $("#light").attr("fill", lightState);  // set initial state of light once here so we don't have to read it
+
+
+
+
 
     // Attach button listeners
     $("#stopBtn").on("click", function() {
@@ -33,7 +39,6 @@ $(function() {  // document ready
         lightState = c_off;  // set state variable to match
         transmissionFinished(); // BUG: rethink this function
 
-        readTextFile();
     });
 
     $("#transmitBtn").on("click", function() {
@@ -113,11 +118,9 @@ function pickRandomLetters(n, includeNumbers=false) {
 
 function pickEnglishWord(min=1, max=20) {
     // Function to choose a random English word with a length between min and max.
-
-    // TODO: Get words from here:
     // https://www.ef.com/wwen/english-resources/english-vocabulary/top-3000-words/
 
-
+    return commonWords[Math.floor(Math.random()*commonWords.length)];
 }
 
 
@@ -194,16 +197,17 @@ function toggleLight(lightState) {
 
 function readTextFile(file) {
     var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", "englishcommon_3000.txt", false);
+    rawFile.open("GET", "englishcommon_3000_lengthsorted.txt", false);
     rawFile.onreadystatechange = function() {
         if(rawFile.readyState === 4) {
             if(rawFile.status === 200 || rawFile.status == 0) {
-                var allWords = rawFile.responseText;
-                console.log(allWords);
+                var allWordsJSON = rawFile.responseText;
             }
         }
     }
     rawFile.send(null);
+
+    return JSON.parse(allWordsJSON);  // returns a JS array of words, sorted by length
 }
 
 const morseCodes = {'a':'.-', 'b':'-...', 'c':'-.-.', 'd':'-..',
@@ -214,6 +218,7 @@ const morseCodes = {'a':'.-', 'b':'-...', 'c':'-.-.', 'd':'-..',
                     'u':'..-', 'v':'...-', 'w':'.--', 'x':'-..-',
                     'y':'-.--', 'z':'--..',
                     '1':'.----', '2':'..---', '3':'...--', '4':'....-', '5':'....',
-                    '6':'-....', '7':'--...', '8':'---..', '9':'----.', '0':'-----'};
+                    '6':'-....', '7':'--...', '8':'---..', '9':'----.', '0':'-----',
+                    '-':'-....-', '.':'.-.-.-', ',':'--..--', '?':'..--..', '+':'.-.-.'};
 
 const alphanumerics = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
