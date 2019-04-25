@@ -193,12 +193,13 @@ function toggleLight(lightState) {
 }
 
 function readTextFile(file) {
+    var allWords = "";
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", "englishcommon_3000_lengthsorted.txt", false);
     rawFile.onreadystatechange = function() {
         if(rawFile.readyState === 4) {
             if(rawFile.status === 200 || rawFile.status == 0) {
-                var allWords = rawFile.responseText;
+                allWords = rawFile.responseText;
             }
         }
     }
