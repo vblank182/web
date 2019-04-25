@@ -23,13 +23,10 @@ var timeoutID = 0;  // ID to keep track of setTimeout calls so they can be termi
 
 var currentTransmission = "";  // string to keep track of currently transmitting (or last transmitted) message
 
-const commonWords = readTextFile();  // get list of common english words
+const commonWords = readTextFile().split(" ");  // get list of common english words
 
 $(function() {  // document ready
     $("#light").attr("fill", lightState);  // set initial state of light once here so we don't have to read it
-
-
-
 
 
     // Attach button listeners
@@ -97,7 +94,7 @@ function transmissionFinished(wait=1000) {
     // 'wait' is the number of milliseconds to wait before printing
 
     // Print last message after a moment
-    setTimeout(function(){$("#lastMessage").html(currentTransmission);}, wait);
+    setTimeout(function(){ $("#lastMessage").html(currentTransmission); }, wait);
 }
 
 
@@ -201,13 +198,13 @@ function readTextFile(file) {
     rawFile.onreadystatechange = function() {
         if(rawFile.readyState === 4) {
             if(rawFile.status === 200 || rawFile.status == 0) {
-                var allWordsJSON = rawFile.responseText;
+                var allWords = rawFile.responseText;
             }
         }
     }
     rawFile.send(null);
 
-    return JSON.parse(allWordsJSON);  // returns a JS array of words, sorted by length
+    return allWords;  // returns a string of words, separated by spaces, sorted by length
 }
 
 const morseCodes = {'a':'.-', 'b':'-...', 'c':'-.-.', 'd':'-..',
