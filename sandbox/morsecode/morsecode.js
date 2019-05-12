@@ -65,6 +65,12 @@ $(function() {  // document ready
         executeMorse(timing, repeat);
     });
 
+    // Option listeners
+    $("#lightSimple").click(function() {})
+    $("#lightKtaneMorse").
+    $("#lightKtaneMorsematics").
+
+
 });
 
 
@@ -74,7 +80,7 @@ function executeMorse(timingSeq, repeat) {
     // This chain loops 'repeat' times.
     // Reference: https://javascript.info/settimeout-setinterval#recursive-settimeout
 
-    k = 0;
+    var k = 0;
     lightState = toggleLight(lightState);
     timeoutID = setTimeout(function interval() {
 
@@ -84,19 +90,19 @@ function executeMorse(timingSeq, repeat) {
         }
         else {  // end of sequence
             if (--repeat > 0) {  // check if we've repeated transmission desired number of times
-            // Repeat transmission.
-            k = 0;
-            lightState = toggleLight(lightState);  // turn light back off
-            timeoutID = setTimeout(interval, t_base*t_wgap);  // insert gap before the next word
+                // Repeat transmission.
+                k = 0;
+                lightState = toggleLight(lightState);  // turn light back off
+                timeoutID = setTimeout(interval, t_base*t_wgap);  // insert gap before the next word
+            }
+            else {
+                // Finished transmitting.
+                lightState = toggleLight(lightState);
+                transmissionFinished();
+            }
         }
-        else {
-            // Finished transmitting.
-            lightState = toggleLight(lightState);
-            transmissionFinished();
-        }
-    }
 
-}, t_base*timingSeq[k++]);  // start new timeout with length of next interval in sequence
+    }, t_base*timingSeq[k++]);  // start new timeout with length of next interval in sequence
 }
 
 function transmissionFinished(wait=1000) {
@@ -116,7 +122,7 @@ function pickRandomLetters(n, includeNumbers=false) {
     maxIndex = alphanumerics.length - 10;  // choose only letters (last 10 elements are numbers)
 
     randomWord = '';
-    for (i=0; i<n; i++) {
+    for (var i=0; i<n; i++) {
         chr = alphanumerics[Math.floor(Math.random()*maxIndex)];  // get a random character
         randomWord += chr;
     }
@@ -151,7 +157,7 @@ function getLetterTiming(letter) {
     timing = [];
 
     seq = morseCodes[letter].split("");
-    for(i=0; i<seq.length; i++) {
+    for(var i=0; i<seq.length; i++) {
         if (seq[i] == '.') {
             timing.push(t_dot);
         }
@@ -172,7 +178,7 @@ function getWordTiming(word) {
     timing = [];
     letters = word.split("");  // separate letters of word
 
-    for (j=0; j<letters.length; j++) {
+    for (var j=0; j<letters.length; j++) {
         timing = timing.concat( getLetterTiming(letters[j]) );  // add timing for individual letter to sequence
         timing.push( t_lgap );  // add inter-letter time gap between letters
     }
@@ -189,7 +195,7 @@ function getPhraseTiming(phrase) {
     timing = [];
     words = phrase.split(" ");  // separate words in phrase
 
-    for (w=0; w<words.length; w++) {
+    for (var w=0; w<words.length; w++) {
         timing = timing.concat( getWordTiming(words[w]) );  // add timing for individual word to sequence
         timing.push( t_wgap );  // add inter-word time gap between letters
     }
