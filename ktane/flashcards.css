@@ -3,6 +3,7 @@
 }
 
 #flashcard-container {
+    min-width: 400px;
     margin-top: 4rem;
     padding: 1rem;
     width: 40%;
