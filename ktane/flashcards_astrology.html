@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Flash Cards - Semaphore</title>
+    <title>Flash Cards - Astrology</title>
     <meta name="author" content="Jesse Williams">
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,14 +41,13 @@
 
     // Flashcard Images //
     var cards = {
-        "A / 1": "a1.svg", "B / 2": "b2.svg", "C / 3": "c3.svg", "D / 4": "d4.svg",
-        "E / 5": "e5.svg", "F / 6": "f6.svg", "G / 7": "g7.svg", "H / 8": "h8.svg",
-        "I / 9": "i9.svg", "J / Letters": "j-letters.svg", "K / 0": "k0.svg", "L": "l.svg",
-        "L": "l.svg", "M": "m.svg", "N": "n.svg", "O (Oscar)": "o.svg",
-        "P": "p.svg", "Q": "q.svg", "R": "r.svg", "S": "s.svg",
-        "T": "t.svg", "U": "u.svg", "V": "v.svg", "W": "w.svg",
-        "X": "x.svg", "Y": "y.svg", "Z": "z.svg",
-        "Numerals": "numerals.svg", "Rest / Space (CTRL)": "rest-space.svg", "Error (CTRL)": "error.svg", "Cancel (CTRL)": "cancel.svg"
+        "Fire (Element)": "e_fire.png", "Water (Element)": "e_water.png", "Earth (Element)": "e_earth.png", "Air (Element)": "e_air.png",
+        "Sun (Planet)": "p_sun.png", "Moon (Planet)": "p_moon.png", "Mercury (Planet)": "p_mercury.png", "Venus (Planet)": "p_venus.png",
+        "Mars (Planet)": "p_mars.png", "Jupiter (Planet)": "p_jupiter.png", "Saturn (Planet)": "p_saturn.png", "Uranus (Planet)": "p_uranus.png",
+        "Neptune (Planet)": "p_neptune.png", "Pluto (Planet)": "p_pluto.png",
+        "Aries (Zodiac)": "a_aries.png", "Taurus (Zodiac)": "a_taurus.png", "Gemini (Zodiac)": "a_gemini.png", "Cancer (Zodiac)": "a_cancer.png",
+        "Leo (Zodiac)": "a_leo.png", "Virgo (Zodiac)": "a_virgo.png", "Libra (Zodiac)": "a_libra.png", "Scorpio (Zodiac)": "a_scorpio.png",
+        "Sagittarius (Zodiac)": "a_sagittarius.png", "Capricorn (Zodiac)": "a_capricorn.png", "Aquarius (Zodiac)": "a_aquarius.png", "Pisces (Zodiac)": "a_pisces.png"
     };
     //////////////////////
 
@@ -57,7 +56,7 @@
         var cardKeys = Object.keys(cards);  // get an array of keys
         var randCard = cardKeys[cardKeys.length * Math.random() << 0];  // choose a random image
 
-        var fcimage = '<img id="flashcard-image" class="centered" src="img/flashcards/semaphore/' + cards[randCard] + '">';
+        var fcimage = '<img id="flashcard-image" class="centered" src="img/flashcards/astrology/' + cards[randCard] + '">';
         $('#flashcard-card').html(fcimage);
 
         answerhtml = '<span id="flashcard-answer-text" class="centered">' + randCard + '</span>';  // update answer text

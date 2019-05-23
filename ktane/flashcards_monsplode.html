@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Flash Cards - Semaphore</title>
+    <title>Flash Cards - Monsplode</title>
     <meta name="author" content="Jesse Williams">
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,14 +41,12 @@
 
     // Flashcard Images //
     var cards = {
-        "A / 1": "a1.svg", "B / 2": "b2.svg", "C / 3": "c3.svg", "D / 4": "d4.svg",
-        "E / 5": "e5.svg", "F / 6": "f6.svg", "G / 7": "g7.svg", "H / 8": "h8.svg",
-        "I / 9": "i9.svg", "J / Letters": "j-letters.svg", "K / 0": "k0.svg", "L": "l.svg",
-        "L": "l.svg", "M": "m.svg", "N": "n.svg", "O (Oscar)": "o.svg",
-        "P": "p.svg", "Q": "q.svg", "R": "r.svg", "S": "s.svg",
-        "T": "t.svg", "U": "u.svg", "V": "v.svg", "W": "w.svg",
-        "X": "x.svg", "Y": "y.svg", "Z": "z.svg",
-        "Numerals": "numerals.svg", "Rest / Space (CTRL)": "rest-space.svg", "Error (CTRL)": "error.svg", "Cancel (CTRL)": "cancel.svg"
+        "Aluga": "aluga.png", "Asteran": "asteran.png", "Bob": "bob.png", "Buhar": "buhar.png",
+        "Caadarim": "caadarim.png", "Clondar": "clondar.png", "Cutiepie": "cutiepie.png", "Docsplode": "docsplode.png",
+        "Flaurim": "flaurim.png", "Gloorim": "gloorim.png", "Lanaluff": "lanaluff.png", "Lugirit": "lugirit.png",
+        "Magmy": "magmy.png", "Melbor": "melbor.png", "Mountoise": "mountoise.png", "Myrchat": "myrchat.png",
+        "Nibs": "nibs.png", "Percy": "percy.png", "Pouse": "pouse.png", "Ukkens": "ukkens.png",
+        "Vellarim": "vellarim.png", "Violan": "violan.png", "Zapra": "zapra.png", "Zenlad": "zenlad.png"
     };
     //////////////////////
 
@@ -57,7 +55,7 @@
         var cardKeys = Object.keys(cards);  // get an array of keys
         var randCard = cardKeys[cardKeys.length * Math.random() << 0];  // choose a random image
 
-        var fcimage = '<img id="flashcard-image" class="centered" src="img/flashcards/semaphore/' + cards[randCard] + '">';
+        var fcimage = '<img id="flashcard-image" class="centered" src="img/flashcards/monsplode/' + cards[randCard] + '">';
         $('#flashcard-card').html(fcimage);
 
         answerhtml = '<span id="flashcard-answer-text" class="centered">' + randCard + '</span>';  // update answer text

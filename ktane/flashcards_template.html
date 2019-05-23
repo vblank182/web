@@ -1,10 +1,10 @@
 <html>
 <head>
-    <title>Flash Cards</title>
+    <title>Flash Cards - TEMPLATE</title>
     <meta name="author" content="Jesse Williams">
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="img/tmaicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="img/ktane.ico"/>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
@@ -14,7 +14,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="flashcards.css">
+    <link rel="stylesheet" href="css/flashcards.css">
 
 
     <!-- Flash Card Script -->
@@ -40,7 +40,9 @@
     }
 
     // Flashcard Images //
-    var cards = {"answer1": "card1.png"};
+    var cards = {
+        "TEMPLATE": "TEMPLATE.png"
+    };
     //////////////////////
 
     function nextCard() {
@@ -48,7 +50,7 @@
         var cardKeys = Object.keys(cards);  // get an array of keys
         var randCard = cardKeys[cardKeys.length * Math.random() << 0];  // choose a random image
 
-        var fcimage = '<img id="flashcard-image" class="centered" src="img/flashcards/template/' + cards[randCard] + '">';
+        var fcimage = '<img id="flashcard-image" class="centered" src="img/flashcards/TEMPLATE/' + cards[randCard] + '">';
         $('#flashcard-card').html(fcimage);
 
         answerhtml = '<span id="flashcard-answer-text" class="centered">' + randCard + '</span>';  // update answer text
