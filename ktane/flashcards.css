@@ -1,0 +1,23 @@
+.centered {
+    margin: auto;
+}
+
+#flashcard-container {
+    margin-top: 4rem;
+    padding: 1rem;
+    width: 40%;
+    border-radius: 8px;
+    background-color: #F9F7EF;
+}
+
+#flashcard-image {
+    height: 250px;
+}
+
+#flashcard-answer-text {
+    padding: 1.5rem;
+    font-size: 22pt;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px #A5A5A5;
+    color: #0D0F17;
+}

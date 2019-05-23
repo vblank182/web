@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>Flash Cards - Semaphore</title>
+    <meta name="author" content="Jesse Williams">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="img/tmaicon.png"/>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="flashcards.css">
+
+
+    <!-- Flash Card Script -->
+    <script>
+    $(function() {
+        nextCard();  // generate first card
+    });
+
+
+    // Button listener
+    function handleButton(id) {
+        // Toggle button text
+        if (id.innerHTML == "Answer") {
+
+            $("#flashcard-answer").css("opacity", 1);  // show answer
+            id.innerHTML = "Next";  // update button text
+        }
+        else {
+            $("#flashcard-answer").css("opacity", 0);  // hide answer
+            nextCard();  // generate new card
+            id.innerHTML = "Answer";  // update button text
+        }
+    }
+
+    // Flashcard Images //
+    var cards = {"A / 1": "a1.svg", "B / 2": "b2.svg", "C / 3": "c3.svg", "D / 4": "d4.svg",
+                 "E / 5": "e5.svg", "F / 6": "f6.svg", "G / 7": "g7.svg", "H / 8": "h8.svg",
+                 "I / 9": "i9.svg", "J / Letters": "j-letters.svg", "K / 0": "k0.svg", "L": "l.svg",
+                 "L": "l.svg", "M": "m.svg", "N": "N.svg", "O (Oscar)": "o.svg",
+                 "P": "p.svg", "Q": "q.svg", "R": "r.svg", "S": "s.svg",
+                 "T": "t.svg", "U": "u.svg", "V": "v.svg", "W": "w.svg",
+                 "X": "x.svg", "Y": "y.svg", "Z": "z.svg",
+                 "Numerals": "numerals.svg", "Rest / Space (CTRL)": "rest-space.svg", "Error (CTRL)": "error.svg", "Cancel (CTRL)": "cancel.svg"
+                };
+    //////////////////////
+
+    function nextCard() {
+        // Generate a random flashcard
+        var cardKeys = Object.keys(cards);  // get an array of keys
+        var randCard = cardKeys[cardKeys.length * Math.random() << 0];  // choose a random image
+
+        var fcimage = '<img id="flashcard-image" class="centered" src="img/flashcards/semaphore/' + cards[randCard] + '">';
+        $('#flashcard-card').html(fcimage);
+
+        answerhtml = '<span id="flashcard-answer-text" class="centered">' + randCard + '</span>';  // update answer text
+        $("#flashcard-answer").html(answerhtml);
+    }
+    </script>
+</head>
+
+<body>
+    <div class="container border border-dark" id="flashcard-container">
+        <div class="row" id="flashcard-card">
+            <!-- Flash card text/image here -->
+        </div>
+
+        <div class="row" id="flashcard-answer" style="opacity: 0;">
+            <!-- Flash card answer here -->
+        </div>
+
+        <div class="row" id="flashcard-button">
+            <button type="button" class="btn btn-lg btn-primary centered" onclick="handleButton(this)">Answer</button>
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>
