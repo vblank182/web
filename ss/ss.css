@@ -16,9 +16,14 @@ body {
     box-shadow: 4px 6px 8px 0px;
 }
 
+@font-face {
+  font-family: JacksMannequin;
+  src: url(jacksmannequin.ttf);
+}
+
 #header {
-    font-size: 48pt;
-    font-family: cursive;
+    font-size: 58pt;
+    font-family: JacksMannequin, Harrington, Arial, sans-serif;
     text-align: center;
 }
 #socialmedia {
