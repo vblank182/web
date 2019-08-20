@@ -11,6 +11,11 @@ body {
     margin: auto;
 }
 
+.carousel-inner {
+    border-radius: 12px;
+    box-shadow: 4px 6px 8px 0px;
+}
+
 #header {
     font-size: 48pt;
     font-family: cursive;
