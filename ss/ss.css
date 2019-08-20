@@ -1,0 +1,24 @@
+body {
+    background-color: #99d9ea;
+}
+.btn-info {
+    background: linear-gradient(0deg, rgba(240,187,128,1) 0%, rgba(205,124,31,1) 100%);
+    border-color: #b39849;
+    text-shadow: 1px 1px 0px #6f6f6f;
+}
+.image-carousel {
+    width: 60%;
+    margin: auto;
+}
+
+#header {
+    font-size: 48pt;
+    font-family: cursive;
+    text-align: center;
+}
+#socialmedia {
+    width: 50%;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: space-between;
+}
