@@ -7,7 +7,7 @@ body {
     text-shadow: 1px 1px 0px #6f6f6f;
 }
 .image-carousel {
-    width: 60%;
+    width: 35%;
     margin: auto;
 }
 
@@ -27,7 +27,7 @@ body {
     text-align: center;
 }
 #socialmedia {
-    width: 50%;
+    width: 22%;
     margin: 1rem auto;
     display: flex;
     justify-content: space-between;
