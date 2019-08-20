@@ -1,55 +1,34 @@
 $(function() {  // Document Ready event
-
-
     generateCarousel()
-
 });
 
 
-function loadImages() {
-    // Images are named as "galleryN.jpg"
-    var all_images = [];
-
-    var done = false;
-    var n = 1;
-    while (!done) {
-        var imgpath = "img/gallery" + n.toString() + ".jpg";
-        all_images.push();
-
-        $.ajax({
-            url: imgpath,
-            type: 'HEAD',
-            error: function() {
-                // File does not exist
-                done = true;
-            },
-            success: function() {}
-        });
-
-        n++;
-    }
-
-    return all_images;
-}
-
-
 function generateCarousel() {
+    // Construct nested array of [file path, item name, description] arrays.
+    // Item name will be displayed in carousel overlay(?). Description will be displayed in alt text.
+    images = [ ["img_one.jpg", "Name 1", "Product description 1"],
+               ["img_two.jpg", "Name 2", "Product description 2"],
+               ["img_three.jpg", "Name 3", "Product description 3"],
 
-    var all_images = loadImages();
+             ];
 
-    // First image
-    html_ind_1 = '<li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>';  // Add to carousel-indicators
-    html_img_1 = '<div class="carousel-item active"> <img src="' + all_images[0] + '" class="d-block w-100 carousel-image" alt="Selphie\'s Stitches Product Photo"> </div>'  // Add to carousel-inner
+    // Add images to carousel
+    for (var n = 0; n < images.length; n++) {
 
-    $(".carousel-indicators").append(html_ind_1);
-    $(".carousel-inner").append(html_img_1);
+        // Add "active" class tags to first image
+        if (n == 0) {
+            c_act = ' class="active"';
+            act = ' active';
+        }
+        else {
+            c_act = '';
+            act = '';
+        }
 
-    // Remaining images
-    for (var n = 1; n <= all_images.length; n++) {
-        html_ind = '<li data-target="#carouselIndicators" data-slide-to="' + n + '"></li>';
-        html_img = '<div class="carousel-item"> <img src="' + all_images[n] + '" class="d-block w-100 carousel-image" alt="Selphie\'s Stitches Product Photo"> </div>'
+        html_ind = '<li data-target="#carouselIndicators" data-slide-to="' + n + '"' + c_act + '></li>';
+        html_img = '<div class="carousel-item' + act + '"> <img src="img/' + images[n][0] + '" class="d-block w-100 carousel-image" alt="' + images[n][2] + '"> </div>'
 
-        $(".carousel-indicators").append(html_ind);
-        $(".carousel-inner").append(html_img);
+        $(".carousel-indicators").append(html_ind);  // Add new indicator entry
+        $(".carousel-inner").append(html_img);  // Add new image
     }
 }
