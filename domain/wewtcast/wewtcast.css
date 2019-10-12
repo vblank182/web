@@ -1,0 +1,26 @@
+body {
+    background-color: #eee;
+}
+a, a:visited {
+    color: #444;
+}
+a:hover {
+    text-decoration: none;
+}
+
+.socialmedia {
+    padding: 0rem 0.5rem;
+}
+
+#header {
+    font-size: 16pt;
+    color: #444;
+}
+
+#bannerimg {
+    width: 60%;
+}
+
+#header-title {
+    font-size: 20pt;
+}
