@@ -6,10 +6,12 @@ a, a:visited {
 }
 a:hover {
     text-decoration: none;
+    color: #17a2b8;
 }
 
 .socialmedia {
     padding: 0rem 0.5rem;
+    font-size: 22pt;
 }
 
 #header {
@@ -21,6 +23,26 @@ a:hover {
     width: 60%;
 }
 
+#header-patreon {
+    border: outset;
+    border-width: 3px;
+    border-color: rgb(244, 81, 29);
+    border-radius: 10px;
+    padding-top: -2px;
+    padding-bottom: 4px;
+}
+
 #header-title {
+    font-size: 28pt;
+}
+
+.column-header {
+    font-size: 24pt;
+    text-align: center;
+}
+
+.feed-link {
     font-size: 20pt;
+    font-style: italic;
+    letter-spacing: 2px;
 }
