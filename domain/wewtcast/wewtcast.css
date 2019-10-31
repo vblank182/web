@@ -34,15 +34,26 @@ a:hover {
 
 #header-title {
     font-size: 28pt;
+    font-weight: 600;
 }
 
 .column-header {
     font-size: 24pt;
     text-align: center;
+    padding-bottom:
+}
+
+#player {
+    margin: 1rem 0rem;
+}
+
+#twitter-feed {
+    margin: 1rem 0rem;
 }
 
 .feed-link {
-    font-size: 20pt;
+    font-size: 22pt;
     font-style: italic;
     letter-spacing: 2px;
+    margin: 0.5rem 0rem;
 }
