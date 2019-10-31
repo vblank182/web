@@ -10,6 +10,10 @@ a:hover {
 }
 
 .socialmedia {
+    padding: 0rem 0.75rem;
+    font-size: 22pt;
+}
+.patreonbtn {
     padding: 0rem 0.5rem;
     font-size: 22pt;
 }
@@ -25,7 +29,7 @@ a:hover {
 
 #header-patreon {
     border: outset;
-    border-width: 3px;
+    border-width: 2px;
     border-color: rgb(244, 81, 29);
     border-radius: 10px;
     padding-top: -2px;
