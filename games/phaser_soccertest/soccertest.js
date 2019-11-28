@@ -1,3 +1,5 @@
+// http://labs.phaser.io/assets/particles/
+
 var config = {
 	type: Phaser.AUTO,
 	width: 800,
@@ -20,16 +22,16 @@ var config = {
 var game = new Phaser.Game(config);
 
 function preload() {
-    this.load.image('ball', '/img/soccerball.png');
+    this.load.image('grass', 'img/grass.jpg');
+    this.load.image('ball', 'img/soccerball.png');
 
-	this.load.image('sky', 'assets/skies/space3.png');
-	this.load.image('red', 'assets/particles/red.png');
+    this.load.image('smoke', 'img/smoke-puff.png');
 }
 
 function create() {
-	this.add.image(400, 300, 'sky');
+	this.add.image(800, 600, 'grass');
 
-    var particles = this.add.particles('red');
+    var particles = this.add.particles('smoke');
 
     var emitter = particles.createEmitter({
         speed: 100,
