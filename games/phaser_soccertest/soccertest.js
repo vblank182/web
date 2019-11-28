@@ -29,7 +29,7 @@ function preload() {
 }
 
 function create() {
-	this.add.image(800, 600, 'grass');
+	this.add.image(6000, 4500, 'grass');
 
     var particles = this.add.particles('smoke');
 
@@ -39,7 +39,7 @@ function create() {
         blendMode: 'ADD'
     });
 
-    var logo = this.physics.add.image(600, 600, 'ball');
+    var logo = this.physics.add.image(30, 30, 'ball');
 
     logo.setVelocity(100, 200);
     logo.setBounce(0.9, 0.9);
