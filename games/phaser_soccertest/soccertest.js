@@ -1,3 +1,4 @@
+// https://phaser.io/tutorials/getting-started-phaser3/index
 // http://labs.phaser.io/assets/particles/
 
 var config = {
@@ -29,7 +30,7 @@ function preload() {
 }
 
 function create() {
-	this.add.image(6000, 4500, 'grass');
+	this.add.image(10, 10, 'grass');
 
     var particles = this.add.particles('smoke');
 
