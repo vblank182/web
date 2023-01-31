@@ -1,0 +1,30 @@
+body {
+  background-color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  text-decoration: none;
+}
+
+.center {
+  text-align: center;
+  font-size: 15em;
+  font-weight: 700;
+
+  left: 0;
+  line-height: 200px;
+  margin: auto;
+  margin-top: -100px;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+#no {
+    color:rgb(145, 0, 0);
+}
+
+#yes {
+    color: green;
+}
